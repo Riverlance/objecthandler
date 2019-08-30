@@ -10,7 +10,7 @@
 
 #include <SDL.h>
 #include "eventmanager.h"
-#include "base\const.h"
+#include "const.h"
 
 
 

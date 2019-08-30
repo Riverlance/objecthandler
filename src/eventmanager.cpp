@@ -5,9 +5,10 @@
 
 
 
+#include "objecthandlerpch.h"
+
 #include "eventmanager.h"
-#include "base\const.h"
-#include "base\global.h"
+#include "const.h"
 
 
 

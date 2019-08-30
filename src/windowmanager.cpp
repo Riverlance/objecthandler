@@ -5,12 +5,13 @@
 
 
 
+#include "objecthandlerpch.h"
+
 #include "windowmanager.h"
 #include "eventmanager.h"
 #include "graphicmanager.h"
 #include <SDL.h>
-#include "base\const.h"
-#include "base\global.h"
+#include "const.h"
 
 
 
@@ -176,21 +177,21 @@ void WindowManager::zoom(Direction direction)
 
 
 
-void WindowManager::changeCamera(Camera camera /*= CAMERA_NONE*/)
+void WindowManager::changeCamera(Camera /*camera*/ /*= CAMERA_NONE*/)
 {
   std::cout << "Change camera" << std::endl;
 
   // If is CAMERA_NONE, change to the next Camera
 }
 
-void WindowManager::changeViewMode(ViewMode viewMode /*= VIEWMODE_NONE*/)
+void WindowManager::changeViewMode(ViewMode /*viewMode*/ /*= VIEWMODE_NONE*/)
 {
   std::cout << "Change view mode (Texture / Flat Shade / Wireframe)" << std::endl;
 
   // If is VIEWMODE_NONE, change to the next ViewMode
 }
 
-void WindowManager::changeAnimationSet(uint8_t animationSetId /*= 255*/)
+void WindowManager::changeAnimationSet(uint8_t /*animationSetId*/ /*= 255*/)
 {
   std::cout << "Next animation set" << std::endl;
 
@@ -199,7 +200,7 @@ void WindowManager::changeAnimationSet(uint8_t animationSetId /*= 255*/)
 
 
 
-void WindowManager::openFile(const std::string& path)
+void WindowManager::openFile(const std::string& /*path*/)
 {
   std::cout << "Opening new file..." << std::endl;
 }
@@ -247,7 +248,7 @@ uint64_t WindowManager::getFrame()
   return 0L;
 }
 
-void WindowManager::setFrame(uint64_t frameId)
+void WindowManager::setFrame(uint64_t /*frameId*/)
 {
   // ...
 }

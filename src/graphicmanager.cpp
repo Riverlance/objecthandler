@@ -5,8 +5,9 @@
 
 
 
+#include "objecthandlerpch.h"
+
 #include "graphicmanager.h"
-#include "base\global.h"
 
 
 

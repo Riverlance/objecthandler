@@ -5,9 +5,6 @@
 
 
 
-#ifndef GLOBAL_H
-#define GLOBAL_H
-
 // Collection of functions especially designed to be used on ranges of elements
 #include <algorithm>
 
@@ -67,6 +64,4 @@
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
-#endif
-
 #endif

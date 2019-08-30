@@ -9,7 +9,6 @@
 #define EVENTMANAGER_H
 
 #include <SDL.h>
-#include "base\global.h"
 
 
 

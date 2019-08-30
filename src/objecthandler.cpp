@@ -5,8 +5,9 @@
 
 
 
+#include "objecthandlerpch.h"
+
 #include "app.h"
-#include "core\base\global.h"
 
 
 

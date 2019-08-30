@@ -5,10 +5,11 @@
 
 
 
+#include "objecthandlerpch.h"
+
 #include "app.h"
-#include "core\base\const.h"
-#include "core\base\global.h"
-#include "core\windowmanager.h"
+#include "const.h"
+#include "windowmanager.h"
 
 
 
@@ -30,7 +31,7 @@ GApp::~GApp()
   initialized = false;
 }
 
-bool GApp::init(int argc, char* argv[])
+bool GApp::init(int /*argc*/, char*[] /*argv*/)
 {
   std::cout << ">> Loading core..." << std::endl;
 
