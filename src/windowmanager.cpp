@@ -15,28 +15,22 @@
 
 
 
-// Image we will load and show on the screen
-SDL_Surface* g_imageBuffer;
-
 WindowManager::WindowManager()
 {
   initialized = false;
   window = nullptr;
-  windowSurface = nullptr;
+  windowContext = nullptr;
+
+  eventManager = new EventManager();
 }
 
 WindowManager::~WindowManager()
 {
-  // Deallocate surface
-  if (g_imageBuffer != nullptr)
+  // Deallocate context
+  if (windowContext != nullptr)
   {
-    SDL_FreeSurface(g_imageBuffer);
-    g_imageBuffer = nullptr;
-  }
-  if (windowSurface != nullptr)
-  {
-    SDL_FreeSurface(windowSurface);
-    windowSurface = nullptr;
+    SDL_GL_DeleteContext(windowContext);
+    windowContext = nullptr;
   }
 
   // Destroy window
@@ -53,8 +47,6 @@ WindowManager::~WindowManager()
   initialized = false;
 }
 
-
-
 bool WindowManager::init()
 {
   std::cout << std::endl;
@@ -67,8 +59,12 @@ bool WindowManager::init()
   }
   std::cout << "> SDL initialized successfully." << std::endl;
 
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE); // OpenGL core profile
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3); // OpenGL 3
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3); // OpenGL 3
+
   // Create window
-  window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+  window = SDL_CreateWindow(STATUS_APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
   if (window == nullptr)
   {
     std::cout << "> Failed to create window.\n\tSDL Error: " << SDL_GetError() << std::endl;
@@ -76,35 +72,34 @@ bool WindowManager::init()
   }
   std::cout << "> SDL window created successfully." << std::endl;
 
-  // Get window surface
-  windowSurface = SDL_GetWindowSurface(window);
+  // Get window context
+  windowContext = SDL_GL_CreateContext(window);
 
-  onInit();
-  
-  initialized = true;
-  return initialized;
-}
 
-void WindowManager::update()
-{
-  EventManager* eventManager = new EventManager();
+
+  // On init
 
   // Callback
   using namespace std::placeholders; // For argument placeholders of _1, _2, _3
   auto callback = std::bind(&WindowManager::onActionCallback, this, _1, _2, _3);
   eventManager->setOnActionCallback(callback);
   
-  while (true)
-  {
-    if (!eventManager->update())
-      break;
 
-    // Apply the image
-    SDL_BlitSurface(g_imageBuffer, nullptr, windowSurface, nullptr);
 
-    // Update the surface (write within the front buffer and show it at screen - this is 1 Frame)
-    SDL_UpdateWindowSurface(window);
-  }
+  initialized = true;
+  return initialized;
+}
+
+bool WindowManager::update()
+{
+  if (!eventManager->update())
+    return false;
+  return true;
+}
+
+void WindowManager::drawContext()
+{
+  SDL_GL_SwapWindow(window);
 }
 
 
@@ -283,32 +278,18 @@ void WindowManager::endFrame()
 
 
 
-void WindowManager::onInit()
-{
-  // Load image
-  std::string path = "data/hello_world.bmp";
-  g_imageBuffer = SDL_LoadBMP(path.c_str());
-  if (g_imageBuffer == nullptr)
-  {
-    std::cout << "> Failed to load image '" << path.c_str() << "'.\n\tSDL Error: " << SDL_GetError() << std::endl;
-    return;
-  }
-
-  update();
-}
-
-void WindowManager::onActionCallback(EventManager* eventManager, Uint32 eventType, Uint64 action)
+void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action)
 {
   Direction direction    = DIRECTION_NONE; // Auxiliar
-  SDL_Event eventHandler = eventManager->getEventHandler();
-  Uint16 keyMod          = eventManager->getKeyModifiers();
+  SDL_Event eventHandler = _eventManager->getEventHandler();
+  Uint16 keyMod          = _eventManager->getKeyModifiers();
 
   /* Mouse motion handling */
 
   if (eventType == SDL_MOUSEMOTION)
   {
     // Holding mouse left button
-    if (eventManager->isHoldingMouseLeftButton())
+    if (_eventManager->isHoldingMouseLeftButton())
     {
       // Modifier: Ctrl
       if ((keyMod & KMOD_CTRL) && !(keyMod & (KMOD_SHIFT | KMOD_ALT)))
@@ -395,7 +376,7 @@ void WindowManager::onActionCallback(EventManager* eventManager, Uint32 eventTyp
       }
     }
     // Holding mouse middle button
-    else if (eventManager->isHoldingMouseMiddleButton())
+    else if (_eventManager->isHoldingMouseMiddleButton())
     {
       // No modifier
       if (!(keyMod & KMOD_KEYS))
@@ -426,7 +407,7 @@ void WindowManager::onActionCallback(EventManager* eventManager, Uint32 eventTyp
       }
     }
     // Holding mouse right button
-    else if (eventManager->isHoldingMouseRightButton())
+    else if (_eventManager->isHoldingMouseRightButton())
     {
       // Modifier: Alt
       if ((keyMod & KMOD_ALT) && !(keyMod & (KMOD_CTRL | KMOD_SHIFT)))

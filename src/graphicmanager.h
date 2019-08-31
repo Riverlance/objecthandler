@@ -26,6 +26,7 @@ class GraphicManager
 
 
     bool init();
+    void update();
 
 
 
@@ -41,19 +42,11 @@ class GraphicManager
     };
 
     bool isInitialized() { return initialized; }
-    GLint getViewportX() { return viewportX; }
-    GLint getViewportY() { return viewportY; }
-    GLsizei getViewportWidth() { return viewportWidth; }
-    GLsizei getViewportHeight() { return viewportHeight; }
 
 
 
     private:
       bool initialized;
-      GLint viewportX;
-      GLint viewportY;
-      GLsizei viewportWidth;
-      GLsizei viewportHeight;
 };
 
 #endif

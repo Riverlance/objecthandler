@@ -8,16 +8,13 @@
 #include "objecthandlerpch.h"
 
 #include "graphicmanager.h"
+#include "const.h"
 
 
 
 GraphicManager::GraphicManager()
 {
   initialized = false;
-  viewportX = 0;
-  viewportY = 0;
-  viewportWidth = 0;
-  viewportHeight = 0;
 }
 
 GraphicManager::~GraphicManager()
@@ -32,21 +29,30 @@ bool GraphicManager::init()
 {
   std::cout << std::endl;
 
-  if (glewInit() == GLEW_OK)
+  // Create OpenGL context
+  const GLenum glInitReturn = glewInit();
+  if (glInitReturn == GLEW_OK)
     std::cout << "> OpenGL initialized successfully." << std::endl;
   else
   {
-    std::cout << "> Failed to initialize GLEW." << std::endl;
+    std::cout << "> Failed to initialize OpenGL.\n\tOpenGL Error: " << glewGetErrorString(glInitReturn) << std::endl;
     return false;
   }
+
+  // Modern OpenGL experimental functions
+  //glewExperimental = GL_TRUE;
 
   std::cout << "\tOpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
   // Set viewport dimensions
-  glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
-
-
-
+  glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+  
   initialized = true;
   return initialized;
+}
+
+void GraphicManager::update()
+{
+  glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // RGBA
+  glClear(GL_COLOR_BUFFER_BIT);
 }

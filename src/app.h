@@ -8,6 +8,9 @@
 #ifndef APP_H
 #define APP_H
 
+#include "windowmanager.h"
+#include "graphicmanager.h"
+
 class GApp
 {
   public:
@@ -39,11 +42,16 @@ class GApp
     };
 
     bool isInitialized() { return initialized; }
+    WindowManager* getWindowManager() { return windowManager; }
+    GraphicManager* getGraphicManager() { return graphicManager; }
 
 
 
   private:
     bool initialized;
+
+    WindowManager* windowManager;
+    GraphicManager* graphicManager;
 };
 
 #endif

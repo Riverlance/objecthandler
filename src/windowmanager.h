@@ -30,7 +30,8 @@ class WindowManager
 
 
     bool init();
-    void update();
+    bool update();
+    void drawContext();
 
 
 
@@ -47,7 +48,8 @@ class WindowManager
     
     bool isInitialized() { return initialized; }
     SDL_Window* getWindow() { return window; }
-    SDL_Surface* getWindowSurface() { return windowSurface; }
+    SDL_GLContext getWindowContext() { return windowContext; }
+    EventManager* getEventManager() { return eventManager; }
 
     void move(Direction direction);
     void rotate(Direction direction);
@@ -72,21 +74,22 @@ class WindowManager
     void startFrame();
     void endFrame();
     
+    void onActionCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action);
+
 
 
   private:
-    void onInit();
-    void onActionCallback(EventManager* eventManager, Uint32 eventType, Uint64 action);
-
-
-
     bool initialized;
+
+
 
     // Window we'll be rendering to
     SDL_Window* window;
 
-    // Surface contained by the window
-    SDL_Surface* windowSurface;
+    // Context contained by the window
+    SDL_GLContext windowContext;
+
+    EventManager* eventManager;
 };
 
 #endif

@@ -9,7 +9,6 @@
 
 #include "app.h"
 #include "const.h"
-#include "windowmanager.h"
 
 
 
@@ -34,8 +33,18 @@ GApp::~GApp()
 bool GApp::init(int /*argc*/, char*[] /*argv*/)
 {
   std::cout << ">> Loading core..." << std::endl;
+    
+  // SDL window
+  //GWindow* window = new GWindow();
+  windowManager = WindowManager::getInstance();
+  if (!windowManager->init())
+    return false;
+  // OpenGL context
+  graphicManager = GraphicManager::getInstance();
+  if (!graphicManager->init())
+    return false;
 
-
+  std::cout << std::endl;
   
   /*
   // Allow to continue the loading
@@ -49,16 +58,24 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
 
 
 
-  // Window
-  //GWindow* window = new GWindow();
-  WindowManager* window = WindowManager::getInstance();
-  if (!window->init())
-    return false;
+  // Loop
+
+  while (true) // FPS
+  {
+    // Window
+    if (!windowManager->update())
+      break;
+
+    // Context
+    graphicManager->update();
+    windowManager->drawContext();
+  }
 
 
 
   // Force calling destructor method, since we cannot delete a singleton object
-  window->~WindowManager();
+  graphicManager->~GraphicManager();
+  windowManager->~WindowManager();
   //delete window; // You cannot remove a singleton object
 
 
