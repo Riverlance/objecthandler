@@ -117,7 +117,7 @@
       <OmitFramePointers />
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,7 +139,7 @@
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -163,7 +163,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -184,7 +184,7 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>objecthandlerpch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
