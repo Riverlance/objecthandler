@@ -64,6 +64,9 @@
   return Projection * View * Model;
 */
 
+// SOIL
+#include "binary/soil2/src/SOIL2/SOIL2.h"
+
 // To do
 // Light-weight C++ XML processing library
 //#include <pugixml.hpp>
