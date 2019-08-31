@@ -67,6 +67,11 @@
 // SOIL
 #include "binary/soil2/src/SOIL2/SOIL2.h"
 
+// Assimp
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 // To do
 // Light-weight C++ XML processing library
 //#include <pugixml.hpp>
