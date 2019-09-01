@@ -64,7 +64,7 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
 
 
 
-  // Loop
+  // Application loop
 
   while (true) // FPS
   {

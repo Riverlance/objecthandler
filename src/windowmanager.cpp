@@ -99,6 +99,7 @@ bool WindowManager::update()
 
 void WindowManager::drawContext()
 {
+  // Swap the screen buffers
   SDL_GL_SwapWindow(window);
 }
 

@@ -28,6 +28,7 @@ class GraphicManager
 
 
     bool init();
+    bool onInit();
     void update();
 
 
