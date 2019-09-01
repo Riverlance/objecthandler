@@ -29,7 +29,10 @@ bool GraphicManager::init()
 {
   std::cout << std::endl;
 
-  // Create OpenGL context
+  // Modern approach to retrieving OpenGL functions pointers and extensions (not fully tested)
+  glewExperimental = GL_TRUE;
+
+  // Initiliaze GLEW to setup the OpenGL function pointers
   const GLenum glInitReturn = glewInit();
   if (glInitReturn == GLEW_OK)
     std::cout << "> OpenGL initialized successfully." << std::endl;
@@ -38,9 +41,6 @@ bool GraphicManager::init()
     std::cout << "> Failed to initialize OpenGL.\n\tOpenGL Error: " << glewGetErrorString(glInitReturn) << std::endl;
     return false;
   }
-
-  // Modern OpenGL experimental functions
-  //glewExperimental = GL_TRUE;
 
   std::cout << "\tOpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
