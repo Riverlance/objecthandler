@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\app.cpp" />
+    <ClCompile Include="..\src\const.cpp" />
     <ClCompile Include="..\src\eventmanager.cpp" />
     <ClCompile Include="..\src\graphicmanager.cpp" />
     <ClCompile Include="..\src\objecthandler.cpp" />

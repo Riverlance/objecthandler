@@ -8,6 +8,8 @@
 #ifndef CONST_H
 #define CONST_H
 
+#include "graphicmanager.h"
+
 #define STATUS_APP_NAME    "Object Handler"
 #define STATUS_APP_VERSION "1.0"
 #define STATUS_DEVELOPERS  "Gabriel Moraes de Oliveira"
@@ -19,6 +21,28 @@
 #define KMOD_KEYS   (KMOD_CTRL | KMOD_SHIFT | KMOD_ALT | KMOD_GUI)
 
 //static constexpr GLuint WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
+
+
+
+// Theme
+
+enum Theme : char // uint8_t
+{
+  THEME_LIGHT,
+  THEME_DARK,
+
+  THEME_DEFAULT = THEME_DARK,
+  THEME_FIRST = THEME_LIGHT,
+  THEME_LAST = THEME_DARK,
+};
+extern Theme APP_THEME;
+
+extern GLclampf THEME_CLEARCOLOR_R;
+extern GLclampf THEME_CLEARCOLOR_G;
+extern GLclampf THEME_CLEARCOLOR_B;
+extern GLclampf THEME_CLEARCOLOR_A;
+
+
 
 enum Direction : char // uint8_t
 {

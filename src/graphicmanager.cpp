@@ -53,6 +53,6 @@ bool GraphicManager::init()
 
 void GraphicManager::update()
 {
-  glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // RGBA
+  glClearColor(THEME_CLEARCOLOR_R, THEME_CLEARCOLOR_G, THEME_CLEARCOLOR_B, THEME_CLEARCOLOR_A); // RGBA
   glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -10,6 +10,9 @@
 
 #include "windowmanager.h"
 #include "graphicmanager.h"
+#include "const.h"
+
+
 
 class GApp
 {
@@ -27,6 +30,7 @@ class GApp
 
 
     bool init(int argc, char* argv[]);
+    static void setTheme(Theme theme = THEME_DEFAULT);
 
 
 
