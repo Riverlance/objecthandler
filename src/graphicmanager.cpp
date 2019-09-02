@@ -56,7 +56,7 @@ bool GraphicManager::init()
     std::cout << "> OpenGL initialized successfully." << std::endl;
   else
   {
-    std::cout << "> Failed to initialize OpenGL.\n\tOpenGL Error: " << glewGetErrorString(glInitReturn) << std::endl;
+    std::cerr << "> Failed to initialize OpenGL.\n\tOpenGL Error: " << glewGetErrorString(glInitReturn) << std::endl;
     return false;
   }
 

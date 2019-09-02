@@ -54,7 +54,7 @@ bool WindowManager::init()
   // Initialize SDL
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
   {
-    std::cout << "> Failed to initialize SDL.\n\tSDL Error: " << SDL_GetError() << std::endl;
+    std::cerr << "> Failed to initialize SDL.\n\tSDL Error: " << SDL_GetError() << std::endl;
     return false;
   }
   std::cout << "> SDL initialized successfully." << std::endl;
@@ -68,7 +68,7 @@ bool WindowManager::init()
   window = SDL_CreateWindow(STATUS_APP_NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
   if (window == nullptr)
   {
-    std::cout << "> Failed to create window.\n\tSDL Error: " << SDL_GetError() << std::endl;
+    std::cerr << "> Failed to create window.\n\tSDL Error: " << SDL_GetError() << std::endl;
     return false;
   }
   std::cout << "> SDL window created successfully." << std::endl;

@@ -280,7 +280,7 @@ bool EventManager::loadJoystick()
   gameJoystick = SDL_JoystickOpen(0); // First joystick
   if (gameJoystick == nullptr)
   {
-    std::cout << "> Failed to initialize Game Joystick.\n\tSDL Error: " << SDL_GetError() << std::endl;
+    std::cerr << "> Failed to initialize Game Joystick.\n\tSDL Error: " << SDL_GetError() << std::endl;
     return false;
   }
 

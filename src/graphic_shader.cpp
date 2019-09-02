@@ -33,7 +33,7 @@ GLuint GraphicShader::loadShader(GLenum shaderType, const GLchar* path)
   if (!success)
   {
     glGetShaderInfoLog(shader, infoLogSize, NULL, infoLog);
-    std::cout << "> Failed to load vertex shader.\nGLEW error: " << infoLog << std::endl;
+    std::cerr << "> Failed to load vertex shader.\n\tGLEW error: " << infoLog << std::endl;
     return 0; // Error
   }
 
@@ -49,7 +49,7 @@ bool GraphicShader::attachShader(GLuint shader)
 {
   if (!program)
   {
-    std::cout << "> Failed to attach shader.\nProgram is not loaded." << std::endl;
+    std::cerr << "> Failed to attach shader.\n\tProgram is not loaded." << std::endl;
     return false;
   }
   // Attach shader
@@ -70,7 +70,7 @@ bool GraphicShader::linkProgram()
   {
     GLchar infoLog[infoLogSize];
     glGetProgramInfoLog(program, infoLogSize, NULL, infoLog);
-    std::cout << "> Failed to link shader program.\nGLEW error: " << infoLog << std::endl;
+    std::cerr << "> Failed to link shader program.\n\tGLEW error: " << infoLog << std::endl;
     return false;
   }
 

@@ -18,17 +18,7 @@
  */
 int main(int argc, char* argv[])
 {
-  /*
-  // Init core
-  ret = onCoreInit(argc, argv);
-  if (ret != EXIT_SUCCESS)
-  {
-    std::cout << ">> Failed to load core." << std::endl;
-    return ret;
-  }
-  */
-
-  // Init graphics
+  // Init app
   GApp* g_app = GApp::getInstance();
   if (!g_app->init(argc, argv))
     return EXIT_FAILURE;

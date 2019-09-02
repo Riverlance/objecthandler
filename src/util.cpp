@@ -36,7 +36,7 @@ std::string Util::getFileContent(const std::string filePath)
   }
   catch (std::ifstream::failure error)
   {
-    std::cerr << "> Failed to read shader files.\n" << error.what() << std::endl;
+    std::cerr << "> Failed to read shader files.\n\t" << error.what() << std::endl;
     return output;
   }
 
