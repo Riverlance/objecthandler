@@ -28,6 +28,7 @@
     <ClCompile Include="..\src\objecthandlerpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\src\util.cpp" />
     <ClCompile Include="..\src\windowmanager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +38,7 @@
     <ClInclude Include="..\src\graphicmanager.h" />
     <ClInclude Include="..\src\graphic_shader.h" />
     <ClInclude Include="..\src\objecthandlerpch.h" />
+    <ClInclude Include="..\src\util.h" />
     <ClInclude Include="..\src\windowmanager.h" />
   </ItemGroup>
   <ItemGroup>
