@@ -75,8 +75,30 @@ bool GraphicManager::init()
 
 bool GraphicManager::onInit()
 {
-  // Shader manager
-  graphicShader = GraphicShader("data/shaders/graphic_core_vertex.shader", "data/shaders/graphic_core_fragment.shader");
+  // Load graphic shader
+  graphicShader = GraphicShader();
+
+  // Vertex shader
+  GLuint vertex = graphicShader.loadShader(GL_VERTEX_SHADER, "data/shaders/graphic_core_vertex.shader");
+  if (vertex == 0)
+    return false;
+  // Fragment shader
+  GLuint fragment = graphicShader.loadShader(GL_FRAGMENT_SHADER, "data/shaders/graphic_core_fragment.shader");
+  if (fragment == 0)
+    return false;
+  
+  // Load program
+  graphicShader.loadProgram();
+  
+  // Attach shaders
+  graphicShader.attachShader(vertex);
+  graphicShader.attachShader(fragment);
+  
+  // Shader program
+  if (!graphicShader.linkProgram())
+    return false;
+
+
   
   // Generate VAO, VBO
   glGenVertexArrays(VAOsize, &VAO); // VAO

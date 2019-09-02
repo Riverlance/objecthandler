@@ -16,10 +16,17 @@ class GraphicShader
 {
   public:
     GraphicShader() {};
-    GraphicShader(const GLchar* vertexPath, const GLchar* fragmentPath) { load(vertexPath, fragmentPath); };
+
+
 
     // Generate the shader on the fly
-    bool load(const GLchar* vertexPath, const GLchar* fragmentPath);
+
+    GLuint loadShader(GLenum shaderType, const GLchar* path);
+    void loadProgram();
+    bool attachShader(GLuint shader);
+    bool linkProgram();
+
+
     // Use the current shader
     void use();
 

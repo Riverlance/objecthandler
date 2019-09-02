@@ -12,82 +12,72 @@
 
 
 
-bool GraphicShader::load(const GLchar* vertexPath, const GLchar* fragmentPath)
+const int infoLogSize = 512;
+
+GLuint GraphicShader::loadShader(GLenum shaderType, const GLchar* path)
 {
-  /// Retrieve the vertex/fragment source code from filePath
+  std::string _fileContent = Util::getFileContent(path);
+  if (_fileContent == "")
+    return 0; // Error
+  const GLchar* fileContent = _fileContent.c_str();
+  const GLint fileContentLength = (GLint)_fileContent.size();
 
-  // Vertex
-  std::string _vertexShaderCode = Util::getFileContent(vertexPath);
-  if (_vertexShaderCode == "")
-    return false;
-  const GLchar* vertexShaderCode = _vertexShaderCode.c_str();
-  const GLint vertexShaderCodeLength = (GLint)_vertexShaderCode.size();
-  // Fragment
-  std::string _fragmentShaderCode = Util::getFileContent(fragmentPath);
-  if (_fragmentShaderCode == "")
-    return false;
-  const GLchar* fragmentShaderCode = _fragmentShaderCode.c_str();
-  const GLint fragmentShaderCodeLength = (GLint)_fragmentShaderCode.size();
-  
-
-
-  /// Compile shaders
-  
-  GLuint vertex, fragment;
+  GLuint shader;
   GLint success;
-  const int infoLogSize = 512;
   GLchar infoLog[infoLogSize];
 
-  // Vertex shader
-  
-  vertex = glCreateShader(GL_VERTEX_SHADER);
-  glShaderSource(vertex, 1, &vertexShaderCode, &vertexShaderCodeLength);
-  glCompileShader(vertex);
-  glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+  shader = glCreateShader(shaderType);
+  glShaderSource(shader, 1, &fileContent, &fileContentLength);
+  glCompileShader(shader);
+  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
   if (!success)
   {
-    glGetShaderInfoLog(vertex, infoLogSize, NULL, infoLog);
+    glGetShaderInfoLog(shader, infoLogSize, NULL, infoLog);
     std::cout << "> Failed to load vertex shader.\nGLEW error: " << infoLog << std::endl;
-    return false;
+    return 0; // Error
   }
 
+  return shader;
+}
 
-
-  // Fragment shader
-  fragment = glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragment, 1, &fragmentShaderCode, &fragmentShaderCodeLength);
-  glCompileShader(fragment);
-  glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-  if (!success)
-  {
-    glGetShaderInfoLog(fragment, infoLogSize, NULL, infoLog);
-    std::cout << "> Failed to load fragment shader.\nGLEW error: " << infoLog << std::endl;
-    return false;
-  }
-
-
-
-  // Shader program
+void GraphicShader::loadProgram()
+{
   program = glCreateProgram();
-  glAttachShader(program, vertex);
-  glAttachShader(program, fragment);
+}
+
+bool GraphicShader::attachShader(GLuint shader)
+{
+  if (!program)
+  {
+    std::cout << "> Failed to attach shader.\nProgram is not loaded." << std::endl;
+    return false;
+  }
+  // Attach shader
+  glAttachShader(program, shader);
+
+  // Delete the shader as they are attached into program and are not longer necessary
+  glDeleteShader(shader);
+
+  return true;
+}
+
+bool GraphicShader::linkProgram()
+{
+  GLint success;
   glLinkProgram(program);
   glGetProgramiv(program, GL_LINK_STATUS, &success);
   if (!success)
   {
+    GLchar infoLog[infoLogSize];
     glGetProgramInfoLog(program, infoLogSize, NULL, infoLog);
-    std::cout << "> Failed to load shader program.\nGLEW error: " << infoLog << std::endl;
+    std::cout << "> Failed to link shader program.\nGLEW error: " << infoLog << std::endl;
     return false;
   }
 
-
-
-  // Delete the shaders as they are linked into our program now and are not longer necessary
-  glDeleteShader(vertex);
-  glDeleteShader(fragment);
-
   return true;
 }
+
+
 
 void GraphicShader::use()
 {
