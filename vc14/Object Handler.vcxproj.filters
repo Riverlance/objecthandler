@@ -8,6 +8,7 @@
     <ClCompile Include="..\src\objecthandlerpch.cpp" />
     <ClCompile Include="..\src\windowmanager.cpp" />
     <ClCompile Include="..\src\const.cpp" />
+    <ClCompile Include="..\src\graphic_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\app.h" />
@@ -16,5 +17,19 @@
     <ClInclude Include="..\src\graphicmanager.h" />
     <ClInclude Include="..\src\objecthandlerpch.h" />
     <ClInclude Include="..\src\windowmanager.h" />
+    <ClInclude Include="..\src\graphic_shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\shaders\graphic_core_vertex.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\graphic_core_fragment.shader">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{e6972902-87da-4357-b059-b9a10066c717}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

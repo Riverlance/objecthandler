@@ -9,6 +9,7 @@
 #define GRAPHICMANAGER_H
 
 #include <GL/glew.h>
+#include "graphic_shader.h"
 
 
 
@@ -50,6 +51,8 @@ class GraphicManager
 
     private:
       bool initialized;
+
+      GraphicShader graphicShader;
 };
 
 #endif

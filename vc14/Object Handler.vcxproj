@@ -23,6 +23,7 @@
     <ClCompile Include="..\src\const.cpp" />
     <ClCompile Include="..\src\eventmanager.cpp" />
     <ClCompile Include="..\src\graphicmanager.cpp" />
+    <ClCompile Include="..\src\graphic_shader.cpp" />
     <ClCompile Include="..\src\objecthandler.cpp" />
     <ClCompile Include="..\src\objecthandlerpch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -34,8 +35,13 @@
     <ClInclude Include="..\src\const.h" />
     <ClInclude Include="..\src\eventmanager.h" />
     <ClInclude Include="..\src\graphicmanager.h" />
+    <ClInclude Include="..\src\graphic_shader.h" />
     <ClInclude Include="..\src\objecthandlerpch.h" />
     <ClInclude Include="..\src\windowmanager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\data\shaders\graphic_core_fragment.shader" />
+    <None Include="..\data\shaders\graphic_core_vertex.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{043A63F8-B5F0-4372-A394-02B6D8AEF207}</ProjectGuid>

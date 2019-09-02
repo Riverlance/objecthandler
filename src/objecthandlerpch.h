@@ -35,6 +35,9 @@
 // Critical sections for preventing other threads with the same protection from executing concurrently and access the same memory locations
 #include <mutex>
 
+// Input/output stream class to operate on files (e.g., std::string)
+#include <fstream>
+
 // String stream classes (e.g., std::ostringstream)
 #include <sstream>
 
