@@ -28,7 +28,7 @@ class GraphicShader
 
 
     // Use the current shader
-    void use();
+    void useProgram();
 
 
 

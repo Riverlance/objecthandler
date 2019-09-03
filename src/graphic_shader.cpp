@@ -79,7 +79,7 @@ bool GraphicShader::linkProgram()
 
 
 
-void GraphicShader::use()
+void GraphicShader::useProgram()
 {
   glUseProgram(program);
 }

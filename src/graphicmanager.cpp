@@ -138,7 +138,7 @@ void GraphicManager::update()
 
 
   // Shader program
-  graphicShader.use();
+  graphicShader.useProgram();
 
   // Bind
   glBindVertexArray(VAO); // VAO
