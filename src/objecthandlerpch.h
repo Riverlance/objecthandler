@@ -68,7 +68,7 @@
 */
 
 // SOIL
-#include "binary/soil2/src/SOIL2/SOIL2.h"
+#include <SOIL2.h>
 
 // Assimp
 #include <assimp/Importer.hpp>
