@@ -14,8 +14,8 @@
 #define STATUS_APP_VERSION "1.0"
 #define STATUS_DEVELOPERS  "Gabriel Moraes de Oliveira"
 
-#define SCREEN_WIDTH  640
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH  1280
+#define SCREEN_HEIGHT 720
 #define SCREEN_BPP    32 // Bits Per Pixel
 
 #define KMOD_KEYS   (KMOD_CTRL | KMOD_SHIFT | KMOD_ALT | KMOD_GUI)
