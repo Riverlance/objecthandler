@@ -54,9 +54,26 @@
 #include <vector>
 
 // GLM mathematics
+#define GLM_FORCE_CTOR_INIT // Initialize variables like glm::mat4 automatically, as the old GLM version
+/*
+  - Without GLM_FORCE_CTOR_INIT (GLM deprecated variable initializations, so you need to declare it):
+  glm::mat4 transform = glm::mat4(1.0, 0.0, 0.0, 0.0,
+                                  0.0, 1.0, 0.0, 0.0,
+                                  0.0, 0.0, 1.0, 0.0,
+                                  0.0, 0.0, 0.0, 1.0);
+
+  - With GLM_FORCE_CTOR_INIT (force variable initializations, as old GLM versions):
+  glm::mat4 transform;
+
+  Both are the same.
+*/
 #include <glm/glm.hpp> // Features that implement in C++ the GLSL specification as closely as possible
-//#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
-//#include <glm/gtc/type_ptr.hpp> // quaternion
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+#pragma warning(push)
+#pragma warning(disable:4201) // nonstandard extension used: nameless struct/union
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr, quaternion
+#include <glm/gtx/string_cast.hpp>
+#pragma warning(pop)
 // Sample
 /*
   glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.f);

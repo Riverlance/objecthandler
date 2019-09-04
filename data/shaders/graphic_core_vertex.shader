@@ -7,9 +7,11 @@ layout(location = 2) in vec2 textureCoordinate;
 out vec3 ourColor;
 out vec2 ourTextureCoordinate;
 
+uniform mat4 transform;
+
 void main()
 {
-  gl_Position = vec4(position, 1.0);
+  gl_Position = transform * vec4(position, 1.0f);
   ourColor = color;
-  ourTextureCoordinate = vec2(textureCoordinate.x, 1.0 - textureCoordinate.y);
+  ourTextureCoordinate = vec2(textureCoordinate.x, 1.0f - textureCoordinate.y);
 }

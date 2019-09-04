@@ -8,6 +8,7 @@
 #ifndef GRAPHICMANAGER_H
 #define GRAPHICMANAGER_H
 
+#include <SDL.h>
 #include <GL/glew.h>
 #include "graphic_shader.h"
 

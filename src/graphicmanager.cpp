@@ -187,6 +187,19 @@ void GraphicManager::update()
   // Shader program
   graphicShader.useProgram();
 
+
+
+  // Create transformation
+  glm::mat4 transform;
+  transform = glm::translate(transform, glm::vec3(-0.25f, 0.25f, 1.0f)); // Move a little to north-west
+  transform = glm::rotate(transform, ((GLfloat)SDL_GetTicks() / 1000.0f) * -5.0f, glm::vec3(0.0f, 0.0f, 1.0f)); // Rotate around Z axis
+  // std::cout << glm::to_string(transform) << std::endl << std::endl;
+
+  // Apply transformation
+  GLint transformLocation = glGetUniformLocation(graphicShader.getProgram(), "transform");
+  glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
+
+  // Apply texture
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, texture);
   glUniform1i(glGetUniformLocation(graphicShader.getProgram(), "graphicTexture"), 0);
