@@ -12,20 +12,132 @@
 
 
 
-// VBO - Vertex Buffer Object, VAO - Vertex Array Object, EBO - Element Buffer Object, Texture
-GLuint VBO, VAO, EBO, texture;
-GLsizei VBOsize = 1, VAOsize = 1, EBOsize = 1, textureSize = 1;
+// VBO - Vertex Buffer Object, VAO - Vertex Array Object, Texture
+GLuint VBO, VAO, texture;
+GLsizei VBOsize = 1, VAOsize = 1, textureSize = 1;
 
-// Rectangle vertices
-const GLfloat rectangleVertices[] =
+// Cube vertices
+const GLfloat cubeVertices[] =
 {
-  // Position (x, y, z)     // Color (r, g, b)    // Texture Coordinates (x, y)
-  -0.5f, -0.5f, 0.0f,       1.0f, 0.0f, 0.0f,     0.0f, 0.0f,                     // Bottom Left
-  0.5f, -0.5f, 0.0f,        1.0f, 1.0f, 1.0f,     1.0f, 0.0f,                     // Bottom Right
-  -0.5f, 0.5f, 0.0f,        1.0f, 0.0f, 1.0f,     0.0f, 1.0f,                     // Top Left
-  0.5f, 0.5f, 0.0f,         1.0f, 0.0f, 0.0f,     1.0f, 1.0f,                     // Top Right
-};
+  // Position (x, y, z)         // Texture Coordinates (x, y)
 
+  // Back side - Triangle 1
+  -0.5f, -0.5f, -0.5f,          0.0f, 0.0f,
+   0.5f, -0.5f, -0.5f,          1.0f, 0.0f,
+   0.5f,  0.5f, -0.5f,          1.0f, 1.0f,
+  // Back side - Triangle 2
+   0.5f,  0.5f, -0.5f,          1.0f, 1.0f,
+  -0.5f,  0.5f, -0.5f,          0.0f, 1.0f,
+  -0.5f, -0.5f, -0.5f,          0.0f, 0.0f,
+
+  // Front side - Triangle 1
+  -0.5f, -0.5f,  0.5f,          0.0f, 0.0f,
+   0.5f, -0.5f,  0.5f,          1.0f, 0.0f,
+   0.5f,  0.5f,  0.5f,          1.0f, 1.0f,
+  // Front side - Triangle 2
+   0.5f,  0.5f,  0.5f,          1.0f, 1.0f,
+  -0.5f,  0.5f,  0.5f,          0.0f, 1.0f,
+  -0.5f, -0.5f,  0.5f,          0.0f, 0.0f,
+
+  // Left side - Triangle 1
+  -0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+  -0.5f,  0.5f, -0.5f,          1.0f, 1.0f,
+  -0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+  // Left side - Triangle 2
+  -0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+  -0.5f, -0.5f,  0.5f,          0.0f, 0.0f,
+  -0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+
+  // Right side - Triangle 1
+   0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+   0.5f,  0.5f, -0.5f,          1.0f, 1.0f,
+   0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+  // Right side - Triangle 2
+   0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+   0.5f, -0.5f,  0.5f,          0.0f, 0.0f,
+   0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+
+  // Bottom side - Triangle 1
+  -0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+   0.5f, -0.5f, -0.5f,          1.0f, 1.0f,
+   0.5f, -0.5f,  0.5f,          1.0f, 0.0f,
+  // Bottom side - Triangle 2
+   0.5f, -0.5f,  0.5f,          1.0f, 0.0f,
+  -0.5f, -0.5f,  0.5f,          0.0f, 0.0f,
+  -0.5f, -0.5f, -0.5f,          0.0f, 1.0f,
+
+  // Top side - Triangle 1
+  -0.5f,  0.5f, -0.5f,          0.0f, 1.0f,
+   0.5f,  0.5f, -0.5f,          1.0f, 1.0f,
+   0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+  // Top side - Triangle 2
+   0.5f,  0.5f,  0.5f,          1.0f, 0.0f,
+  -0.5f,  0.5f,  0.5f,          0.0f, 0.0f,
+  -0.5f,  0.5f, -0.5f,          0.0f, 1.0f,
+};
+// Big cube vertices (same vertices as previous one, but multiplied by 500)
+/*
+const GLfloat cubeVertices[] =
+{
+  // Position (x, y, z)                           // Texture Coordinates (x, y)
+
+  // Back side - Triangle 1
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 0.0f,
+   0.5f * 500, -0.5f * 500, -0.5f * 500,          1.0f, 0.0f,
+   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+  // Back side - Triangle 2
+   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 0.0f,
+
+  // Front side - Triangle 1
+  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 1.0f,
+  // Front side - Triangle 2
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 1.0f,
+  -0.5f * 500,  0.5f * 500,  0.5f * 500,          0.0f, 1.0f,
+  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+
+  // Left side - Triangle 1
+  -0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+  -0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+  // Left side - Triangle 2
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+  -0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+
+  // Right side - Triangle 1
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+   0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+  // Right side - Triangle 2
+   0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+   0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+
+  // Bottom side - Triangle 1
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+   0.5f * 500, -0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+  // Bottom side - Triangle 2
+   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+
+  // Top side - Triangle 1
+  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+  // Top side - Triangle 2
+   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
+  -0.5f * 500,  0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
+  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
+};
+*/
+
+/*
 const GLuint rectangleIndices[] = // Based on rectangleVertices
 {
   // See: http://www.opengl-tutorial.org/assets/images/tuto-9-vbo-indexing/indexing1.png
@@ -38,6 +150,9 @@ const GLuint rectangleIndices[] = // Based on rectangleVertices
   //0, 1, 2, // Point indexes of south-west triangle (bottom left, bottom right, top left)
   //3, // Point indexes of north-east triangle (bottom right, bottom left, top left) - Here has only one since 1, 2 (that is part of this triangle) were mentioned already
 };
+*/
+
+glm::mat4 projection;
 
 
 
@@ -50,7 +165,6 @@ GraphicManager::~GraphicManager()
 {
   glDeleteVertexArrays(VAOsize, &VAO);
   glDeleteBuffers(VBOsize, &VBO);
-  glDeleteBuffers(EBOsize, &EBO);
   glDeleteTextures(textureSize, &texture);
 
   // Since is a Singleton class, we should clear all vars because this object is never deleted
@@ -80,6 +194,9 @@ bool GraphicManager::init()
 
   // Define the viewport dimensions
   glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+  // Depth
+  glEnable(GL_DEPTH_TEST);
 
   // Blend
   glEnable(GL_BLEND); // Images can now be blended
@@ -123,7 +240,6 @@ bool GraphicManager::onInit()
   // Generate
   glGenVertexArrays(VAOsize, &VAO); // VAO
   glGenBuffers(VBOsize, &VBO); // VBO
-  glGenBuffers(EBOsize, &EBO); // EBO
   glGenTextures(textureSize, &texture); // Texture
 
 
@@ -131,7 +247,6 @@ bool GraphicManager::onInit()
   // Bind
   glBindVertexArray(VAO); // VAO
   glBindBuffer(GL_ARRAY_BUFFER, VBO); // VBO
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); // EBO
   glBindTexture(GL_TEXTURE_2D, texture); // Texture
   
 
@@ -139,24 +254,17 @@ bool GraphicManager::onInit()
   // Set data
   GLvoid* previousDataOffset;
   // Set VAO data - Position attribute
-  int index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
+  int index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 5 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)0;
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
-  // Set VAO data - Color attribute
-  index = 1, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
+  // Set VAO data - Texture coordinate attribute
+  index = 1, dataValuesCount = 2, verticesType = GL_FLOAT, verticeDataSize = 5 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)(3 * sizeof(GLfloat));
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
-  // Set VAO data - Texture coordinate attribute
-  index = 2, dataValuesCount = 2, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
-  previousDataOffset = (GLvoid *)(6 * sizeof(GLfloat));
-  glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
-  glEnableVertexAttribArray(index); // VAO
   // Set VBO data
-  glBufferData(GL_ARRAY_BUFFER, sizeof(rectangleVertices), rectangleVertices, GL_STATIC_DRAW); // VBO
-  // Set EBO data
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(rectangleIndices), rectangleIndices, GL_STATIC_DRAW); // EBO
+  glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW); // VBO
   // Set texture data (see wrapping techniques)
   int width, height;
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -170,9 +278,14 @@ bool GraphicManager::onInit()
   // Unbind
   glBindVertexArray(0); // VAO
   glBindBuffer(GL_ARRAY_BUFFER, 0); // VBO
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); // EBO
   glBindTexture(GL_TEXTURE_2D, 0); // Texture
   SOIL_free_image_data(image); // Texture
+
+  // See https://www.oreilly.com/library/view/learn-opengl/9781789340365/assets/1fb8ca0b-0f34-4afa-bccb-b183108d6da2.png
+  float viewDegrees = 45.0f; // Angle from x axis to Up vector
+  float nearClippingPlane = 0.1f; // zNear
+  float farClippingPlane = 1000.0f; // zFar
+  projection = glm::perspective(viewDegrees, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   return true;
 }
@@ -180,24 +293,9 @@ bool GraphicManager::onInit()
 void GraphicManager::update()
 {
   glClearColor(THEME_CLEARCOLOR_R, THEME_CLEARCOLOR_G, THEME_CLEARCOLOR_B, THEME_CLEARCOLOR_A); // RGBA
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear buffers
 
 
-
-  // Shader program
-  graphicShader.useProgram();
-
-
-
-  // Create transformation
-  glm::mat4 transform;
-  transform = glm::translate(transform, glm::vec3(-0.25f, 0.25f, 1.0f)); // Move a little to north-west
-  transform = glm::rotate(transform, ((GLfloat)SDL_GetTicks() / 1000.0f) * -5.0f, glm::vec3(0.0f, 0.0f, 1.0f)); // Rotate around Z axis
-  // std::cout << glm::to_string(transform) << std::endl << std::endl;
-
-  // Apply transformation
-  GLint transformLocation = glGetUniformLocation(graphicShader.getProgram(), "transform");
-  glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
 
   // Apply texture
   glActiveTexture(GL_TEXTURE0);
@@ -206,14 +304,29 @@ void GraphicManager::update()
 
 
 
+  // Shader program
+  graphicShader.useProgram();
+
+
+
+  // Model/View matrices
+  glm::mat4 model, view;
+  GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
+  model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
+  view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+  GLint modelLocation = glGetUniformLocation(graphicShader.getProgram(), "model");
+  GLint viewLocation = glGetUniformLocation(graphicShader.getProgram(), "view");
+  GLint projectionLocation = glGetUniformLocation(graphicShader.getProgram(), "projection");
+  glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+  glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
+  glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
+
+  // Draw object map
   // Bind
   glBindVertexArray(VAO); // VAO
-
   // Draw triangle
-  int verticesCount = 6;
-  //glDrawArrays(GL_TRIANGLES, beginIndex, verticesCount); // Single triangle (beginIndex is the id of triangle)
-  glDrawElements(GL_TRIANGLES, verticesCount, GL_UNSIGNED_INT, (void*)0); // All triangles
-
+  int verticesCount = 36;
+  glDrawArrays(GL_TRIANGLES, 0, verticesCount);
   // Unbind
   glBindVertexArray(0); // VAO
 }

@@ -3,7 +3,7 @@
 in vec2 ourTextureCoordinate;
 uniform sampler2D ourTexture;
 
-out vec4 color;
+out vec4 color; // Texture itself
 
 void main()
 {
