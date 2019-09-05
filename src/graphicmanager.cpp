@@ -17,6 +17,8 @@ GLuint VBO, VAO, texture;
 GLsizei VBOsize = 1, VAOsize = 1, textureSize = 1;
 
 // Cube vertices
+// This is used for show the perspective projection
+/*
 const GLfloat cubeVertices[] =
 {
   // Position (x, y, z)         // Texture Coordinates (x, y)
@@ -75,8 +77,9 @@ const GLfloat cubeVertices[] =
   -0.5f,  0.5f,  0.5f,          0.0f, 0.0f,
   -0.5f,  0.5f, -0.5f,          0.0f, 1.0f,
 };
+*/
 // Big cube vertices (same vertices as previous one, but multiplied by 500)
-/*
+// This is used for show the orthographic projection, since is bigger than previous one
 const GLfloat cubeVertices[] =
 {
   // Position (x, y, z)                           // Texture Coordinates (x, y)
@@ -135,7 +138,6 @@ const GLfloat cubeVertices[] =
   -0.5f * 500,  0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
   -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
 };
-*/
 
 /*
 const GLuint rectangleIndices[] = // Based on rectangleVertices
@@ -271,7 +273,7 @@ bool GraphicManager::onInit()
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  unsigned char *image = SOIL_load_image("data/link_shield.png", &width, &height, 0, SOIL_LOAD_RGBA);
+  unsigned char *image = SOIL_load_image("data/link_shield.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
   glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -282,10 +284,12 @@ bool GraphicManager::onInit()
   SOIL_free_image_data(image); // Texture
 
   // See https://www.oreilly.com/library/view/learn-opengl/9781789340365/assets/1fb8ca0b-0f34-4afa-bccb-b183108d6da2.png
-  float viewDegrees = 45.0f; // Angle from x axis to Up vector
+  // See (left is perspective, right is orthographic) http://www.songho.ca/opengl/files/gl_projectionmatrix01.png
+  //float viewDegrees = 45.0f; // Angle from x axis to Up vector
   float nearClippingPlane = 0.1f; // zNear
   float farClippingPlane = 1000.0f; // zFar
-  projection = glm::perspective(viewDegrees, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
+  //projection = glm::perspective(viewDegrees, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
+  projection = glm::ortho(0.0f, (GLfloat)SCREEN_WIDTH, 0.0f, (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   return true;
 }
@@ -311,9 +315,17 @@ void GraphicManager::update()
 
   // Model/View matrices
   glm::mat4 model, view;
+
+  // Perspective
+  //GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
+  //model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
+  //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+  // Orthographic
   GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
-  model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
-  view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+  model = glm::rotate(model, rotationDegrees, glm::vec3(1.0f, 0.0f, 0.0f));
+  view = glm::translate(view, glm::vec3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, -700.0f));
+
   GLint modelLocation = glGetUniformLocation(graphicShader.getProgram(), "model");
   GLint viewLocation = glGetUniformLocation(graphicShader.getProgram(), "view");
   GLint projectionLocation = glGetUniformLocation(graphicShader.getProgram(), "projection");
