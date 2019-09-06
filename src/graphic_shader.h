@@ -5,8 +5,7 @@
 
 
 
-#ifndef GRAPHICSHADER_H
-#define GRAPHICSHADER_H
+#pragma once
 
 #include <GL/glew.h>
 
@@ -39,7 +38,3 @@ class GraphicShader
   private:
     GLuint program;
 };
-
-
-
-#endif

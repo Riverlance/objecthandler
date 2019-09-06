@@ -5,8 +5,7 @@
 
 
 
-#ifndef GRAPHICMANAGER_H
-#define GRAPHICMANAGER_H
+#pragma once
 
 #include <SDL.h>
 #include <GL/glew.h>
@@ -55,5 +54,3 @@ class GraphicManager
 
       GraphicShader graphicShader;
 };
-
-#endif

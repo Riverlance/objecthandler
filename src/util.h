@@ -5,8 +5,7 @@
 
 
 
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 
 #include "objecthandlerpch.h"
 
@@ -17,5 +16,3 @@ class Util
   public:
     static std::string getFileContent(const std::string filePath);
 };
-
-#endif

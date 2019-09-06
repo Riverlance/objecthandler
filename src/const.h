@@ -5,8 +5,7 @@
 
 
 
-#ifndef CONST_H
-#define CONST_H
+#pragma once
 
 #include "graphicmanager.h"
 
@@ -88,5 +87,3 @@ enum ViewMode : char // uint8_t
   VIEWMODE_LAST = VIEWMODE_WIREFRAME,
   VIEWMODE_NONE = 3,
 };
-
-#endif

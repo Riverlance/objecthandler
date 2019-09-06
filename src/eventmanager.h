@@ -5,8 +5,7 @@
 
 
 
-#ifndef EVENTMANAGER_H
-#define EVENTMANAGER_H
+#pragma once
 
 #include <SDL.h>
 
@@ -72,5 +71,3 @@ class EventManager
 
       std::function<void(EventManager*, Uint32, Uint64)> onActionCallback;
 };
-
-#endif

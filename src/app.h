@@ -5,8 +5,7 @@
 
 
 
-#ifndef APP_H
-#define APP_H
+#pragma once
 
 #include "windowmanager.h"
 #include "graphicmanager.h"
@@ -57,5 +56,3 @@ class GApp
     WindowManager* windowManager;
     GraphicManager* graphicManager;
 };
-
-#endif

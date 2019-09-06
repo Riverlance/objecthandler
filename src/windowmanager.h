@@ -5,8 +5,7 @@
 
 
 
-#ifndef WINDOWMANAGER_H
-#define WINDOWMANAGER_H
+#pragma once
 
 #include <SDL.h>
 #include "eventmanager.h"
@@ -91,5 +90,3 @@ class WindowManager
 
     EventManager* eventManager;
 };
-
-#endif

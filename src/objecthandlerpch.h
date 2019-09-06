@@ -5,6 +5,8 @@
 
 
 
+#pragma once
+
 // Collection of functions especially designed to be used on ranges of elements
 #include <algorithm>
 
