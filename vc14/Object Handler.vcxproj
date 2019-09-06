@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\app.cpp" />
+    <ClCompile Include="..\src\camera.cpp" />
     <ClCompile Include="..\src\const.cpp" />
     <ClCompile Include="..\src\eventmanager.cpp" />
     <ClCompile Include="..\src\graphicmanager.cpp" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\app.h" />
+    <ClInclude Include="..\src\camera.h" />
     <ClInclude Include="..\src\const.h" />
     <ClInclude Include="..\src\eventmanager.h" />
     <ClInclude Include="..\src\graphicmanager.h" />

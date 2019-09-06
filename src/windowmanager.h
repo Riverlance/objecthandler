@@ -9,6 +9,7 @@
 
 #include <SDL.h>
 #include "eventmanager.h"
+#include "graphicmanager.h"
 #include "const.h"
 
 
@@ -16,7 +17,7 @@
 class WindowManager
 {
   public:
-    // Initialize variables
+    // Initialize
     WindowManager();
 
     // Deallocate memory
@@ -46,13 +47,17 @@ class WindowManager
     };
     
     bool isInitialized() { return initialized; }
+
     SDL_Window* getWindow() { return window; }
     SDL_GLContext getWindowContext() { return windowContext; }
+
     EventManager* getEventManager() { return eventManager; }
 
-    void move(Direction_t direction);
-    void rotate(Direction_t direction);
-    void zoom(Direction_t direction);
+    GraphicManager* getGraphicManager() { return graphicManager; }
+
+    void move(Direction_t direction, bool isFromMouse = false);
+    void rotate(Direction_t direction, bool isFromMouse = false);
+    void zoom(Direction_t direction, bool isFromMouse = false);
 
     void changeCamera(Camera_t camera = CAMERA_NONE);
     void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
@@ -89,4 +94,16 @@ class WindowManager
     SDL_GLContext windowContext;
 
     EventManager* eventManager;
+
+    GraphicManager* graphicManager;
+    GLfloat currentFrame;
+    GLfloat lastFrame;
+    GLfloat deltaTime;
+
+    GLfloat moveMouseSensitivity;
+    GLfloat rotateMouseSensitivity;
+    GLfloat zoomMouseSensitivity;
+    GLfloat moveKeyboardSensitivity;
+    GLfloat rotateKeyboardSensitivity;
+    GLfloat zoomKeyboardSensitivity;
 };

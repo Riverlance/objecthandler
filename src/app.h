@@ -8,7 +8,6 @@
 #pragma once
 
 #include "windowmanager.h"
-#include "graphicmanager.h"
 #include "const.h"
 
 
@@ -16,7 +15,7 @@
 class GApp
 {
   public:
-    // Initialize variables
+    // Initialize
     GApp();
 
     // Deallocate memory
@@ -46,7 +45,6 @@ class GApp
 
     bool isInitialized() { return initialized; }
     WindowManager* getWindowManager() { return windowManager; }
-    GraphicManager* getGraphicManager() { return graphicManager; }
 
 
 
@@ -54,5 +52,4 @@ class GApp
     bool initialized;
 
     WindowManager* windowManager;
-    GraphicManager* graphicManager;
 };

@@ -9,6 +9,7 @@
 
 #include <SDL.h>
 #include <GL/glew.h>
+#include "camera.h"
 #include "graphic_shader.h"
 
 
@@ -16,7 +17,7 @@
 class GraphicManager
 {
   public:
-    // Initialize variables
+    // Initialize
     GraphicManager();
 
     // Deallocate memory
@@ -47,10 +48,14 @@ class GraphicManager
 
     bool isInitialized() { return initialized; }
 
+    Camera* getCamera() { return camera; }
+
 
 
     private:
       bool initialized;
 
       GraphicShader graphicShader;
+
+      Camera* camera;
 };

@@ -40,10 +40,6 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
   windowManager = WindowManager::getInstance();
   if (!windowManager->init())
     return false;
-  // OpenGL context
-  graphicManager = GraphicManager::getInstance();
-  if (!graphicManager->init())
-    return false;
 
   std::cout << std::endl;
   
@@ -71,16 +67,12 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
     // Window
     if (!windowManager->update())
       break;
-
-    // Context
-    graphicManager->update();
     windowManager->drawContext();
   }
 
 
 
   // Force calling destructor method, since we cannot delete a singleton object
-  graphicManager->~GraphicManager();
   windowManager->~WindowManager();
   //delete window; // You cannot remove a singleton object
 
@@ -90,7 +82,7 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
   return initialized;
 }
 
-void GApp::setTheme(Theme_t theme/* = THEME_DEFAULT*/)
+void GApp::setTheme(Theme_t theme /*= THEME_DEFAULT*/)
 {
   APP_THEME = theme;
 

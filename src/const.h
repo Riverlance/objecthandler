@@ -7,7 +7,9 @@
 
 #pragma once
 
-#include "graphicmanager.h"
+#include <GL/glew.h>
+
+
 
 #define STATUS_APP_NAME    "Object Handler"
 #define STATUS_APP_VERSION "1.0"
@@ -18,8 +20,6 @@
 #define SCREEN_BPP    32 // Bits Per Pixel
 
 #define KMOD_KEYS   (KMOD_CTRL | KMOD_SHIFT | KMOD_ALT | KMOD_GUI)
-
-//static constexpr GLuint WINDOW_WIDTH = 800, WINDOW_HEIGHT = 600;
 
 
 
@@ -40,6 +40,15 @@ extern GLclampf THEME_CLEARCOLOR_R;
 extern GLclampf THEME_CLEARCOLOR_G;
 extern GLclampf THEME_CLEARCOLOR_B;
 extern GLclampf THEME_CLEARCOLOR_A;
+
+
+
+const GLfloat DEFAULT_MOUSE_SENSITIVITY_MOVE = 0.08f;
+const GLfloat DEFAULT_MOUSE_SENSITIVITY_ROTATE = 0.4f;
+const GLfloat DEFAULT_MOUSE_SENSITIVITY_ZOOM = 0.01f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_MOVE = 0.1f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ROTATE = 2.5f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ZOOM = 0.01f;
 
 
 

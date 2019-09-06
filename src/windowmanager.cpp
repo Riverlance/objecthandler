@@ -15,7 +15,13 @@
 
 
 
-WindowManager::WindowManager()
+WindowManager::WindowManager() :
+  moveMouseSensitivity(DEFAULT_MOUSE_SENSITIVITY_MOVE),
+  rotateMouseSensitivity(DEFAULT_MOUSE_SENSITIVITY_ROTATE),
+  zoomMouseSensitivity(DEFAULT_MOUSE_SENSITIVITY_ZOOM),
+  moveKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_MOVE),
+  rotateKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_ROTATE),
+  zoomKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_ZOOM)
 {
   initialized = false;
   window = nullptr;
@@ -26,6 +32,9 @@ WindowManager::WindowManager()
 
 WindowManager::~WindowManager()
 {
+  // Destroy graphic manager
+  graphicManager->~GraphicManager();
+
   // Deallocate context
   if (windowContext != nullptr)
   {
@@ -76,6 +85,11 @@ bool WindowManager::init()
   // Get window context
   windowContext = SDL_GL_CreateContext(window);
 
+  // Graphic manager
+  graphicManager = GraphicManager::getInstance();
+  if (!graphicManager->init())
+    return false;
+
 
 
   // On init
@@ -93,8 +107,17 @@ bool WindowManager::init()
 
 bool WindowManager::update()
 {
+  currentFrame = (GLfloat)SDL_GetTicks();
+  deltaTime = currentFrame - lastFrame;
+  lastFrame = currentFrame;
+
+  // Events
   if (!eventManager->update())
     return false;
+
+  // Context
+  graphicManager->update();
+
   return true;
 }
 
@@ -106,70 +129,19 @@ void WindowManager::drawContext()
 
 
 
-void WindowManager::move(Direction_t direction)
+void WindowManager::move(Direction_t direction, bool isFromMouse /*= false*/)
 {
-  switch (direction)
-  {
-  case DIRECTION_NORTH:
-    std::cout << "Move to up" << std::endl;
-    break;
-  case DIRECTION_SOUTH:
-    std::cout << "Move to down" << std::endl;
-    break;
-  case DIRECTION_WEST:
-    std::cout << "Move to left" << std::endl;
-    break;
-  case DIRECTION_EAST:
-    std::cout << "Move to right" << std::endl;
-    break;
-
-  default:
-    break;
-  }
+  graphicManager->getCamera()->move(direction, (isFromMouse ? moveMouseSensitivity : moveKeyboardSensitivity) * deltaTime);
 }
 
-void WindowManager::rotate(Direction_t direction)
+void WindowManager::rotate(Direction_t direction, bool isFromMouse /*= false*/)
 {
-  switch (direction)
-  {
-  case DIRECTION_NORTH:
-    std::cout << "Rotate to up" << std::endl;
-    break;
-  case DIRECTION_SOUTH:
-    std::cout << "Rotate to down" << std::endl;
-    break;
-  case DIRECTION_WEST:
-    std::cout << "Rotate to left" << std::endl;
-    break;
-  case DIRECTION_EAST:
-    std::cout << "Rotate to right" << std::endl;
-    break;
-
-  default:
-    break;
-  }
+  graphicManager->getCamera()->rotate(direction, (isFromMouse ? rotateMouseSensitivity : rotateKeyboardSensitivity) * deltaTime, false);
 }
 
-void WindowManager::zoom(Direction_t direction)
+void WindowManager::zoom(Direction_t direction, bool isFromMouse /*= false*/)
 {
-  switch (direction)
-  {
-  case DIRECTION_NORTH:
-    std::cout << "Zoom increase" << std::endl;
-    break;
-  case DIRECTION_SOUTH:
-    std::cout << "Zoom decrease" << std::endl;
-    break;
-  case DIRECTION_WEST:
-    std::cout << "Zoom decrease" << std::endl;
-    break;
-  case DIRECTION_EAST:
-    std::cout << "Zoom increase" << std::endl;
-    break;
-
-  default:
-    break;
-  }
+  graphicManager->getCamera()->zoom(direction, (isFromMouse ? zoomMouseSensitivity : zoomKeyboardSensitivity) * deltaTime);
 }
 
 
@@ -308,7 +280,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction);
+          zoom(direction, true);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -320,7 +292,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction);
+          zoom(direction, true);
       }
       // Modifier: Shift
       else if ((keyMod & KMOD_SHIFT) && !(keyMod & (KMOD_CTRL | KMOD_ALT)))
@@ -335,7 +307,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction);
+          move(direction, true);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -347,7 +319,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction);
+          move(direction, true);
       }
       // No modifier
       else if (!(keyMod & KMOD_KEYS))
@@ -362,7 +334,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          rotate(direction);
+          rotate(direction, true);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -374,7 +346,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          rotate(direction);
+          rotate(direction, true);
       }
     }
     // Holding mouse middle button
@@ -393,7 +365,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction);
+          move(direction, true);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -405,7 +377,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction);
+          move(direction, true);
       }
     }
     // Holding mouse right button
@@ -424,7 +396,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction);
+          zoom(direction, true);
         direction = DIRECTION_NONE;
 
         // Left
@@ -436,7 +408,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction);
+          zoom(direction, true);
       }
     }
   }
@@ -457,7 +429,7 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
     // Execute
     if (direction != DIRECTION_NONE)
-      zoom(direction);
+      zoom(direction, true);
   }
 
   /* Key handling */
@@ -474,8 +446,14 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       // Down
       else if (action == SDLK_DOWN)
         direction = DIRECTION_SOUTH;
+
+      // Execute
+      if (direction != DIRECTION_NONE)
+        zoom(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
       // Left
-      else if (action == SDLK_LEFT)
+      if (action == SDLK_LEFT)
         direction = DIRECTION_WEST;
       // Down
       else if (action == SDLK_RIGHT)
@@ -483,7 +461,9 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
       // Execute
       if (direction != DIRECTION_NONE)
-        zoom(direction);
+        zoom(direction, false);
+
+
 
       // Other shortcuts
       else
@@ -523,16 +503,22 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       // Down
       else if (action == SDLK_DOWN)
         direction = DIRECTION_SOUTH;
+
+      // Execute
+      if (direction != DIRECTION_NONE)
+        move(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
       // Left
-      else if (action == SDLK_LEFT)
+      if (action == SDLK_LEFT)
         direction = DIRECTION_WEST;
-      // Down
+      // Right
       else if (action == SDLK_RIGHT)
         direction = DIRECTION_EAST;
 
       // Execute
       if (direction != DIRECTION_NONE)
-        move(direction);
+        move(direction, false);
 
       // Other shortcuts
       /*
@@ -581,16 +567,52 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       // Down
       else if (action == SDLK_DOWN)
         direction = DIRECTION_SOUTH;
+
+      // Execute
+      if (direction != DIRECTION_NONE)
+        rotate(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
       // Left
-      else if (action == SDLK_LEFT)
+      if (action == SDLK_LEFT)
         direction = DIRECTION_WEST;
-      // Down
+      // Right
       else if (action == SDLK_RIGHT)
         direction = DIRECTION_EAST;
 
       // Execute
       if (direction != DIRECTION_NONE)
-        rotate(direction);
+        rotate(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
+
+
+      // Get direction
+      // Up
+      if (action == SDLK_w)
+        direction = DIRECTION_NORTH;
+      // Down
+      else if (action == SDLK_s)
+        direction = DIRECTION_SOUTH;
+
+      // Execute
+      if (direction != DIRECTION_NONE)
+        move(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
+      // Left
+      if (action == SDLK_a)
+        direction = DIRECTION_WEST;
+      // Right
+      else if (action == SDLK_d)
+        direction = DIRECTION_EAST;
+
+      // Execute
+      if (direction != DIRECTION_NONE)
+        move(direction, false);
+      direction = DIRECTION_NONE; // Reset
+
+
 
       // Other shortcuts
       /*

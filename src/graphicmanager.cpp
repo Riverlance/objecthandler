@@ -18,7 +18,6 @@ GLsizei VBOsize = 1, VAOsize = 1, textureSize = 1;
 
 // Cube vertices
 // This is used for show the perspective projection
-/*
 const GLfloat cubeVertices[] =
 {
   // Position (x, y, z)         // Texture Coordinates (x, y)
@@ -77,82 +76,9 @@ const GLfloat cubeVertices[] =
   -0.5f,  0.5f,  0.5f,          0.0f, 0.0f,
   -0.5f,  0.5f, -0.5f,          0.0f, 1.0f,
 };
-*/
-// Big cube vertices (same vertices as previous one, but multiplied by 500)
-// This is used for show the orthographic projection, since is bigger than previous one
-const GLfloat cubeVertices[] =
-{
-  // Position (x, y, z)                           // Texture Coordinates (x, y)
 
-  // Back side - Triangle 1
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 0.0f,
-   0.5f * 500, -0.5f * 500, -0.5f * 500,          1.0f, 0.0f,
-   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-  // Back side - Triangle 2
-   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 0.0f,
-
-  // Front side - Triangle 1
-  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 1.0f,
-  // Front side - Triangle 2
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 1.0f,
-  -0.5f * 500,  0.5f * 500,  0.5f * 500,          0.0f, 1.0f,
-  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-
-  // Left side - Triangle 1
-  -0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-  -0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-  // Left side - Triangle 2
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-  -0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-
-  // Right side - Triangle 1
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-   0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-  // Right side - Triangle 2
-   0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-   0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-
-  // Bottom side - Triangle 1
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-   0.5f * 500, -0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-  // Bottom side - Triangle 2
-   0.5f * 500, -0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-  -0.5f * 500, -0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-  -0.5f * 500, -0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-
-  // Top side - Triangle 1
-  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-   0.5f * 500,  0.5f * 500, -0.5f * 500,          1.0f, 1.0f,
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-  // Top side - Triangle 2
-   0.5f * 500,  0.5f * 500,  0.5f * 500,          1.0f, 0.0f,
-  -0.5f * 500,  0.5f * 500,  0.5f * 500,          0.0f, 0.0f,
-  -0.5f * 500,  0.5f * 500, -0.5f * 500,          0.0f, 1.0f,
-};
-
-/*
-const GLuint rectangleIndices[] = // Based on rectangleVertices
-{
-  // See: http://www.opengl-tutorial.org/assets/images/tuto-9-vbo-indexing/indexing1.png
-
-  // Without indexes
-  0, 1, 2, // Point indexes of south-west triangle (bottom left, bottom right, top left)
-  1, 2, 3, // Point indexes of north-east triangle (bottom right, top left, top right)
-
-  // With indexes
-  //0, 1, 2, // Point indexes of south-west triangle (bottom left, bottom right, top left)
-  //3, // Point indexes of north-east triangle (bottom right, bottom left, top left) - Here has only one since 1, 2 (that is part of this triangle) were mentioned already
-};
-*/
+const int cubesCount = 10;
+glm::vec3 cubePositions[cubesCount];
 
 glm::mat4 projection;
 
@@ -203,6 +129,9 @@ bool GraphicManager::init()
   // Blend
   glEnable(GL_BLEND); // Images can now be blended
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Alpha support
+  
+  // Camera
+  camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
 
   // onInit
   if (!onInit())
@@ -214,6 +143,17 @@ bool GraphicManager::init()
 
 bool GraphicManager::onInit()
 {
+  cubePositions[0] = glm::vec3( 0.0f,  0.0f,   0.0f);
+  cubePositions[1] = glm::vec3( 2.0f,  5.0f, -15.0f);
+  cubePositions[2] = glm::vec3(-1.5f, -2.2f,  -2.5f);
+  cubePositions[3] = glm::vec3(-3.8f, -2.0f, -12.3f);
+  cubePositions[4] = glm::vec3( 2.4f, -0.4f,  -3.5f);
+  cubePositions[5] = glm::vec3(-1.7f,  3.0f,  -7.5f);
+  cubePositions[6] = glm::vec3( 1.3f, -2.0f,  -2.5f);
+  cubePositions[7] = glm::vec3( 1.5f,  2.0f,  -2.5f);
+  cubePositions[8] = glm::vec3( 1.5f,  0.2f,  -1.5f);
+  cubePositions[9] = glm::vec3(-1.3f,  1.0f,  -1.5f);
+
   // Load graphic shader
   graphicShader = GraphicShader();
 
@@ -286,10 +226,10 @@ bool GraphicManager::onInit()
   // See https://www.oreilly.com/library/view/learn-opengl/9781789340365/assets/1fb8ca0b-0f34-4afa-bccb-b183108d6da2.png
   // See (left is perspective, right is orthographic) http://www.songho.ca/opengl/files/gl_projectionmatrix01.png
   //float viewDegrees = 45.0f; // Angle from x axis to Up vector
-  float nearClippingPlane = 0.1f; // zNear
-  float farClippingPlane = 1000.0f; // zFar
+  //float nearClippingPlane = 0.1f; // zNear
+  //float farClippingPlane = 1000.0f; // zFar
   //projection = glm::perspective(viewDegrees, (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
-  projection = glm::ortho(0.0f, (GLfloat)SCREEN_WIDTH, 0.0f, (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
+  //projection = glm::ortho(0.0f, (GLfloat)SCREEN_WIDTH, 0.0f, (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   return true;
 }
@@ -312,33 +252,53 @@ void GraphicManager::update()
   graphicShader.useProgram();
 
 
-
+  
   // Model/View matrices
-  glm::mat4 model, view;
+  //glm::mat4 model, view;
 
   // Perspective
-  //GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
-  //model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
+  //GLfloat rotationDegrees = 0.5f;
   //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+  //model = glm::rotate(model, rotationDegrees, glm::vec3(1.0f, 0.0f, 0.0f));
 
   // Orthographic
-  GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
-  model = glm::rotate(model, rotationDegrees, glm::vec3(1.0f, 0.0f, 0.0f));
-  view = glm::translate(view, glm::vec3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, -700.0f));
+  //GLfloat rotationDegrees = ((GLfloat)SDL_GetTicks() / 1000.0f) * 1.0f;
+  //view = glm::translate(view, glm::vec3(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, -700.0f));
+  //model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
+
+
+
+  // Camera projection
+  glm::mat4 view = camera->getViewMatrix();
+
+  float nearClippingPlane = 0.1f; // zNear
+  float farClippingPlane = 1000.0f; // zFar
+  projection = glm::perspective(camera->getZoomSize(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   GLint modelLocation = glGetUniformLocation(graphicShader.getProgram(), "model");
   GLint viewLocation = glGetUniformLocation(graphicShader.getProgram(), "view");
   GLint projectionLocation = glGetUniformLocation(graphicShader.getProgram(), "projection");
-  glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+  //glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
   glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
   glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
+
+
 
   // Draw object map
   // Bind
   glBindVertexArray(VAO); // VAO
-  // Draw triangle
-  int verticesCount = 36;
-  glDrawArrays(GL_TRIANGLES, 0, verticesCount);
+  // Draw
+  for (GLuint i = 0; i < cubesCount; i++)
+  {
+    glm::mat4 _model;
+    _model = glm::translate(_model, cubePositions[i]);
+    GLfloat angle = 20.0f * i;
+    _model = glm::rotate(_model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
+    glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(_model));
+
+    int verticesCount = 36;
+    glDrawArrays(GL_TRIANGLES, 0, verticesCount);
+  }
   // Unbind
   glBindVertexArray(0); // VAO
 }

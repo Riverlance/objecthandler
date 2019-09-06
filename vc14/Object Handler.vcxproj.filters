@@ -10,6 +10,7 @@
     <ClCompile Include="..\src\const.cpp" />
     <ClCompile Include="..\src\graphic_shader.cpp" />
     <ClCompile Include="..\src\util.cpp" />
+    <ClCompile Include="..\src\camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\app.h" />
@@ -20,6 +21,7 @@
     <ClInclude Include="..\src\windowmanager.h" />
     <ClInclude Include="..\src\graphic_shader.h" />
     <ClInclude Include="..\src\util.h" />
+    <ClInclude Include="..\src\camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\shaders\graphic_core_vertex.shader">

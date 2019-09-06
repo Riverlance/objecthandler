@@ -19,7 +19,7 @@ const int JOYSTICK_DEAD_ZONE = 8000;
 class EventManager
 {
   public:
-    // Initialize variables
+    // Initialize
     EventManager();
 
     // Deallocate memory
