@@ -11,7 +11,7 @@
 
 
 
-Theme APP_THEME = THEME_DEFAULT;
+Theme_t APP_THEME = THEME_DEFAULT;
 
 GApp::GApp()
 {
@@ -90,7 +90,7 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
   return initialized;
 }
 
-void GApp::setTheme(Theme theme/* = THEME_DEFAULT*/)
+void GApp::setTheme(Theme_t theme/* = THEME_DEFAULT*/)
 {
   APP_THEME = theme;
 

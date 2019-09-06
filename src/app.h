@@ -29,7 +29,7 @@ class GApp
 
 
     bool init(int argc, char* argv[]);
-    static void setTheme(Theme theme = THEME_DEFAULT);
+    static void setTheme(Theme_t theme = THEME_DEFAULT);
 
 
 

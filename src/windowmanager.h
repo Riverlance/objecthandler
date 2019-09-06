@@ -50,11 +50,11 @@ class WindowManager
     SDL_GLContext getWindowContext() { return windowContext; }
     EventManager* getEventManager() { return eventManager; }
 
-    void move(Direction direction);
-    void rotate(Direction direction);
-    void zoom(Direction direction);
+    void move(Direction_t direction);
+    void rotate(Direction_t direction);
+    void zoom(Direction_t direction);
 
-    void changeCamera(Camera camera = CAMERA_NONE);
+    void changeCamera(Camera_t camera = CAMERA_NONE);
     void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
     void changeAnimationSet(uint8_t animationSetId = 255);
 

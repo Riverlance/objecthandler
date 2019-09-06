@@ -106,7 +106,7 @@ void WindowManager::drawContext()
 
 
 
-void WindowManager::move(Direction direction)
+void WindowManager::move(Direction_t direction)
 {
   switch (direction)
   {
@@ -128,7 +128,7 @@ void WindowManager::move(Direction direction)
   }
 }
 
-void WindowManager::rotate(Direction direction)
+void WindowManager::rotate(Direction_t direction)
 {
   switch (direction)
   {
@@ -150,7 +150,7 @@ void WindowManager::rotate(Direction direction)
   }
 }
 
-void WindowManager::zoom(Direction direction)
+void WindowManager::zoom(Direction_t direction)
 {
   switch (direction)
   {
@@ -174,7 +174,7 @@ void WindowManager::zoom(Direction direction)
 
 
 
-void WindowManager::changeCamera(Camera /*camera*/ /*= CAMERA_NONE*/)
+void WindowManager::changeCamera(Camera_t /*camera*/ /*= CAMERA_NONE*/)
 {
   std::cout << "Change camera" << std::endl;
 
@@ -282,7 +282,7 @@ void WindowManager::endFrame()
 
 void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action)
 {
-  Direction direction    = DIRECTION_NONE; // Auxiliar
+  Direction_t direction  = DIRECTION_NONE; // Auxiliar
   SDL_Event eventHandler = _eventManager->getEventHandler();
   Uint16 keyMod          = _eventManager->getKeyModifiers();
 

@@ -25,7 +25,7 @@
 
 // Theme
 
-enum Theme : char // uint8_t
+enum Theme_t : char // uint8_t
 {
   THEME_LIGHT,
   THEME_DARK,
@@ -34,7 +34,7 @@ enum Theme : char // uint8_t
   THEME_FIRST = THEME_LIGHT,
   THEME_LAST = THEME_DARK,
 };
-extern Theme APP_THEME;
+extern Theme_t APP_THEME;
 
 extern GLclampf THEME_CLEARCOLOR_R;
 extern GLclampf THEME_CLEARCOLOR_G;
@@ -43,7 +43,7 @@ extern GLclampf THEME_CLEARCOLOR_A;
 
 
 
-enum Direction : char // uint8_t
+enum Direction_t : char // uint8_t
 {
   DIRECTION_NORTH = 0,
   DIRECTION_EAST = 1,
@@ -61,7 +61,7 @@ enum Direction : char // uint8_t
   DIRECTION_NONE = 8,
 };
 
-enum Camera : char // uint8_t
+enum Camera_t : char // uint8_t
 {
   CAMERA_NONE,
 
