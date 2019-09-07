@@ -43,12 +43,27 @@ extern GLclampf THEME_CLEARCOLOR_A;
 
 
 
-const GLfloat DEFAULT_MOUSE_SENSITIVITY_MOVE = 0.08f;
+const GLfloat DEFAULT_CAMERA_DISTANCE = 10.0f;
+
+const GLfloat PITCH_CONSTRAINT_RANGE = 0.001f;
+const GLfloat PITCH_CONSTRAINT_TOP = 90.0f - PITCH_CONSTRAINT_RANGE;
+const GLfloat PITCH_CONSTRAINT_BOTTOM = 270.0f + PITCH_CONSTRAINT_RANGE;
+
+const GLfloat DEFAULT_YAW = 270.0f; // Rotation around y axis
+const GLfloat DEFAULT_PITCH = 0.0f; // Rotation around x axis
+
+const GLfloat DEFAULT_ZOOM = 45.0f; // Do not change this value!
+const GLfloat ZOOM_MAX = 1.0f; // Max is close to 45.0f
+
+const GLfloat DEFAULT_MOUSE_SENSITIVITY_MOVE = 0.07f;
 const GLfloat DEFAULT_MOUSE_SENSITIVITY_ROTATE = 0.4f;
-const GLfloat DEFAULT_MOUSE_SENSITIVITY_ZOOM = 0.01f;
-const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_MOVE = 0.1f;
-const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ROTATE = 2.5f;
-const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ZOOM = 0.01f;
+const GLfloat DEFAULT_MOUSE_SENSITIVITY_ZOOM = 0.02f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_MOVE = 0.01f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ROTATE = 0.1f;
+const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ZOOM = 0.001f;
+
+// Analog joystick dead zone
+const int JOYSTICK_DEAD_ZONE = 8000;
 
 
 
@@ -70,7 +85,6 @@ enum Direction_t : char // uint8_t
   DIRECTION_NONE = 8,
 };
 
-const GLfloat DEFAULT_CAMERA_DISTANCE = 10.0f;
 enum Camera_t : char // uint8_t
 {
   CAMERA_FRONT = 0, // Camera at Z looking to center

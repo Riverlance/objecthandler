@@ -13,15 +13,6 @@
 #include <GL/glew.h>
 #include "const.h"
 
-const GLfloat PITCH_CONSTRAINT_RANGE = 0.001f;
-const GLfloat PITCH_CONSTRAINT_TOP = 90.0f - PITCH_CONSTRAINT_RANGE;
-const GLfloat PITCH_CONSTRAINT_BOTTOM = 270.0f + PITCH_CONSTRAINT_RANGE;
-
-const GLfloat DEFAULT_YAW = 270.0f; // Rotation around y axis
-const GLfloat DEFAULT_PITCH = 0.0f; // Rotation around x axis
-
-const GLfloat DEFAULT_ZOOM = 45.0f;
-
 
 
 class Camera

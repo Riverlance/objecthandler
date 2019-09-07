@@ -123,7 +123,7 @@ void Camera::zoom(Direction_t direction, GLfloat speed /*= (GLfloat)1.0f*/)
   if (direction == DIRECTION_SOUTH || direction == DIRECTION_WEST)
     zoomSize += speed;
 
-  zoomSize = std::max(1.0f, std::min(zoomSize, 45.0f));
+  zoomSize = std::max(DEFAULT_ZOOM - ZOOM_MAX, std::min(zoomSize, DEFAULT_ZOOM));
 };
 
 void Camera::updateCamera(Camera_t cameraType, GLfloat distance /*= (GLfloat)0.0f*/)

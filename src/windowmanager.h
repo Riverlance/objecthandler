@@ -61,24 +61,11 @@ class WindowManager
 
     void changeCamera(Camera_t cameraType = CAMERA_NONE);
     void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
-    void changeAnimationSet(uint8_t animationSetId = 255);
 
     void openFile(const std::string& path);
 
-    void playAnimation();
-    void stopAnimation();
-    bool isAnimationPlaying();
-    void toggleAnimation();
-
-    uint64_t getFramesCount();
-    uint64_t getFrame();
-    void setFrame(uint64_t frameId);
-    void previousFrame();
-    void nextFrame();
-    void startFrame();
-    void endFrame();
-    
-    void onActionCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action);
+    void onPollEventCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action);
+    void onPumpEventCallback(EventManager* _eventManager, const Uint8* keyStates);
 
 
 

@@ -16,7 +16,8 @@ EventManager::EventManager()
 {
   initialized = false;
 
-  onActionCallback = nullptr;
+  onPollEventCallback = nullptr;
+  onPumpEventCallback = nullptr;
 
 
   
@@ -26,7 +27,7 @@ EventManager::EventManager()
 
   keyModifiers = KMOD_NONE;
 
-  //keyStates = SDL_GetKeyboardState(nullptr);
+  keyStates = SDL_GetKeyboardState(nullptr);
 
   gameJoystick = nullptr;
 
@@ -101,8 +102,8 @@ bool EventManager::update()
     
     if (eventType == SDL_MOUSEMOTION) // eventHandler.motion.x, eventHandler.motion.y
     {
-      if (onActionCallback != nullptr)
-        onActionCallback(this, eventType, KMOD_NONE); // If you want to get eventHandler data, you should get that through the 'this' parameter
+      if (onPollEventCallback != nullptr)
+        onPollEventCallback(this, eventType, KMOD_NONE); // If you want to get eventHandler data, you should get that through the 'this' parameter
     }
 
 
@@ -139,8 +140,8 @@ bool EventManager::update()
       }
 
       if (shouldExecuteCallback)
-        if (onActionCallback != nullptr)
-          onActionCallback(this, eventType, mouseButton);
+        if (onPollEventCallback != nullptr)
+          onPollEventCallback(this, eventType, mouseButton);
     }
 
 
@@ -170,8 +171,8 @@ bool EventManager::update()
       */
 
       if (shouldExecuteCallback)
-        if (onActionCallback != nullptr)
-          onActionCallback(this, eventType, KMOD_NONE); // If you want to get eventHandler data, you should get that through the 'this' parameter
+        if (onPollEventCallback != nullptr)
+          onPollEventCallback(this, eventType, KMOD_NONE); // If you want to get eventHandler data, you should get that through the 'this' parameter
     }
 
 
@@ -189,13 +190,10 @@ bool EventManager::update()
         std::cout << "Quitting application..." << std::endl;
         return false; // Quit application
       }
-      // Any other key
-      else
-        shouldExecuteCallback = true;
 
-      if (shouldExecuteCallback)
-        if (onActionCallback != nullptr)
-          onActionCallback(this, eventType, key);
+      // Any other key
+      if (onPollEventCallback != nullptr)
+        onPollEventCallback(this, eventType, key);
     }
 
 
@@ -248,23 +246,9 @@ bool EventManager::update()
 
   /* Pump Events (for continuously shortcuts, because it executes while user hold it) */
 
-  // Update
-  /*
   SDL_PumpEvents();
-  if (keyStates[SDL_GetScancodeFromKey(SDLK_UP)])
-  {
-    std::cout << "Mod: ";
-    if (keyModifiers & KMOD_CTRL)
-      std::cout << "CTRL";
-    if (keyModifiers & KMOD_SHIFT)
-      std::cout << "SHIFT";
-    if (keyModifiers & KMOD_ALT)
-      std::cout << "ALT";
-    std::cout << std::endl;
-
-    // onMovementCallback(this, SDLK_UP)
-  }
-  */
+  if (onPumpEventCallback != nullptr)
+    onPumpEventCallback(this, keyStates);
   
   return true; // Keep running application
 }

@@ -96,8 +96,10 @@ bool WindowManager::init()
 
   // Callback
   using namespace std::placeholders; // For argument placeholders of _1, _2, _3
-  auto callback = std::bind(&WindowManager::onActionCallback, this, _1, _2, _3);
-  eventManager->setOnActionCallback(callback);
+  auto pollCallback = std::bind(&WindowManager::onPollEventCallback, this, _1, _2, _3);
+  eventManager->setOnPollEventCallback(pollCallback);
+  auto pumpCallback = std::bind(&WindowManager::onPumpEventCallback, this, _1, _2);
+  eventManager->setOnPumpEventCallback(pumpCallback);
   
 
 
@@ -158,13 +160,6 @@ void WindowManager::changeViewMode(ViewMode /*viewMode*/ /*= VIEWMODE_NONE*/)
   // If is VIEWMODE_NONE, change to the next ViewMode
 }
 
-void WindowManager::changeAnimationSet(uint8_t /*animationSetId*/ /*= 255*/)
-{
-  std::cout << "Next animation set" << std::endl;
-
-  // If is 255, change to the next AnimationSet
-}
-
 
 
 void WindowManager::openFile(const std::string& /*path*/)
@@ -174,87 +169,13 @@ void WindowManager::openFile(const std::string& /*path*/)
 
 
 
-void WindowManager::playAnimation()
+void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action)
 {
-  // ...
-}
-
-void WindowManager::stopAnimation()
-{
-  // ...
-}
-
-bool WindowManager::isAnimationPlaying()
-{
-  // ...
-  return true;
-}
-
-void WindowManager::toggleAnimation()
-{
-  std::cout << "Play/Pause" << std::endl;
-
-  if (isAnimationPlaying())
-  {
-    stopAnimation();
-    return;
-  }
-
-  playAnimation();
-}
+  Direction_t direction  = DIRECTION_NONE; // Helper
+  SDL_Event eventHandler = _eventManager->getEventHandler(); // Poll
+  Uint16 keyMod          = _eventManager->getKeyModifiers(); // Work for poll and pump
 
 
-
-uint64_t WindowManager::getFramesCount()
-{
-  return 0L;
-}
-
-uint64_t WindowManager::getFrame()
-{
-  return 0L;
-}
-
-void WindowManager::setFrame(uint64_t /*frameId*/)
-{
-  // ...
-}
-
-void WindowManager::previousFrame()
-{
-  std::cout << "Step backward 1 frame (up to start)" << std::endl;
-
-  setFrame(std::max(0ULL, getFrame() - 1));
-}
-
-void WindowManager::nextFrame()
-{
-  std::cout << "Step forward 1 frame (up to end)" << std::endl;
-
-  setFrame(std::min(getFrame() + 1, getFramesCount()));
-}
-
-void WindowManager::startFrame()
-{
-  std::cout << "Go to take at start" << std::endl;
-
-  setFrame(0ULL);
-}
-
-void WindowManager::endFrame()
-{
-  std::cout << "Go to take at end" << std::endl;
-
-  setFrame(getFramesCount());
-}
-
-
-
-void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action)
-{
-  Direction_t direction  = DIRECTION_NONE; // Auxiliar
-  SDL_Event eventHandler = _eventManager->getEventHandler();
-  Uint16 keyMod          = _eventManager->getKeyModifiers();
 
   /* Mouse motion handling */
 
@@ -268,7 +189,8 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       {
         //std::cout << "x: " << eventHandler.motion.xrel << " | y: " << eventHandler.motion.yrel << std::endl;
 
-        // Get direction
+        // Zoom
+
         // Up
         if (eventHandler.motion.yrel < 0)
           direction = DIRECTION_NORTH;
@@ -292,10 +214,12 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
         if (direction != DIRECTION_NONE)
           zoom(direction, true);
       }
+
       // Modifier: Shift
       else if ((keyMod & KMOD_SHIFT) && !(keyMod & (KMOD_CTRL | KMOD_ALT)))
       {
-        // Get direction
+        // Move
+
         // Up
         if (eventHandler.motion.yrel < 0)
           direction = DIRECTION_NORTH;
@@ -319,10 +243,12 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
         if (direction != DIRECTION_NONE)
           move(direction, true);
       }
+
       // No modifier
       else if (!(keyMod & KMOD_KEYS))
       {
-        // Get direction
+        // Rotate
+
         // Up
         if (eventHandler.motion.yrel < 0)
           direction = DIRECTION_NORTH;
@@ -347,13 +273,15 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
           rotate(direction, true);
       }
     }
+    
     // Holding mouse middle button
     else if (_eventManager->isHoldingMouseMiddleButton())
     {
       // No modifier
       if (!(keyMod & KMOD_KEYS))
       {
-        // Get direction
+        // Move
+
         // Up
         if (eventHandler.motion.yrel < 0)
           direction = DIRECTION_NORTH;
@@ -378,13 +306,15 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
           move(direction, true);
       }
     }
+    
     // Holding mouse right button
     else if (_eventManager->isHoldingMouseRightButton())
     {
       // Modifier: Alt
       if ((keyMod & KMOD_ALT) && !(keyMod & (KMOD_CTRL | KMOD_SHIFT)))
       {
-        // Get direction
+        // Zoom
+
         // Up
         if (eventHandler.motion.yrel < 0)
           direction = DIRECTION_NORTH;
@@ -411,13 +341,16 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
     }
   }
 
+
+
   /* Mouse wheel handling */
 
-  else if (eventType == SDL_MOUSEWHEEL) // Extra
+  else if (eventType == SDL_MOUSEWHEEL)
   {
     SDL_MouseWheelEvent wheelEvent = eventHandler.wheel;
 
-    // Get direction
+    // Zoom
+
     // Up
     if (wheelEvent.y > 0)
       direction = DIRECTION_NORTH;
@@ -430,6 +363,8 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       zoom(direction, true);
   }
 
+
+
   /* Key handling */
 
   else if (eventType == SDL_KEYDOWN)
@@ -437,207 +372,66 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
     // Modifier: Ctrl
     if ((keyMod & KMOD_CTRL) && !(keyMod & (KMOD_SHIFT | KMOD_ALT)))
     {
-      // Get direction
-      // Up
-      if (action == SDLK_UP)
-        direction = DIRECTION_NORTH;
-      // Down
-      else if (action == SDLK_DOWN)
-        direction = DIRECTION_SOUTH;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        zoom(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-      // Left
-      if (action == SDLK_LEFT)
-        direction = DIRECTION_WEST;
-      // Down
-      else if (action == SDLK_RIGHT)
-        direction = DIRECTION_EAST;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        zoom(direction, false);
-
-
-
-      // Other shortcuts
-      else
         switch (action)
         {
+        // Change to next camera
         case SDLK_k:
           changeCamera();
           break;
 
+        // Change to next view mode
         case SDLK_m:
           changeViewMode();
           break;
 
-        case SDLK_n:
-          changeAnimationSet();
-          break;
-
+        // Load a model file
         case SDLK_o:
           openFile("");
           break;
 
-        case SDLK_p:
-          toggleAnimation();
-          break;
-
         default:
           break;
         }
     }
-    // Modifier: Shift
-    else if ((keyMod & KMOD_SHIFT) && !(keyMod & (KMOD_CTRL | KMOD_ALT)))
-    {
-      // Get direction
-      // Up
-      if (action == SDLK_UP)
-        direction = DIRECTION_NORTH;
-      // Down
-      else if (action == SDLK_DOWN)
-        direction = DIRECTION_SOUTH;
 
-      // Execute
-      if (direction != DIRECTION_NONE)
-        move(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-      // Left
-      if (action == SDLK_LEFT)
-        direction = DIRECTION_WEST;
-      // Right
-      else if (action == SDLK_RIGHT)
-        direction = DIRECTION_EAST;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        move(direction, false);
-
-      // Other shortcuts
-      /*
-      else
-        switch (action)
-        {
-          // Nothing yet
-
-        default:
-          break;
-        }
-      */
-    }
-    // Modifier: Alt
-    else if ((keyMod & KMOD_ALT) && !(keyMod & (KMOD_CTRL | KMOD_SHIFT)))
-    {
-      switch (action)
-      {
-      case SDLK_LEFT:
-        previousFrame();
-        break;
-
-      case SDLK_RIGHT:
-        nextFrame();
-        break;
-
-      case SDLK_HOME:
-        startFrame();
-        break;
-
-      case SDLK_END:
-        endFrame();
-        break;
-
-      default:
-        break;
-      }
-    }
     // No modifier
     else if (!(keyMod & KMOD_KEYS))
     {
-      // Get direction
-      // Up
-      if (action == SDLK_UP)
-        direction = DIRECTION_NORTH;
-      // Down
-      else if (action == SDLK_DOWN)
-        direction = DIRECTION_SOUTH;
+      // Set camera position
 
-      // Execute
-      if (direction != DIRECTION_NONE)
-        rotate(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-      // Left
-      if (action == SDLK_LEFT)
-        direction = DIRECTION_WEST;
-      // Right
-      else if (action == SDLK_RIGHT)
-        direction = DIRECTION_EAST;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        rotate(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-
-
-      // Get direction
-      // Up
-      if (action == SDLK_w)
-        direction = DIRECTION_NORTH;
-      // Down
-      else if (action == SDLK_s)
-        direction = DIRECTION_SOUTH;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        move(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-      // Left
-      if (action == SDLK_a)
-        direction = DIRECTION_WEST;
-      // Right
-      else if (action == SDLK_d)
-        direction = DIRECTION_EAST;
-
-      // Execute
-      if (direction != DIRECTION_NONE)
-        move(direction, false);
-      direction = DIRECTION_NONE; // Reset
-
-
-
-      // Other shortcuts
       Camera_t cameraType = CAMERA_NONE;
       switch (action)
       {
+      // Change to front camera
       case SDLK_KP_8:
         cameraType = CAMERA_FRONT;
         break;
+      // Change to right camera
       case SDLK_KP_4:
         cameraType = CAMERA_RIGHT;
         break;
+      // Change to back camera
       case SDLK_KP_2:
         cameraType = CAMERA_BACK;
         break;
+      // Change to left camera
       case SDLK_KP_6:
         cameraType = CAMERA_LEFT;
         break;
 
+      // Change to bottom camera
       case SDLK_KP_MINUS:
         cameraType = CAMERA_BOTTOM;
         break;
+      // Change to top camera
       case SDLK_KP_PLUS:
         cameraType = CAMERA_TOP;
         break;
+      // Change to diagonal camera
       case SDLK_KP_DIVIDE:
         cameraType = CAMERA_DIAGONAL;
         break;
+      // Change to next camera
       case SDLK_KP_MULTIPLY:
         changeCamera();
         break;
@@ -645,8 +439,135 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
       default:
         break;
       }
+
+      // Execute
       if (cameraType != CAMERA_NONE)
         changeCamera(cameraType);
     }
+  }
+}
+
+void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8* keyStates)
+{
+  Direction_t direction = DIRECTION_NONE; // Helper
+  Uint16 keyMod         = _eventManager->getKeyModifiers(); // Work for poll and pump
+
+
+
+  /* Key handling */
+  
+  // Modifier: Ctrl
+  if ((keyMod & KMOD_CTRL) && !(keyMod & (KMOD_SHIFT | KMOD_ALT)))
+  {
+    // Zoom
+
+    // Up
+    if (keyStates[SDL_SCANCODE_UP])
+      direction = DIRECTION_NORTH;
+    // Down
+    else if (keyStates[SDL_SCANCODE_DOWN])
+      direction = DIRECTION_SOUTH;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      zoom(direction, false);
+    direction = DIRECTION_NONE; // Reset
+
+    // Left
+    if (keyStates[SDL_SCANCODE_LEFT])
+      direction = DIRECTION_WEST;
+    // Down
+    else if (keyStates[SDL_SCANCODE_RIGHT])
+      direction = DIRECTION_EAST;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      zoom(direction, false);
+  }
+  
+  // Modifier: Shift
+  else if ((keyMod & KMOD_SHIFT) && !(keyMod & (KMOD_CTRL | KMOD_ALT)))
+  {
+    // Move
+
+    // Up
+    if (keyStates[SDL_SCANCODE_UP])
+      direction = DIRECTION_NORTH;
+    // Down
+    else if (keyStates[SDL_SCANCODE_DOWN])
+      direction = DIRECTION_SOUTH;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      move(direction, false);
+    direction = DIRECTION_NONE; // Reset
+
+    // Left
+    if (keyStates[SDL_SCANCODE_LEFT])
+      direction = DIRECTION_WEST;
+    // Right
+    else if (keyStates[SDL_SCANCODE_RIGHT])
+      direction = DIRECTION_EAST;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      move(direction, false);
+  }
+  
+  // No modifier
+  else if (!(keyMod & KMOD_KEYS))
+  {
+    // Rotate
+
+    // Up
+    if (keyStates[SDL_SCANCODE_UP])
+      direction = DIRECTION_NORTH;
+    // Down
+    else if (keyStates[SDL_SCANCODE_DOWN])
+      direction = DIRECTION_SOUTH;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      rotate(direction, false);
+    direction = DIRECTION_NONE; // Reset
+
+    // Left
+    if (keyStates[SDL_SCANCODE_LEFT])
+      direction = DIRECTION_WEST;
+    // Right
+    else if (keyStates[SDL_SCANCODE_RIGHT])
+      direction = DIRECTION_EAST;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      rotate(direction, false);
+    direction = DIRECTION_NONE; // Reset
+    
+
+
+    // Move
+
+    // Up
+    if (keyStates[SDL_SCANCODE_W])
+      direction = DIRECTION_NORTH;
+    // Down
+    else if (keyStates[SDL_SCANCODE_S])
+      direction = DIRECTION_SOUTH;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      move(direction, false);
+    direction = DIRECTION_NONE; // Reset
+
+    // Left
+    if (keyStates[SDL_SCANCODE_A])
+      direction = DIRECTION_WEST;
+    // Right
+    else if (keyStates[SDL_SCANCODE_D])
+      direction = DIRECTION_EAST;
+
+    // Execute
+    if (direction != DIRECTION_NONE)
+      move(direction, false);
   }
 }

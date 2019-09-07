@@ -11,11 +11,6 @@
 
 
 
-// Analog joystick dead zone
-const int JOYSTICK_DEAD_ZONE = 8000;
-
-
-
 class EventManager
 {
   public:
@@ -44,15 +39,14 @@ class EventManager
     bool isHoldingMouseMiddleButton() { return mouseMiddleButton; }
     Uint16 getKeyModifiers() { return keyModifiers; }
 
-    void setOnActionCallback(std::function<void(EventManager*, Uint32, Uint64)> _onActionCallback) { onActionCallback = _onActionCallback; }
+    void setOnPollEventCallback(std::function<void(EventManager*, Uint32, Uint64)> _onPollEventCallback) { onPollEventCallback = _onPollEventCallback; }
+    void setOnPumpEventCallback(std::function<void(EventManager*, const Uint8*)> _onPumpEventCallback) { onPumpEventCallback = _onPumpEventCallback; }
     
 
 
     private:
       bool initialized;
-
-      SDL_Event eventHandler;
-
+      
 
 
       /* Registered input */
@@ -63,11 +57,16 @@ class EventManager
 
       Uint16 keyModifiers;
 
-      //const Uint8* keyStates;
+      // Poll
+      SDL_Event eventHandler;
+
+      // Pump
+      const Uint8* keyStates;
 
       SDL_Joystick* gameJoystick;
 
 
 
-      std::function<void(EventManager*, Uint32, Uint64)> onActionCallback;
+      std::function<void(EventManager*, Uint32, Uint64)> onPollEventCallback;
+      std::function<void(EventManager*, const Uint8*)> onPumpEventCallback;
 };
