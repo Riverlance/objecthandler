@@ -69,4 +69,6 @@ class Camera
 
 
     void updateCameraVectors();
+    bool upsideDown = false;
+    void upsideDownCamera();
 };

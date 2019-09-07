@@ -88,6 +88,27 @@ void Camera::rotate(Direction_t direction, GLfloat speed /*= (GLfloat)1.0f*/, GL
     else if (pitch < PITCH_CONSTRAINT_BOTTOM && pitch > 90.0f && direction == DIRECTION_SOUTH)
       pitch = PITCH_CONSTRAINT_BOTTOM;
   }
+  // Fix upside down in pitch >= 0 && pitch <= 90 || pitch >= 270 && pitch < 360
+  else
+  {
+    // Is in upside down range
+    if (pitch >= 90.0f && pitch <= 270.0f)
+    {
+      if (!upsideDown) // this
+      {
+        upsideDown = true;
+        upsideDownCamera();
+      }
+    }
+    else
+    {
+      if (upsideDown) // this
+      {
+        upsideDown = false;
+        upsideDownCamera();
+      }
+    }
+  }
 
   updateCameraVectors();
 };
@@ -117,3 +138,9 @@ void Camera::updateCameraVectors()
 
   this->up = glm::normalize(glm::cross(this->right, this->front));
 };
+
+void Camera::upsideDownCamera()
+{
+  worldUp *= -1.0f;
+  right *= -1.0f;
+}
