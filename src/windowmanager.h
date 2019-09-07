@@ -59,7 +59,7 @@ class WindowManager
     void rotate(Direction_t direction, bool isFromMouse = false);
     void zoom(Direction_t direction, bool isFromMouse = false);
 
-    void changeCamera(Camera_t camera = CAMERA_NONE);
+    void changeCamera(Camera_t cameraType = CAMERA_NONE);
     void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
     void changeAnimationSet(uint8_t animationSetId = 255);
 

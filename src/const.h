@@ -70,21 +70,22 @@ enum Direction_t : char // uint8_t
   DIRECTION_NONE = 8,
 };
 
+const GLfloat DEFAULT_CAMERA_DISTANCE = 10.0f;
 enum Camera_t : char // uint8_t
 {
-  CAMERA_NONE,
+  CAMERA_FRONT = 0, // Camera at Z looking to center
+  CAMERA_RIGHT = 1, // Camera at X looking to center
+  CAMERA_BACK = 2,  // Camera at -Z looking to center
+  CAMERA_LEFT = 3,  // Camera at -X looking to center
 
-  CAMERA_FRONT, // Camera at Z looking to center
-  CAMERA_RIGHT, // Camera at X looking to center
-  CAMERA_BACK,  // Camera at -Z looking to center
-  CAMERA_LEFT,  // Camera at -X looking to center
+  CAMERA_TOP = 4,    // Camera at Y looking to center
+  CAMERA_BOTTOM = 5, // Camera at -Y looking to center
 
-  CAMERA_TOP,    // Camera at Y looking to center
-  CAMERA_BOTTOM, // Camera at -Y looking to center
+  CAMERA_DIAGONAL = 6, // Camera between X, Y and Z looking to center
+  CAMERA_LAST = CAMERA_DIAGONAL,
 
-  CAMERA_PERSPECTIVE, // Camera between X, Y and Z looking to center
-
-  CAMERA_LAST = CAMERA_PERSPECTIVE,
+  DEFAULT_CAMERA = CAMERA_FRONT,
+  CAMERA_NONE = 7,
 };
 
 enum ViewMode : char // uint8_t

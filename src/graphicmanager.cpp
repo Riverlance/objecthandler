@@ -131,7 +131,8 @@ bool GraphicManager::init()
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Alpha support
   
   // Camera
-  camera = new Camera(glm::vec3(0.0f, 0.0f, 5.0f));
+  camera = new Camera();
+  camera->updateCamera(DEFAULT_CAMERA, DEFAULT_CAMERA_DISTANCE);
 
   // onInit
   if (!onInit())

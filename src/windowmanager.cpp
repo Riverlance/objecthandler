@@ -146,11 +146,9 @@ void WindowManager::zoom(Direction_t direction, bool isFromMouse /*= false*/)
 
 
 
-void WindowManager::changeCamera(Camera_t /*camera*/ /*= CAMERA_NONE*/)
+void WindowManager::changeCamera(Camera_t cameraType /*= CAMERA_NONE*/)
 {
-  std::cout << "Change camera" << std::endl;
-
-  // If is CAMERA_NONE, change to the next Camera
+  graphicManager->getCamera()->updateCamera(cameraType, DEFAULT_CAMERA_DISTANCE);
 }
 
 void WindowManager::changeViewMode(ViewMode /*viewMode*/ /*= VIEWMODE_NONE*/)
@@ -615,16 +613,40 @@ void WindowManager::onActionCallback(EventManager* _eventManager, Uint32 eventTy
 
 
       // Other shortcuts
-      /*
-      else
-        switch (action)
-        {
-          // Nothing yet
+      Camera_t cameraType = CAMERA_NONE;
+      switch (action)
+      {
+      case SDLK_KP_8:
+        cameraType = CAMERA_FRONT;
+        break;
+      case SDLK_KP_4:
+        cameraType = CAMERA_RIGHT;
+        break;
+      case SDLK_KP_2:
+        cameraType = CAMERA_BACK;
+        break;
+      case SDLK_KP_6:
+        cameraType = CAMERA_LEFT;
+        break;
 
-        default:
-          break;
-        }
-      */
+      case SDLK_KP_MINUS:
+        cameraType = CAMERA_BOTTOM;
+        break;
+      case SDLK_KP_PLUS:
+        cameraType = CAMERA_TOP;
+        break;
+      case SDLK_KP_DIVIDE:
+        cameraType = CAMERA_DIAGONAL;
+        break;
+      case SDLK_KP_MULTIPLY:
+        changeCamera();
+        break;
+
+      default:
+        break;
+      }
+      if (cameraType != CAMERA_NONE)
+        changeCamera(cameraType);
     }
   }
 }

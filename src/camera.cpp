@@ -13,7 +13,8 @@
 
 Camera::Camera(glm::vec3 position /*= glm::vec3(0.0f, 0.0f, 0.0f)*/, glm::vec3 up /*= glm::vec3(0.0f, 1.0f, 0.0f)*/, GLfloat yaw /*= DEFAULT_YAW*/, GLfloat pitch /*= DEFAULT_PITCH*/) :
   front(glm::vec3(0.0f, 0.0f, -1.0f)),
-  zoomSize(DEFAULT_ZOOM)
+  zoomSize(DEFAULT_ZOOM),
+  lastCameraType(DEFAULT_CAMERA)
 {
   this->position = position;
   this->worldUp = up;
@@ -26,7 +27,8 @@ Camera::Camera(glm::vec3 position /*= glm::vec3(0.0f, 0.0f, 0.0f)*/, glm::vec3 u
 
 Camera::Camera(GLfloat positionX, GLfloat positionY, GLfloat positionZ, GLfloat upCoordinateX, GLfloat upCoordinateY, GLfloat upCoordinateZ, GLfloat yaw /*= DEFAULT_YAW*/, GLfloat pitch /*= DEFAULT_PITCH*/) :
   front(glm::vec3(0.0f, 0.0f, -1.0f)),
-  zoomSize(DEFAULT_ZOOM)
+  zoomSize(DEFAULT_ZOOM),
+  lastCameraType(DEFAULT_CAMERA)
 {
   this->position = glm::vec3(positionX, positionY, positionZ);
   this->worldUp = glm::vec3(upCoordinateX, upCoordinateY, upCoordinateZ);
@@ -122,6 +124,77 @@ void Camera::zoom(Direction_t direction, GLfloat speed /*= (GLfloat)1.0f*/)
     zoomSize += speed;
 
   zoomSize = std::max(1.0f, std::min(zoomSize, 45.0f));
+};
+
+void Camera::updateCamera(Camera_t cameraType, GLfloat distance /*= (GLfloat)0.0f*/)
+{
+  // Next camera
+  if (cameraType == CAMERA_NONE)
+    cameraType = (Camera_t)(((int)lastCameraType + 1) % (CAMERA_LAST + 1));
+
+  switch (cameraType)
+  {
+  case CAMERA_FRONT:
+    lastCameraType = cameraType;
+    position = glm::vec3(0.0f, 0.0f, distance);
+    yaw = DEFAULT_YAW;
+    pitch = DEFAULT_PITCH;
+    front = glm::vec3(0.0f, 0.0f, -1.0f);
+    break;
+
+  case CAMERA_RIGHT:
+    lastCameraType = cameraType;
+    position = glm::vec3(distance, 0.0f, 0.0f);
+    yaw = (GLfloat)-180.0f;
+    pitch = DEFAULT_PITCH;
+    front = glm::vec3(-1.0f, 0.0f, 0.0f);
+    break;
+
+  case CAMERA_BACK:
+    lastCameraType = cameraType;
+    position = glm::vec3(0.0f, 0.0f, -distance);
+    yaw = (GLfloat)90.0f;
+    pitch = DEFAULT_PITCH;
+    front = glm::vec3(0.0f, 0.0f, 1.0f);
+    break;
+
+  case CAMERA_LEFT:
+    lastCameraType = cameraType;
+    position = glm::vec3(-distance, 0.0f, 0.0f);
+    yaw = (GLfloat)0.0f;
+    pitch = DEFAULT_PITCH;
+    front = glm::vec3(1.0f, 0.0f, 0.0f);
+    break;
+
+  case CAMERA_TOP:
+    lastCameraType = cameraType;
+    position = glm::vec3(0.0f, distance, 0.0f);
+    yaw = DEFAULT_YAW;
+    pitch = (GLfloat)-89.9f; // -90.0f would make it appear upside down
+    front = glm::vec3(0.0f, -1.0f, 0.0f);
+    break;
+
+  case CAMERA_BOTTOM:
+    lastCameraType = cameraType;
+    position = glm::vec3(0.0f, -distance, 0.0f);
+    yaw = DEFAULT_YAW;
+    pitch = (GLfloat)89.9f; // 90.0f would make it appear upside down
+    front = glm::vec3(0.0f, 1.0f, 0.0f);
+    break;
+
+  case CAMERA_DIAGONAL:
+    lastCameraType = cameraType;
+    position = glm::vec3(distance, distance, distance);
+    yaw = (GLfloat)-135.0f;
+    pitch = (GLfloat)-45.0f;
+    front = glm::vec3(-1.0f, -1.0f, -1.0f);
+    break;
+
+  default:
+    break;
+  }
+
+  updateCameraVectors();
 };
 
 
