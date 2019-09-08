@@ -55,9 +55,9 @@ class WindowManager
 
     GraphicManager* getGraphicManager() { return graphicManager; }
 
-    void move(Direction_t direction, bool isFromMouse = false);
-    void rotate(Direction_t direction, bool isFromMouse = false);
-    void zoom(Direction_t direction, bool isFromMouse = false);
+    void move(Direction_t direction, Device_t device);
+    void rotate(Direction_t direction, Device_t device);
+    void zoom(Direction_t direction, Device_t device);
 
     void changeCamera(Camera_t cameraType = CAMERA_NONE);
     void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
@@ -87,10 +87,20 @@ class WindowManager
     GLfloat lastFrame;
     GLfloat deltaTime;
 
+
+
     GLfloat moveMouseSensitivity;
     GLfloat rotateMouseSensitivity;
     GLfloat zoomMouseSensitivity;
     GLfloat moveKeyboardSensitivity;
     GLfloat rotateKeyboardSensitivity;
     GLfloat zoomKeyboardSensitivity;
+    GLfloat moveJoystickSensitivity;
+    GLfloat rotateJoystickSensitivity;
+    GLfloat zoomJoystickSensitivity;
+    uint8_t joystickAxis1;
+    uint8_t joystickAxis2;
+    uint8_t joystickAxisCross;
+    bool joystickL2;
+    bool joystickR2;
 };

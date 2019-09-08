@@ -61,31 +61,28 @@ const GLfloat DEFAULT_MOUSE_SENSITIVITY_ZOOM = 0.02f;
 const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_MOVE = 0.01f;
 const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ROTATE = 0.1f;
 const GLfloat DEFAULT_KEYBOARD_SENSITIVITY_ZOOM = 0.001f;
+const GLfloat DEFAULT_JOYSTICK_SENSITIVITY_MOVE = 0.01f;
+const GLfloat DEFAULT_JOYSTICK_SENSITIVITY_ROTATE = 0.1f;
+const GLfloat DEFAULT_JOYSTICK_SENSITIVITY_ZOOM = 0.001f;
 
 // Analog joystick dead zone
 const int JOYSTICK_DEAD_ZONE = 8000;
 
 
 
-enum Direction_t : char // uint8_t
+enum Direction_t : uint8_t
 {
-  DIRECTION_NORTH = 0,
-  DIRECTION_EAST = 1,
-  DIRECTION_SOUTH = 2,
-  DIRECTION_WEST = 3,
+  DIRECTION_NONE = 0,
 
-  DIRECTION_DIAGONAL_MASK = 4,
+  DIRECTION_NORTH = 1 << 0,
+  DIRECTION_EAST = 1 << 1,
+  DIRECTION_SOUTH = 1 << 2,
+  DIRECTION_WEST = 1 << 3,
 
-  DIRECTION_SOUTHWEST = DIRECTION_DIAGONAL_MASK | 0,
-  DIRECTION_SOUTHEAST = DIRECTION_DIAGONAL_MASK | 1,
-  DIRECTION_NORTHWEST = DIRECTION_DIAGONAL_MASK | 2,
-  DIRECTION_NORTHEAST = DIRECTION_DIAGONAL_MASK | 3,
-
-  DIRECTION_LAST = DIRECTION_NORTHEAST,
-  DIRECTION_NONE = 8,
+  DIRECTION_LAST = DIRECTION_WEST,
 };
 
-enum Camera_t : char // uint8_t
+enum Camera_t : uint8_t
 {
   CAMERA_FRONT = 0, // Camera at Z looking to center
   CAMERA_RIGHT = 1, // Camera at X looking to center
@@ -102,7 +99,18 @@ enum Camera_t : char // uint8_t
   CAMERA_NONE = 7,
 };
 
-enum ViewMode : char // uint8_t
+enum Device_t : uint8_t
+{
+  DEVICE_NONE = 0,
+
+  DEVICE_MOUSE = 1 << 0,
+  DEVICE_KEYBOARD = 1 << 1,
+  DEVICE_JOYSTICK = 1 << 2,
+
+  DEVICE_LAST = DEVICE_JOYSTICK,
+};
+
+enum ViewMode : uint8_t
 {
   VIEWMODE_TEXTURE = 0,
   VIEWMODE_FLATSHADE = 1,

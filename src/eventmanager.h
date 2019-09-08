@@ -28,7 +28,8 @@ class EventManager
 
     bool init();
     bool update();
-    bool loadJoystick();
+    bool loadJoysticks();
+    void unloadJoysticks();
 
 
 
@@ -63,7 +64,8 @@ class EventManager
       // Pump
       const Uint8* keyStates;
 
-      SDL_Joystick* gameJoystick;
+      // Joysticks (the one configured here is: Sony Wireless Joystick Dualshock 4 - Model CUH-ZCT2U - Red (need to download and install DS4 Windows at http://ds4windows.com/)
+      std::map<int, SDL_Joystick*> joysticks;
 
 
 

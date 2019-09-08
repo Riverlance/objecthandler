@@ -21,7 +21,15 @@ WindowManager::WindowManager() :
   zoomMouseSensitivity(DEFAULT_MOUSE_SENSITIVITY_ZOOM),
   moveKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_MOVE),
   rotateKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_ROTATE),
-  zoomKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_ZOOM)
+  zoomKeyboardSensitivity(DEFAULT_KEYBOARD_SENSITIVITY_ZOOM),
+  moveJoystickSensitivity(DEFAULT_JOYSTICK_SENSITIVITY_MOVE),
+  rotateJoystickSensitivity(DEFAULT_JOYSTICK_SENSITIVITY_ROTATE),
+  zoomJoystickSensitivity(DEFAULT_JOYSTICK_SENSITIVITY_ZOOM),
+  joystickAxis1(DIRECTION_NONE),
+  joystickAxis2(DIRECTION_NONE),
+  joystickAxisCross(DIRECTION_NONE),
+  joystickL2(false),
+  joystickR2(false)
 {
   initialized = false;
   window = nullptr;
@@ -81,6 +89,7 @@ bool WindowManager::init()
     return false;
   }
   std::cout << "> SDL window created successfully." << std::endl;
+  std::cout << std::endl;
 
   // Get window context
   windowContext = SDL_GL_CreateContext(window);
@@ -89,6 +98,9 @@ bool WindowManager::init()
   graphicManager = GraphicManager::getInstance();
   if (!graphicManager->init())
     return false;
+
+  // Event manager
+  eventManager->init();
 
 
 
@@ -120,6 +132,69 @@ bool WindowManager::update()
   // Context
   graphicManager->update();
 
+
+
+  // Joystick
+
+  // Axis 1
+
+  if (joystickAxis1 != DIRECTION_NONE)
+  {
+    // X
+    if (joystickAxis1 & DIRECTION_WEST)
+      move(DIRECTION_WEST, DEVICE_JOYSTICK);
+    else if (joystickAxis1 & DIRECTION_EAST)
+      move(DIRECTION_EAST, DEVICE_JOYSTICK);
+
+    // Y
+    if (joystickAxis1 & DIRECTION_NORTH)
+      move(DIRECTION_NORTH, DEVICE_JOYSTICK);
+    else if (joystickAxis1 & DIRECTION_SOUTH)
+      move(DIRECTION_SOUTH, DEVICE_JOYSTICK);
+  }
+
+  if (joystickL2 == true)
+    zoom(DIRECTION_SOUTH, DEVICE_JOYSTICK);
+
+  // Axis 2
+
+  if (joystickAxis2 != DIRECTION_NONE)
+  {
+    // X
+    if (joystickAxis2 & DIRECTION_WEST)
+      rotate(DIRECTION_WEST, DEVICE_JOYSTICK);
+    else if (joystickAxis2 & DIRECTION_EAST)
+      rotate(DIRECTION_EAST, DEVICE_JOYSTICK);
+
+    // Y
+    if (joystickAxis2 & DIRECTION_NORTH)
+      rotate(DIRECTION_NORTH, DEVICE_JOYSTICK);
+    else if (joystickAxis2 & DIRECTION_SOUTH)
+      rotate(DIRECTION_SOUTH, DEVICE_JOYSTICK);
+  }
+
+  if (joystickR2 == true)
+    zoom(DIRECTION_NORTH, DEVICE_JOYSTICK);
+
+  // Axis cross
+
+  if (joystickAxisCross != DIRECTION_NONE)
+  {
+    // X
+    if (joystickAxisCross & DIRECTION_WEST)
+      move(DIRECTION_WEST, DEVICE_JOYSTICK);
+    else if (joystickAxisCross & DIRECTION_EAST)
+      move(DIRECTION_EAST, DEVICE_JOYSTICK);
+
+    // Y
+    if (joystickAxisCross & DIRECTION_NORTH)
+      move(DIRECTION_NORTH, DEVICE_JOYSTICK);
+    else if (joystickAxisCross & DIRECTION_SOUTH)
+      move(DIRECTION_SOUTH, DEVICE_JOYSTICK);
+  }
+
+
+
   return true;
 }
 
@@ -131,19 +206,46 @@ void WindowManager::drawContext()
 
 
 
-void WindowManager::move(Direction_t direction, bool isFromMouse /*= false*/)
+void WindowManager::move(Direction_t direction, Device_t device)
 {
-  graphicManager->getCamera()->move(direction, (isFromMouse ? moveMouseSensitivity : moveKeyboardSensitivity) * deltaTime);
+  GLfloat sensitivity = 0.0f;
+  if (device & DEVICE_MOUSE)
+    sensitivity = moveMouseSensitivity;
+  else if (device & DEVICE_KEYBOARD)
+    sensitivity = moveKeyboardSensitivity;
+  else if (device & DEVICE_JOYSTICK)
+    sensitivity = moveJoystickSensitivity;
+
+  if (sensitivity > 0.0f)
+    graphicManager->getCamera()->move(direction, sensitivity * deltaTime);
 }
 
-void WindowManager::rotate(Direction_t direction, bool isFromMouse /*= false*/)
+void WindowManager::rotate(Direction_t direction, Device_t device)
 {
-  graphicManager->getCamera()->rotate(direction, (isFromMouse ? rotateMouseSensitivity : rotateKeyboardSensitivity) * deltaTime, false);
+  GLfloat sensitivity = 0.0f;
+  if (device & DEVICE_MOUSE)
+    sensitivity = rotateMouseSensitivity;
+  else if (device & DEVICE_KEYBOARD)
+    sensitivity = rotateKeyboardSensitivity;
+  else if (device & DEVICE_JOYSTICK)
+    sensitivity = rotateJoystickSensitivity;
+
+  if (sensitivity > 0.0f)
+    graphicManager->getCamera()->rotate(direction, sensitivity * deltaTime, false);
 }
 
-void WindowManager::zoom(Direction_t direction, bool isFromMouse /*= false*/)
+void WindowManager::zoom(Direction_t direction, Device_t device)
 {
-  graphicManager->getCamera()->zoom(direction, (isFromMouse ? zoomMouseSensitivity : zoomKeyboardSensitivity) * deltaTime);
+  GLfloat sensitivity = 0.0f;
+  if (device & DEVICE_MOUSE)
+    sensitivity = zoomMouseSensitivity;
+  else if (device & DEVICE_KEYBOARD)
+    sensitivity = zoomKeyboardSensitivity;
+  else if (device & DEVICE_JOYSTICK)
+    sensitivity = zoomJoystickSensitivity;
+
+  if (sensitivity > 0.0f)
+    graphicManager->getCamera()->zoom(direction, sensitivity * deltaTime);
 }
 
 
@@ -200,7 +302,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction, true);
+          zoom(direction, DEVICE_MOUSE);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -212,7 +314,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction, true);
+          zoom(direction, DEVICE_MOUSE);
       }
 
       // Modifier: Shift
@@ -229,7 +331,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction, true);
+          move(direction, DEVICE_MOUSE);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -241,7 +343,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction, true);
+          move(direction, DEVICE_MOUSE);
       }
 
       // No modifier
@@ -258,7 +360,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          rotate(direction, true);
+          rotate(direction, DEVICE_MOUSE);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -270,7 +372,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          rotate(direction, true);
+          rotate(direction, DEVICE_MOUSE);
       }
     }
     
@@ -291,7 +393,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction, true);
+          move(direction, DEVICE_MOUSE);
         direction = DIRECTION_NONE; // Reset
 
         // Left
@@ -303,7 +405,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          move(direction, true);
+          move(direction, DEVICE_MOUSE);
       }
     }
     
@@ -324,7 +426,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction, true);
+          zoom(direction, DEVICE_MOUSE);
         direction = DIRECTION_NONE;
 
         // Left
@@ -336,7 +438,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
         // Execute
         if (direction != DIRECTION_NONE)
-          zoom(direction, true);
+          zoom(direction, DEVICE_MOUSE);
       }
     }
   }
@@ -360,7 +462,7 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
 
     // Execute
     if (direction != DIRECTION_NONE)
-      zoom(direction, true);
+      zoom(direction, DEVICE_MOUSE);
   }
 
 
@@ -445,6 +547,172 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
         changeCamera(cameraType);
     }
   }
+
+
+
+  /* Joystick handling */
+
+  else if (eventType == SDL_JOYAXISMOTION)
+  {
+    // Joystick 0
+    //if (eventHandler.jaxis.which == 0)
+    //{
+      // Axis 1
+
+      // X
+      if (eventHandler.jaxis.axis == 0)
+      {
+        if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
+          joystickAxis1 |= DIRECTION_WEST;
+        else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickAxis1 |= DIRECTION_EAST;
+        else
+        {
+          joystickAxis1 &= ~DIRECTION_WEST;
+          joystickAxis1 &= ~DIRECTION_EAST;
+        }
+      }
+
+      // Y
+      if (eventHandler.jaxis.axis == 1)
+      {
+        if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
+          joystickAxis1 |= DIRECTION_NORTH;
+        else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickAxis1 |= DIRECTION_SOUTH;
+        else
+        {
+          joystickAxis1 &= ~DIRECTION_NORTH;
+          joystickAxis1 &= ~DIRECTION_SOUTH;
+        }
+      }
+
+      // L2
+      if (eventHandler.jaxis.axis == 2)
+      {
+        if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickL2 = true;
+        else
+          joystickL2 = false;
+      }
+
+
+
+      // Axis 2 (if it has)
+
+      // X
+      if (eventHandler.jaxis.axis == 3)
+      {
+        if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
+          joystickAxis2 |= DIRECTION_WEST;
+        else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickAxis2 |= DIRECTION_EAST;
+        else
+        {
+          joystickAxis2 &= ~DIRECTION_WEST;
+          joystickAxis2 &= ~DIRECTION_EAST;
+        }
+      }
+
+      // Y
+      if (eventHandler.jaxis.axis == 4)
+      {
+        if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
+          joystickAxis2 |= DIRECTION_NORTH;
+        else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickAxis2 |= DIRECTION_SOUTH;
+        else
+        {
+          joystickAxis2 &= ~DIRECTION_NORTH;
+          joystickAxis2 &= ~DIRECTION_SOUTH;
+        }
+      }
+
+      // R2
+      if (eventHandler.jaxis.axis == 5)
+      {
+        if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
+          joystickR2 = true;
+        else
+          joystickR2 = false;
+      }
+    //}
+  }
+
+  else if (eventType == SDL_JOYHATMOTION)
+  {
+    // Axis cross
+
+    // X
+    if (eventHandler.jhat.value & SDL_HAT_LEFT)
+      joystickAxisCross |= DIRECTION_WEST;
+    else if (eventHandler.jhat.value & SDL_HAT_RIGHT)
+      joystickAxisCross |= DIRECTION_EAST;
+    else
+    {
+      joystickAxisCross &= DIRECTION_WEST;
+      joystickAxisCross &= DIRECTION_EAST;
+    }
+
+
+
+    // Y
+    if (eventHandler.jhat.value & SDL_HAT_UP)
+      joystickAxisCross |= DIRECTION_NORTH;
+    else if (eventHandler.jhat.value & SDL_HAT_DOWN)
+      joystickAxisCross |= DIRECTION_SOUTH;
+    else
+    {
+      joystickAxisCross &= ~DIRECTION_NORTH;
+      joystickAxisCross &= ~DIRECTION_SOUTH;
+    }
+  }
+
+  else if (eventType == SDL_JOYBUTTONDOWN)
+  {
+    //std::cout << action << std::endl;
+
+    switch (action)
+    {
+    // X
+    case 0:
+      changeCamera(CAMERA_BACK);
+      break;
+    // O
+    case 1:
+      changeCamera(CAMERA_LEFT);
+      break;
+    // Square
+    case 2:
+      changeCamera(CAMERA_RIGHT);
+      break;
+    // Triangle
+    case 3:
+      changeCamera(CAMERA_FRONT);
+      break;
+
+    // L1
+    case 4:
+      changeCamera(CAMERA_TOP);
+      break;
+    // R1
+    case 5:
+      changeCamera(CAMERA_BOTTOM);
+      break;
+
+    // Select / Share
+    case 6:
+      changeCamera();
+      break;
+    // Start / Options
+    case 7:
+      changeCamera(CAMERA_DIAGONAL);
+      break;
+
+    default:
+      break;
+    }
+  }
 }
 
 void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8* keyStates)
@@ -470,7 +738,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      zoom(direction, false);
+      zoom(direction, DEVICE_KEYBOARD);
     direction = DIRECTION_NONE; // Reset
 
     // Left
@@ -482,7 +750,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      zoom(direction, false);
+      zoom(direction, DEVICE_KEYBOARD);
   }
   
   // Modifier: Shift
@@ -499,7 +767,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      move(direction, false);
+      move(direction, DEVICE_KEYBOARD);
     direction = DIRECTION_NONE; // Reset
 
     // Left
@@ -511,7 +779,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      move(direction, false);
+      move(direction, DEVICE_KEYBOARD);
   }
   
   // No modifier
@@ -528,7 +796,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      rotate(direction, false);
+      rotate(direction, DEVICE_KEYBOARD);
     direction = DIRECTION_NONE; // Reset
 
     // Left
@@ -540,7 +808,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      rotate(direction, false);
+      rotate(direction, DEVICE_KEYBOARD);
     direction = DIRECTION_NONE; // Reset
     
 
@@ -556,7 +824,7 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      move(direction, false);
+      move(direction, DEVICE_KEYBOARD);
     direction = DIRECTION_NONE; // Reset
 
     // Left
@@ -568,6 +836,6 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8
 
     // Execute
     if (direction != DIRECTION_NONE)
-      move(direction, false);
+      move(direction, DEVICE_KEYBOARD);
   }
 }

@@ -28,19 +28,12 @@ EventManager::EventManager()
   keyModifiers = KMOD_NONE;
 
   keyStates = SDL_GetKeyboardState(nullptr);
-
-  gameJoystick = nullptr;
-
-  init();
 }
 
 EventManager::~EventManager()
 {
-  if (gameJoystick != nullptr)
-  {
-    SDL_JoystickClose(gameJoystick);
-    gameJoystick = nullptr;
-  }
+  // Unload joysticks
+  unloadJoysticks();
 }
 
 
@@ -48,9 +41,7 @@ EventManager::~EventManager()
 bool EventManager::init()
 {
   initialized = true;
-
-  loadJoystick();
-
+  
   return initialized;
 }
 
@@ -198,47 +189,33 @@ bool EventManager::update()
 
 
 
-    else if (eventType == SDL_JOYAXISMOTION /*|| eventType == SDL_JOYHATMOTION || eventType == SDL_JOYHATMOTION*/)
-    {
-      // Update
-      /*
-      int xDirection = 0;
-      int yDirection = 0;
+    /* Joystick handling */
 
-      // Joystick 0
-      if (eventHandler.jaxis.which == 0)
-      {
-        // X axis motion
-        if (eventHandler.jaxis.axis == 0)
-          //xDirection = eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE ? -1 : (eventHandler.jaxis.value > eventHandler.jaxis.value ? 1 : 0);
-          if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
-            xDirection = -1;
-          else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
-            xDirection = 1;
-          else
-            xDirection = 0;
-        // Y axis motion
-        else if (eventHandler.jaxis.axis == 1)
-          //yDirection = eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE ? -1 : (eventHandler.jaxis.value > eventHandler.jaxis.value ? 1 : 0);
-          if (eventHandler.jaxis.value < -JOYSTICK_DEAD_ZONE)
-            yDirection = -1;
-          else if (eventHandler.jaxis.value > JOYSTICK_DEAD_ZONE)
-            yDirection = 1;
-          else
-            yDirection = 0;
-      }
-      std::cout << "[xDir: " << xDirection << "] [yDir: " << yDirection << "]" << std::endl;
-      */
+    else if (eventType == SDL_JOYDEVICEADDED)
+    {
+      std::cout << "> A new Joystick has been connected." << std::endl;
+      loadJoysticks(); // Reload joysticks
+    }
+
+    else if (eventType == SDL_JOYDEVICEREMOVED)
+    {
+      std::cout << "> A Joystick has been disconnected." << std::endl;
+      loadJoysticks(); // Reload joysticks
+    }
+
+    // Axis
+    else if (eventType == SDL_JOYAXISMOTION || eventType == SDL_JOYHATMOTION)
+    {
+      if (onPollEventCallback != nullptr)
+        onPollEventCallback(this, eventType, KMOD_NONE);
     }
 
 
 
     else if (eventType == SDL_JOYBUTTONUP ||  eventType == SDL_JOYBUTTONDOWN)
     {
-      // Update
-      /*
-      std::cout << "joy button " << (int) eventHandler.jbutton.button << std::endl;
-      */
+      if (onPollEventCallback != nullptr)
+        onPollEventCallback(this, eventType, eventHandler.jbutton.button);
     }
   }
   
@@ -253,21 +230,44 @@ bool EventManager::update()
   return true; // Keep running application
 }
 
-bool EventManager::loadJoystick()
+bool EventManager::loadJoysticks()
 {
-  if (SDL_NumJoysticks() < 1)
+  // Unload previous joysticks
+  unloadJoysticks();
+
+  int joystickCount = SDL_NumJoysticks();
+  if (joystickCount < 1)
   {
     std::cout << "> Warning: No joystick connected." << std::endl;
     return false;
   }
 
-  gameJoystick = SDL_JoystickOpen(0); // First joystick
-  if (gameJoystick == nullptr)
+  bool error = false;
+  for (int i = 0; i < joystickCount; i++)
   {
-    std::cerr << "> Failed to initialize Game Joystick.\n\tSDL Error: " << SDL_GetError() << std::endl;
-    return false;
+    SDL_Joystick* joystick = SDL_JoystickOpen(0);
+    if (joystick == nullptr)
+    {
+      error = true;
+      break;
+    }
+    joysticks[i] = joystick;
   }
 
-  std::cout << "> Game Joystick loaded successfully." << std::endl;
+  if (error)
+  {
+    unloadJoysticks(); // Remove successfully registered joysticks
+    std::cerr << "> Failed to initialize a Joystick.\n\tSDL Error: " << SDL_GetError() << std::endl;
+    return false;
+  }
+  
+  std::cout << "> Joysticks loaded successfully." << std::endl;
   return true;
+}
+
+void EventManager::unloadJoysticks()
+{
+  for (const auto& it : joysticks)
+    SDL_JoystickClose(it.second);
+  joysticks.clear();
 }
