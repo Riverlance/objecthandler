@@ -44,8 +44,10 @@
     <ClInclude Include="..\src\windowmanager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\shaders\graphic_core_fragment.shader" />
-    <None Include="..\data\shaders\graphic_core_vertex.shader" />
+    <None Include="..\data\shaders\graphic_lamp_fragment.shader" />
+    <None Include="..\data\shaders\graphic_lamp_vertex.shader" />
+    <None Include="..\data\shaders\graphic_lighting_fragment.shader" />
+    <None Include="..\data\shaders\graphic_lighting_vertex.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{043A63F8-B5F0-4372-A394-02B6D8AEF207}</ProjectGuid>

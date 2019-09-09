@@ -55,7 +55,8 @@ class GraphicManager
     private:
       bool initialized;
 
-      GraphicShader graphicShader;
+      GraphicShader lightingShader;
+      GraphicShader lampShader;
 
       Camera* camera;
 };

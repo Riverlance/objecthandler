@@ -24,10 +24,16 @@
     <ClInclude Include="..\src\camera.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\data\shaders\graphic_core_vertex.shader">
+    <None Include="..\data\shaders\graphic_lighting_fragment.shader">
       <Filter>shaders</Filter>
     </None>
-    <None Include="..\data\shaders\graphic_core_fragment.shader">
+    <None Include="..\data\shaders\graphic_lighting_vertex.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\graphic_lamp_fragment.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\graphic_lamp_vertex.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>
