@@ -284,6 +284,8 @@ void GraphicManager::update()
   glm::mat4 model, view;
   view = camera->getViewMatrix();
   GLint modelLocation, viewLocation, projectionLocation;
+  GLfloat timeInSeconds = ((GLfloat)SDL_GetTicks() / 1000.0f);
+  glm::vec3 lightColor, diffuseColor, ambientColor;
 
   // Projection - It here will keep the zoom working (see the other one within onInit())
   float nearClippingPlane = 0.1f; // zNear
@@ -304,15 +306,26 @@ void GraphicManager::update()
 
   GLuint lightingProgram = lightingShader.getProgram();
 
-  GLint objectColorLocation = glGetUniformLocation(lightingProgram, "objectColor");
-  GLint lightColorLocation = glGetUniformLocation(lightingProgram, "lightColor");
-  GLint lightPositionLocation = glGetUniformLocation(lightingProgram, "lightPosition");
+  GLint lightPositionLocation = glGetUniformLocation(lightingProgram, "light.position");
   GLint viewPositionLocation = glGetUniformLocation(lightingProgram, "viewPosition");
-  glUniform3f(objectColorLocation, 1.0f, 0.5f, 0.31f);
-  glUniform3f(lightColorLocation, 1.0f, 1.0f, 1.0f);
   glUniform3f(lightPositionLocation, lightPosition.x, lightPosition.y, lightPosition.z);
   glUniform3f(viewPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
 
+  lightColor.r = sin(timeInSeconds * 2.0f);
+  lightColor.g = sin(timeInSeconds * 0.7f);
+  lightColor.b = sin(timeInSeconds * 1.3f);
+
+  diffuseColor = lightColor * glm::vec3(0.5f);
+  ambientColor = diffuseColor * glm::vec3(0.2f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), ambientColor.r, ambientColor.g, ambientColor.b);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), diffuseColor.r, diffuseColor.g, diffuseColor.b);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.specular"), 1.0f, 1.0f, 1.0f);
+
+  glUniform3f(glGetUniformLocation(lightingProgram, "material.ambient"), 1.0f, 0.5f, 0.31f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "material.diffuse"), 1.0f, 0.5f, 0.31f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "material.specular"), 0.5f, 0.5f, 0.5f);
+  glUniform1f(glGetUniformLocation(lightingProgram, "material.shininess"), 32.0f);
+  
   modelLocation = glGetUniformLocation(lightingProgram, "model");
   viewLocation = glGetUniformLocation(lightingProgram, "view");
   projectionLocation = glGetUniformLocation(lightingProgram, "projection");
