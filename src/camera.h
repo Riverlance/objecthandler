@@ -39,6 +39,7 @@ class Camera
     // Starting where to be looking at: looking front at the position based on worldUp
     glm::mat4 getViewMatrix() { return glm::lookAt(position, position + front, worldUp); }
 
+    glm::vec3 getPosition() { return position; }
     GLfloat getZoomSize() { return zoomSize; }
 
     void move(Direction_t direction, GLfloat speed = (GLfloat)1.0f);

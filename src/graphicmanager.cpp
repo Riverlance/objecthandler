@@ -20,61 +20,61 @@ GLsizei VBOsize = 1, boxVAOsize = 1, lightVAOsize;
 // This is used for show the perspective projection
 const GLfloat cubeVertices[] =
 {
-  // Position (x, y, z)
+  // Position (x, y, z)         // Normal direction (x, y, z)
 
   // Back side - Triangle 1
-  -0.5f, -0.5f, -0.5f,
-   0.5f, -0.5f, -0.5f,
-   0.5f,  0.5f, -0.5f,
+  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+   0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
   // Back side - Triangle 2
-   0.5f,  0.5f, -0.5f,
-  -0.5f,  0.5f, -0.5f,
-  -0.5f, -0.5f, -0.5f,
+   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
 
   // Front side - Triangle 1
-  -0.5f, -0.5f,  0.5f,
-   0.5f, -0.5f,  0.5f,
-   0.5f,  0.5f,  0.5f,
+  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+   0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
   // Front side - Triangle 2
-   0.5f,  0.5f,  0.5f,
-  -0.5f,  0.5f,  0.5f,
-  -0.5f, -0.5f,  0.5f,
+   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+  -0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
 
   // Left side - Triangle 1
-  -0.5f,  0.5f,  0.5f,
-  -0.5f,  0.5f, -0.5f,
-  -0.5f, -0.5f, -0.5f,
+  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f,  0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
   // Left side - Triangle 2
-  -0.5f, -0.5f, -0.5f,
-  -0.5f, -0.5f,  0.5f,
-  -0.5f,  0.5f,  0.5f,
+  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f, -0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
 
   // Right side - Triangle 1
-   0.5f,  0.5f,  0.5f,
-   0.5f,  0.5f, -0.5f,
-   0.5f, -0.5f, -0.5f,
+   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f,  0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
   // Right side - Triangle 2
-   0.5f, -0.5f, -0.5f,
-   0.5f, -0.5f,  0.5f,
-   0.5f,  0.5f,  0.5f,
+   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f, -0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
 
   // Bottom side - Triangle 1
-  -0.5f, -0.5f, -0.5f,
-   0.5f, -0.5f, -0.5f,
-   0.5f, -0.5f,  0.5f,
+  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
+   0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
+   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
   // Bottom side - Triangle 2
-   0.5f, -0.5f,  0.5f,
-  -0.5f, -0.5f,  0.5f,
-  -0.5f, -0.5f, -0.5f,
+   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
+  -0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
 
   // Top side - Triangle 1
-  -0.5f,  0.5f, -0.5f,
-   0.5f,  0.5f, -0.5f,
-   0.5f,  0.5f,  0.5f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
+   0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
   // Top side - Triangle 2
-   0.5f,  0.5f,  0.5f,
-  -0.5f,  0.5f,  0.5f,
-  -0.5f,  0.5f, -0.5f,
+   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
+  -0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
 };
 
 glm::mat4 projection;
@@ -198,12 +198,17 @@ bool GraphicManager::onInit()
   
   // Set data
   // Set VAO data - Position attribute
-  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 3 * sizeof(GLfloat);
+  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)0;
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
   // Set VBO data
   glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW); // VBO
+  // Set VAO data - Normal attribute
+  index = 1, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
+  previousDataOffset = (GLvoid *)(3 * sizeof(GLfloat));
+  glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
+  glEnableVertexAttribArray(index); // VAO
 
   // Unbind
   glBindVertexArray(0); // VAO
@@ -221,7 +226,7 @@ bool GraphicManager::onInit()
   
   // Set data
   // Set VAO data - Position attribute
-  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 3 * sizeof(GLfloat);
+  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)0;
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
@@ -287,6 +292,13 @@ void GraphicManager::update()
 
 
 
+  // Lighting position movement
+  lightPosition.x -= 0.001f;
+  //lightPosition.y -= 0.001f;
+  lightPosition.z -= 0.001f;
+
+
+
   // Lighting shader program
   lightingShader.useProgram();
 
@@ -294,8 +306,12 @@ void GraphicManager::update()
 
   GLint objectColorLocation = glGetUniformLocation(lightingProgram, "objectColor");
   GLint lightColorLocation = glGetUniformLocation(lightingProgram, "lightColor");
+  GLint lightPositionLocation = glGetUniformLocation(lightingProgram, "lightPosition");
+  GLint viewPositionLocation = glGetUniformLocation(lightingProgram, "viewPosition");
   glUniform3f(objectColorLocation, 1.0f, 0.5f, 0.31f);
-  glUniform3f(lightColorLocation, 1.0f, 0.5f, 1.0f);
+  glUniform3f(lightColorLocation, 1.0f, 1.0f, 1.0f);
+  glUniform3f(lightPositionLocation, lightPosition.x, lightPosition.y, lightPosition.z);
+  glUniform3f(viewPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
 
   modelLocation = glGetUniformLocation(lightingProgram, "model");
   viewLocation = glGetUniformLocation(lightingProgram, "view");
