@@ -10,15 +10,17 @@ struct Material
 struct Light
 {
   vec3 position;
-  //vec3 direction;
-
-  vec3 ambient;
-  vec3 diffuse;
-  vec3 specular;
+  vec3 direction;
+  float cutOff;
+  float outerCutOff;
 
   float constant;
   float linear;
   float quadratic;
+
+  vec3 ambient;
+  vec3 diffuse;
+  vec3 specular;
 };
 
 uniform vec3 viewPosition;
@@ -47,6 +49,13 @@ void main()
   vec3 reflectDirection = reflect(-lightDirection, normalized);
   float _specular = pow(max(dot(viewDirection, reflectDirection), 0.0f), material.shininess);
   vec3 specular = light.specular * _specular * vec3(texture(material.specular, TextureCoordinates));
+
+  // Spotlight (soft edges)
+  float theta = dot(lightDirection, normalize(-light.direction));
+  float epsilon = (light.cutOff - light.outerCutOff);
+  float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0f, 1.0f);
+  diffuse *= intensity;
+  specular *= intensity;
 
   // Attenuation
   float distance = length(light.position - FragmentPosition);

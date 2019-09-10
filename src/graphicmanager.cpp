@@ -13,8 +13,8 @@
 
 
 // VBO - Vertex Buffer Object, VAO - Vertex Array Object
-GLuint VBO, boxVAO, lightVAO;
-GLsizei VBOsize = 1, boxVAOsize = 1, lightVAOsize;
+GLuint VBO, boxVAO/*, lightVAO*/;
+GLsizei VBOsize = 1, boxVAOsize = 1/*, lightVAOsize*/;
 
 // Cube vertices
 // This is used for show the perspective projection
@@ -108,7 +108,7 @@ GraphicManager::GraphicManager()
 
 GraphicManager::~GraphicManager()
 {
-  glDeleteVertexArrays(lightVAOsize, &lightVAO);
+  //glDeleteVertexArrays(lightVAOsize, &lightVAO);
   glDeleteVertexArrays(boxVAOsize, &boxVAO);
   glDeleteBuffers(VBOsize, &VBO);
 
@@ -180,6 +180,7 @@ bool GraphicManager::onInit()
   if (!lightingShader.linkProgram())
     return false;
 
+  /*
   // Load graphic shader
   lampShader = GraphicShader();
   // Lamp vertex shader
@@ -198,6 +199,7 @@ bool GraphicManager::onInit()
   // Shader program
   if (!lampShader.linkProgram())
     return false;
+  */
 
 
 
@@ -239,6 +241,7 @@ bool GraphicManager::onInit()
 
 
 
+  /*
   // Generate
   glGenVertexArrays(boxVAOsize, &lightVAO); // VAO
   glGenBuffers(VBOsize, &VBO); // VBO
@@ -259,6 +262,7 @@ bool GraphicManager::onInit()
   // Unbind
   glBindVertexArray(0); // VAO
   glBindBuffer(GL_ARRAY_BUFFER, 0); // VBO
+  */
 
 
 
@@ -372,14 +376,18 @@ void GraphicManager::update()
   GLuint lightingProgram = lightingShader.getProgram();
 
   GLint lightPositionLocation = glGetUniformLocation(lightingProgram, "light.position");
-  //GLint lightDirectionLocation = glGetUniformLocation(lightingProgram, "light.direction");
+  GLint lightSpotDirectionLocation = glGetUniformLocation(lightingProgram, "light.direction");
+  GLint lightSpotCutOffLocation = glGetUniformLocation(lightingProgram, "light.cutOff");
+  GLint lightSpotOuterCutOffLocation = glGetUniformLocation(lightingProgram, "light.outerCutOff");
   GLint viewPositionLocation = glGetUniformLocation(lightingProgram, "viewPosition");
-  glUniform3f(lightPositionLocation, lightPosition.x, lightPosition.y, lightPosition.z);
-  //glUniform3f(lightDirectionLocation, -0.2f, -1.0f, -0.3f);
+  glUniform3f(lightPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
+  glUniform3f(lightSpotDirectionLocation, camera->getFrontVector().x, camera->getFrontVector().y, camera->getFrontVector().z);
+  glUniform1f(lightSpotCutOffLocation, glm::cos(glm::radians(12.5f)));
+  glUniform1f(lightSpotOuterCutOffLocation, glm::cos(glm::radians(17.5f)));
   glUniform3f(viewPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
 
-  glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), 0.2f, 0.2f, 0.2f);
-  glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), 0.5f, 0.5f, 0.5f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), 0.1f, 0.1f, 0.1f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), 0.8f, 0.8f, 0.8f);
   glUniform3f(glGetUniformLocation(lightingProgram, "light.specular"), 1.0f, 1.0f, 1.0f);
 
   glUniform1f(glGetUniformLocation(lightingProgram, "light.constant"), 1.0f);
@@ -414,15 +422,9 @@ void GraphicManager::update()
   }
   glBindVertexArray(0);
 
+
+
   /*
-  glBindVertexArray(boxVAO);
-  glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
-  glDrawArrays(GL_TRIANGLES, 0, cubeVerticesCount);
-  glBindVertexArray(0);
-  */
-
-
-
   // Lamp shader program
   lampShader.useProgram();
 
@@ -443,4 +445,5 @@ void GraphicManager::update()
   glBindVertexArray(lightVAO);
   glDrawArrays(GL_TRIANGLES, 0, cubeVerticesCount);
   glBindVertexArray(0);
+  */
 }
