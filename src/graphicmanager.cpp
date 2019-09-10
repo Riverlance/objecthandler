@@ -20,66 +20,68 @@ GLsizei VBOsize = 1, boxVAOsize = 1, lightVAOsize;
 // This is used for show the perspective projection
 const GLfloat cubeVertices[] =
 {
-  // Position (x, y, z)         // Normal direction (x, y, z)
+  // Position (x, y, z)         // Normal direction (x, y, z)   // Texture Coordinates (x, y)
 
   // Back side - Triangle 1
-  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
-   0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
-   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            0.0f, 0.0f,
+   0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            1.0f, 0.0f,
+   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            1.0f, 1.0f,
   // Back side - Triangle 2
-   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
-  -0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
-  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,
+   0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            1.0f, 1.0f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            0.0f, 1.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f,  0.0f, -1.0f,            0.0f, 0.0f,
 
   // Front side - Triangle 1
-  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
-   0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
-   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            0.0f, 0.0f,
+   0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            1.0f, 0.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            1.0f, 1.0f,
   // Front side - Triangle 2
-   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
-  -0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
-  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            1.0f, 1.0f,
+  -0.5f,  0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            0.0f, 1.0f,
+  -0.5f, -0.5f,  0.5f,           0.0f,  0.0f,  1.0f,            0.0f, 0.0f,
 
   // Left side - Triangle 1
-  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
-  -0.5f,  0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
-  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,            1.0f, 0.0f,
+  -0.5f,  0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,            1.0f, 1.0f,
+  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,            0.0f, 1.0f,
   // Left side - Triangle 2
-  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,
-  -0.5f, -0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
-  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,
+  -0.5f, -0.5f, -0.5f,          -1.0f,  0.0f,  0.0f,            0.0f, 1.0f,
+  -0.5f, -0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,            0.0f, 0.0f,
+  -0.5f,  0.5f,  0.5f,          -1.0f,  0.0f,  0.0f,            1.0f, 0.0f,
 
   // Right side - Triangle 1
-   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
-   0.5f,  0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
-   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,            1.0f, 0.0f,
+   0.5f,  0.5f, -0.5f,           1.0f,  0.0f,  0.0f,            1.0f, 1.0f,
+   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,            0.0f, 1.0f,
   // Right side - Triangle 2
-   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,
-   0.5f, -0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
-   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,
+   0.5f, -0.5f, -0.5f,           1.0f,  0.0f,  0.0f,            0.0f, 1.0f,
+   0.5f, -0.5f,  0.5f,           1.0f,  0.0f,  0.0f,            0.0f, 0.0f,
+   0.5f,  0.5f,  0.5f,           1.0f,  0.0f,  0.0f,            1.0f, 0.0f,
 
   // Bottom side - Triangle 1
-  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
-   0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
-   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,            0.0f, 1.0f,
+   0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,            1.0f, 1.0f,
+   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,            1.0f, 0.0f,
   // Bottom side - Triangle 2
-   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
-  -0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,
-  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,
+   0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,            1.0f, 0.0f,
+  -0.5f, -0.5f,  0.5f,           0.0f, -1.0f,  0.0f,            0.0f, 0.0f,
+  -0.5f, -0.5f, -0.5f,           0.0f, -1.0f,  0.0f,            0.0f, 1.0f,
 
   // Top side - Triangle 1
-  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
-   0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
-   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,            0.0f, 1.0f,
+   0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,            1.0f, 1.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,            1.0f, 0.0f,
   // Top side - Triangle 2
-   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
-  -0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,
-  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,
+   0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,            1.0f, 0.0f,
+  -0.5f,  0.5f,  0.5f,           0.0f,  1.0f,  0.0f,            0.0f, 0.0f,
+  -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,            0.0f, 1.0f,
 };
 
 glm::mat4 projection;
 
 glm::vec3 lightPosition;
+
+GLuint diffuseMap, specularMap;
 
 
 
@@ -198,17 +200,22 @@ bool GraphicManager::onInit()
   
   // Set data
   // Set VAO data - Position attribute
-  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
+  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)0;
+  glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
+  glEnableVertexAttribArray(index); // VAO
+  // Set VAO data - Normal attribute
+  index = 1, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
+  previousDataOffset = (GLvoid *)(3 * sizeof(GLfloat));
+  glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
+  glEnableVertexAttribArray(index); // VAO
+  // Set VAO data - Texture attribute
+  index = 2, dataValuesCount = 2, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
+  previousDataOffset = (GLvoid *)(6 * sizeof(GLfloat));
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
   // Set VBO data
   glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW); // VBO
-  // Set VAO data - Normal attribute
-  index = 1, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
-  previousDataOffset = (GLvoid *)(3 * sizeof(GLfloat));
-  glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
-  glEnableVertexAttribArray(index); // VAO
 
   // Unbind
   glBindVertexArray(0); // VAO
@@ -226,7 +233,7 @@ bool GraphicManager::onInit()
   
   // Set data
   // Set VAO data - Position attribute
-  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 6 * sizeof(GLfloat);
+  index = 0, dataValuesCount = 3, verticesType = GL_FLOAT, verticeDataSize = 8 * sizeof(GLfloat);
   previousDataOffset = (GLvoid *)0;
   glVertexAttribPointer(index, dataValuesCount, verticesType, GL_FALSE, verticeDataSize, previousDataOffset);
   glEnableVertexAttribArray(index); // VAO
@@ -236,6 +243,48 @@ bool GraphicManager::onInit()
   // Unbind
   glBindVertexArray(0); // VAO
   glBindBuffer(GL_ARRAY_BUFFER, 0); // VBO
+
+
+
+  // Generate
+  glGenTextures(1, &diffuseMap);
+  glGenTextures(1, &specularMap);
+
+  int textureWidth, textureHeight;
+  unsigned char* image;
+
+  // Diffuse map
+  image = SOIL_load_image("data/images/container2.png", &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB);
+  glBindTexture(GL_TEXTURE_2D, diffuseMap);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+  glGenerateMipmap(GL_TEXTURE_2D);
+  SOIL_free_image_data(image);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+
+  // Specular map
+  image = SOIL_load_image("data/images/container2_specular.png", &textureWidth, &textureHeight, 0, SOIL_LOAD_RGB);
+  glBindTexture(GL_TEXTURE_2D, specularMap);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+  glGenerateMipmap(GL_TEXTURE_2D);
+  SOIL_free_image_data(image);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+
+  // Unbind
+  glBindTexture(GL_TEXTURE_2D, 0);
+
+
+
+  // Lighting basics
+  lightingShader.useProgram();
+  GLuint lightingProgram = lightingShader.getProgram();
+  glUniform1i(glGetUniformLocation(lightingProgram, "material.diffuse"), 0);
+  glUniform1i(glGetUniformLocation(lightingProgram, "material.specular"), 1);
 
 
 
@@ -253,7 +302,7 @@ bool GraphicManager::onInit()
   //projection = glm::perspective(camera->getZoomSize(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   // Light
-  lightPosition = glm::vec3(1.2f, 1.0f, 2.0f);
+  lightPosition = glm::vec3(1.0f, 1.0f, 5.0f);
 
   return true;
 }
@@ -284,8 +333,7 @@ void GraphicManager::update()
   glm::mat4 model, view;
   view = camera->getViewMatrix();
   GLint modelLocation, viewLocation, projectionLocation;
-  GLfloat timeInSeconds = ((GLfloat)SDL_GetTicks() / 1000.0f);
-  glm::vec3 lightColor, diffuseColor, ambientColor;
+  glm::vec3 diffuseColor, ambientColor;
 
   // Projection - It here will keep the zoom working (see the other one within onInit())
   float nearClippingPlane = 0.1f; // zNear
@@ -311,19 +359,10 @@ void GraphicManager::update()
   glUniform3f(lightPositionLocation, lightPosition.x, lightPosition.y, lightPosition.z);
   glUniform3f(viewPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
 
-  lightColor.r = sin(timeInSeconds * 2.0f);
-  lightColor.g = sin(timeInSeconds * 0.7f);
-  lightColor.b = sin(timeInSeconds * 1.3f);
-
-  diffuseColor = lightColor * glm::vec3(0.5f);
-  ambientColor = diffuseColor * glm::vec3(0.2f);
-  glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), ambientColor.r, ambientColor.g, ambientColor.b);
-  glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), diffuseColor.r, diffuseColor.g, diffuseColor.b);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), 0.2f, 0.2f, 0.2f);
+  glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), 0.5f, 0.5f, 0.5f);
   glUniform3f(glGetUniformLocation(lightingProgram, "light.specular"), 1.0f, 1.0f, 1.0f);
 
-  glUniform3f(glGetUniformLocation(lightingProgram, "material.ambient"), 1.0f, 0.5f, 0.31f);
-  glUniform3f(glGetUniformLocation(lightingProgram, "material.diffuse"), 1.0f, 0.5f, 0.31f);
-  glUniform3f(glGetUniformLocation(lightingProgram, "material.specular"), 0.5f, 0.5f, 0.5f);
   glUniform1f(glGetUniformLocation(lightingProgram, "material.shininess"), 32.0f);
   
   modelLocation = glGetUniformLocation(lightingProgram, "model");
@@ -332,6 +371,12 @@ void GraphicManager::update()
 
   glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
   glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
+
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, diffuseMap);
+
+  glActiveTexture(GL_TEXTURE1);
+  glBindTexture(GL_TEXTURE_2D, specularMap);
 
   glBindVertexArray(boxVAO);
   glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
