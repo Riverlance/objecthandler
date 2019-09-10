@@ -130,14 +130,14 @@
       <OmitFramePointers />
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-3.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-4.1.0\include;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib;$(ProjectDir)..\src\binary\sdl\lib\x86;$(ProjectDir)..\src\binary\soil2\lib\x86;$(ProjectDir)..\src\binary\assimp-3.3.1\build\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib;$(ProjectDir)..\src\binary\sdl\lib\x86;$(ProjectDir)..\src\binary\soil2\lib\x86;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x86\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;soil2-debug.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -152,14 +152,14 @@
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-3.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-4.1.0\include;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib64;$(ProjectDir)..\src\binary\sdl\lib\x64;$(ProjectDir)..\src\binary\soil2\lib\x64;$(ProjectDir)..\src\binary\assimp-3.3.1\build\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib64;$(ProjectDir)..\src\binary\sdl\lib\x64;$(ProjectDir)..\src\binary\soil2\lib\x64;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x64\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;soil2-debug.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -176,7 +176,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-3.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-4.1.0\include;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -184,7 +184,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <ImageHasSafeExceptionHandlers />
-      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib;$(ProjectDir)..\src\binary\sdl\lib\x86;$(ProjectDir)..\src\binary\soil2\lib\x86;$(ProjectDir)..\src\binary\assimp-3.3.1\build\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib;$(ProjectDir)..\src\binary\sdl\lib\x86;$(ProjectDir)..\src\binary\soil2\lib\x86;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x86\code\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;soil2.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -197,7 +197,7 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-3.3.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\include;$(ProjectDir)..\src\binary\sdl\include;$(ProjectDir)..\src\binary\glm-0.9.9.5;$(ProjectDir)..\src\binary\soil2\include;$(ProjectDir)..\src\binary\assimp-4.1.0\include;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>objecthandlerpch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -207,7 +207,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib64;$(ProjectDir)..\src\binary\sdl\lib\x64;$(ProjectDir)..\src\binary\soil2\lib\x64;$(ProjectDir)..\src\binary\assimp-3.3.1\build\code\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\src\binary\glew-2.0.0\lib64;$(ProjectDir)..\src\binary\sdl\lib\x64;$(ProjectDir)..\src\binary\soil2\lib\x64;$(ProjectDir)..\src\binary\assimp-4.1.0\build\x64\code\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;opengl32.lib;SDL2.lib;SDL2main.lib;soil2.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
