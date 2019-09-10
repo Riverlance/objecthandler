@@ -77,11 +77,27 @@ const GLfloat cubeVertices[] =
   -0.5f,  0.5f, -0.5f,           0.0f,  1.0f,  0.0f,            0.0f, 1.0f,
 };
 
+// Positions of all cubes
+glm::vec3 cubePositions[] =
+{
+  glm::vec3( 0.0f,  0.0f,   0.0f),
+  glm::vec3( 2.0f,  5.0f, -15.0f),
+  glm::vec3(-1.5f, -2.2f,  -2.5f),
+  glm::vec3(-3.8f, -2.0f, -12.3f),
+  glm::vec3( 2.4f, -0.4f,  -3.5f),
+  glm::vec3(-1.7f,  3.0f,  -7.5f),
+  glm::vec3( 1.3f, -2.0f,  -2.5f),
+  glm::vec3( 1.5f,  2.0f,  -2.5f),
+  glm::vec3( 1.5f,  0.2f,  -1.5f),
+  glm::vec3(-1.3f,  1.0f,  -1.5f),
+};
+int cubesCount = 10;
+
 glm::mat4 projection;
 
 glm::vec3 lightPosition;
 
-GLuint diffuseMap, specularMap;
+GLuint diffuseMap, specularMap, emissionMap;
 
 
 
@@ -249,6 +265,7 @@ bool GraphicManager::onInit()
   // Generate
   glGenTextures(1, &diffuseMap);
   glGenTextures(1, &specularMap);
+  glGenTextures(1, &emissionMap);
 
   int textureWidth, textureHeight;
   unsigned char* image;
@@ -302,7 +319,7 @@ bool GraphicManager::onInit()
   //projection = glm::perspective(camera->getZoomSize(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
 
   // Light
-  lightPosition = glm::vec3(1.0f, 1.0f, 5.0f);
+  lightPosition = glm::vec3(1.2f, 1.0f, -2.0f);
 
   return true;
 }
@@ -343,9 +360,9 @@ void GraphicManager::update()
 
 
   // Lighting position movement
-  lightPosition.x -= 0.001f;
+  //lightPosition.x -= 0.001f;
   //lightPosition.y -= 0.001f;
-  lightPosition.z -= 0.001f;
+  //lightPosition.z -= 0.001f;
 
 
 
@@ -355,13 +372,19 @@ void GraphicManager::update()
   GLuint lightingProgram = lightingShader.getProgram();
 
   GLint lightPositionLocation = glGetUniformLocation(lightingProgram, "light.position");
+  //GLint lightDirectionLocation = glGetUniformLocation(lightingProgram, "light.direction");
   GLint viewPositionLocation = glGetUniformLocation(lightingProgram, "viewPosition");
   glUniform3f(lightPositionLocation, lightPosition.x, lightPosition.y, lightPosition.z);
+  //glUniform3f(lightDirectionLocation, -0.2f, -1.0f, -0.3f);
   glUniform3f(viewPositionLocation, camera->getPosition().x, camera->getPosition().y, camera->getPosition().z);
 
   glUniform3f(glGetUniformLocation(lightingProgram, "light.ambient"), 0.2f, 0.2f, 0.2f);
   glUniform3f(glGetUniformLocation(lightingProgram, "light.diffuse"), 0.5f, 0.5f, 0.5f);
   glUniform3f(glGetUniformLocation(lightingProgram, "light.specular"), 1.0f, 1.0f, 1.0f);
+
+  glUniform1f(glGetUniformLocation(lightingProgram, "light.constant"), 1.0f);
+  glUniform1f(glGetUniformLocation(lightingProgram, "light.linear"), 0.9f);
+  glUniform1f(glGetUniformLocation(lightingProgram, "light.quadratic"), 0.032f);
 
   glUniform1f(glGetUniformLocation(lightingProgram, "material.shininess"), 32.0f);
   
@@ -379,9 +402,24 @@ void GraphicManager::update()
   glBindTexture(GL_TEXTURE_2D, specularMap);
 
   glBindVertexArray(boxVAO);
+  for (GLuint i = 0; i < (GLuint)cubesCount; i++)
+  {
+    model = glm::mat4();
+    model = glm::translate(model, cubePositions[i]);
+    GLfloat angle = 20.0f * i;
+    model = glm::rotate(model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
+    glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
+
+    glDrawArrays(GL_TRIANGLES, 0, cubeVerticesCount);
+  }
+  glBindVertexArray(0);
+
+  /*
+  glBindVertexArray(boxVAO);
   glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
   glDrawArrays(GL_TRIANGLES, 0, cubeVerticesCount);
   glBindVertexArray(0);
+  */
 
 
 

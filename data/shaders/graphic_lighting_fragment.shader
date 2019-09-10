@@ -10,10 +10,15 @@ struct Material
 struct Light
 {
   vec3 position;
+  //vec3 direction;
 
   vec3 ambient;
   vec3 diffuse;
   vec3 specular;
+
+  float constant;
+  float linear;
+  float quadratic;
 };
 
 uniform vec3 viewPosition;
@@ -43,9 +48,16 @@ void main()
   float _specular = pow(max(dot(viewDirection, reflectDirection), 0.0f), material.shininess);
   vec3 specular = light.specular * _specular * vec3(texture(material.specular, TextureCoordinates));
 
+  // Attenuation
+  float distance = length(light.position - FragmentPosition);
+  float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
+
+  ambient *= attenuation;
+  diffuse *= attenuation;
+  specular *= attenuation;
+
 
 
   // Result
-  vec3 result = ambient + diffuse + specular;
-  color = vec4(result, 1.0f);
+  color = vec4(ambient + diffuse + specular, 1.0f);
 }
