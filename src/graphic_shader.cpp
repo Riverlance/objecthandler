@@ -33,7 +33,7 @@ GLuint GraphicShader::loadShader(GLenum shaderType, const GLchar* path)
   if (!success)
   {
     glGetShaderInfoLog(shader, infoLogSize, NULL, infoLog);
-    std::cerr << "> Failed to load vertex shader.\n\tGLEW error: " << infoLog << std::endl;
+    std::cerr << "> Failed to load shader of path '" << path << "'.\n\tGLEW error: " << infoLog << std::endl;
     return 0; // Error
   }
 
