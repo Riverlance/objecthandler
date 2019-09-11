@@ -25,7 +25,7 @@
 
 // Theme
 
-enum Theme_t : char // uint8_t
+enum Theme_t : uint8_t
 {
   THEME_LIGHT,
   THEME_DARK,

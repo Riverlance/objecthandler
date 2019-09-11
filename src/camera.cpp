@@ -11,30 +11,30 @@
 
 
 
-Camera::Camera(glm::vec3 position /*= glm::vec3(0.0f, 0.0f, 0.0f)*/, glm::vec3 up /*= glm::vec3(0.0f, 1.0f, 0.0f)*/, GLfloat yaw /*= DEFAULT_YAW*/, GLfloat pitch /*= DEFAULT_PITCH*/) :
+Camera::Camera(glm::vec3 _position /*= glm::vec3(0.0f, 0.0f, 0.0f)*/, glm::vec3 _up /*= glm::vec3(0.0f, 1.0f, 0.0f)*/, GLfloat _yaw /*= DEFAULT_YAW*/, GLfloat _pitch /*= DEFAULT_PITCH*/) :
   front(glm::vec3(0.0f, 0.0f, -1.0f)),
   zoomSize(DEFAULT_ZOOM),
   lastCameraType(DEFAULT_CAMERA)
 {
-  this->position = position;
-  this->worldUp = up;
+  position = _position;
+  worldUp = _up;
 
-  this->yaw = yaw;
-  this->pitch = pitch;
+  yaw = _yaw;
+  pitch = _pitch;
 
   updateCameraVectors();
 };
 
-Camera::Camera(GLfloat positionX, GLfloat positionY, GLfloat positionZ, GLfloat upCoordinateX, GLfloat upCoordinateY, GLfloat upCoordinateZ, GLfloat yaw /*= DEFAULT_YAW*/, GLfloat pitch /*= DEFAULT_PITCH*/) :
+Camera::Camera(GLfloat positionX, GLfloat positionY, GLfloat positionZ, GLfloat upCoordinateX, GLfloat upCoordinateY, GLfloat upCoordinateZ, GLfloat _yaw /*= DEFAULT_YAW*/, GLfloat _pitch /*= DEFAULT_PITCH*/) :
   front(glm::vec3(0.0f, 0.0f, -1.0f)),
   zoomSize(DEFAULT_ZOOM),
   lastCameraType(DEFAULT_CAMERA)
 {
-  this->position = glm::vec3(positionX, positionY, positionZ);
-  this->worldUp = glm::vec3(upCoordinateX, upCoordinateY, upCoordinateZ);
+  position = glm::vec3(positionX, positionY, positionZ);
+  worldUp = glm::vec3(upCoordinateX, upCoordinateY, upCoordinateZ);
 
-  this->yaw = yaw;
-  this->pitch = pitch;
+  yaw = _yaw;
+  pitch = _pitch;
 
   updateCameraVectors();
 };

@@ -51,8 +51,8 @@ bool EventManager::update()
 
   while (SDL_PollEvent(&eventHandler) != 0)
   {
-    Uint32 eventType = eventHandler.type;
-    Uint16 eventMod  = eventHandler.key.keysym.mod;
+    uint32_t eventType = eventHandler.type;
+    uint16_t eventMod  = eventHandler.key.keysym.mod;
 
 
 
@@ -105,7 +105,7 @@ bool EventManager::update()
     {
       bool isMouseButtonPressed = eventType == SDL_MOUSEBUTTONDOWN;
 
-      Uint8 mouseButton = eventHandler.button.button;
+      uint8_t mouseButton = eventHandler.button.button;
       switch (mouseButton)
       {
       case SDL_BUTTON_LEFT:

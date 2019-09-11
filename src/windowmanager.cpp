@@ -271,11 +271,11 @@ void WindowManager::openFile(const std::string& /*path*/)
 
 
 
-void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action)
+void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t eventType, uint64_t action)
 {
   Direction_t direction  = DIRECTION_NONE; // Helper
   SDL_Event eventHandler = _eventManager->getEventHandler(); // Poll
-  Uint16 keyMod          = _eventManager->getKeyModifiers(); // Work for poll and pump
+  uint16_t keyMod        = _eventManager->getKeyModifiers(); // Work for poll and pump
 
 
 
@@ -715,10 +715,10 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, Uint32 even
   }
 }
 
-void WindowManager::onPumpEventCallback(EventManager* _eventManager, const Uint8* keyStates)
+void WindowManager::onPumpEventCallback(EventManager* _eventManager, const uint8_t* keyStates)
 {
   Direction_t direction = DIRECTION_NONE; // Helper
-  Uint16 keyMod         = _eventManager->getKeyModifiers(); // Work for poll and pump
+  uint16_t keyMod       = _eventManager->getKeyModifiers(); // Work for poll and pump
 
 
 

@@ -38,10 +38,10 @@ class EventManager
     bool isHoldingMouseLeftButton() { return mouseLeftButton; }
     bool isHoldingMouseRightButton() { return mouseRightButton; }
     bool isHoldingMouseMiddleButton() { return mouseMiddleButton; }
-    Uint16 getKeyModifiers() { return keyModifiers; }
+    uint16_t getKeyModifiers() { return keyModifiers; }
 
-    void setOnPollEventCallback(std::function<void(EventManager*, Uint32, Uint64)> _onPollEventCallback) { onPollEventCallback = _onPollEventCallback; }
-    void setOnPumpEventCallback(std::function<void(EventManager*, const Uint8*)> _onPumpEventCallback) { onPumpEventCallback = _onPumpEventCallback; }
+    void setOnPollEventCallback(std::function<void(EventManager*, uint32_t, uint64_t)> _onPollEventCallback) { onPollEventCallback = _onPollEventCallback; }
+    void setOnPumpEventCallback(std::function<void(EventManager*, const uint8_t*)> _onPumpEventCallback) { onPumpEventCallback = _onPumpEventCallback; }
     
 
 
@@ -56,19 +56,19 @@ class EventManager
       bool mouseRightButton;
       bool mouseMiddleButton;
 
-      Uint16 keyModifiers;
+      uint16_t keyModifiers;
 
       // Poll
       SDL_Event eventHandler;
 
       // Pump
-      const Uint8* keyStates;
+      const uint8_t* keyStates;
 
       // Joysticks (the one configured here is: Sony Wireless Joystick Dualshock 4 - Model CUH-ZCT2U - Red (need to download and install DS4 Windows at http://ds4windows.com/)
       std::map<int, SDL_Joystick*> joysticks;
 
 
 
-      std::function<void(EventManager*, Uint32, Uint64)> onPollEventCallback;
-      std::function<void(EventManager*, const Uint8*)> onPumpEventCallback;
+      std::function<void(EventManager*, uint32_t, uint64_t)> onPollEventCallback;
+      std::function<void(EventManager*, const uint8_t*)> onPumpEventCallback;
 };

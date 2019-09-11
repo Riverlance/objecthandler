@@ -64,8 +64,8 @@ class WindowManager
 
     void openFile(const std::string& path);
 
-    void onPollEventCallback(EventManager* _eventManager, Uint32 eventType, Uint64 action);
-    void onPumpEventCallback(EventManager* _eventManager, const Uint8* keyStates);
+    void onPollEventCallback(EventManager* _eventManager, uint32_t eventType, uint64_t action);
+    void onPumpEventCallback(EventManager* _eventManager, const uint8_t* keyStates);
 
 
 

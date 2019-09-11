@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include "objecthandlerpch.h"
-
 #include <SDL.h>
 #include <GL/glew.h>
 #include "const.h"
@@ -19,8 +17,8 @@ class Camera
 {
   public:
     // Initialize
-    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = DEFAULT_YAW, GLfloat pitch = DEFAULT_PITCH);
-    Camera(GLfloat positionX, GLfloat positionY, GLfloat positionZ, GLfloat upCoordinateX, GLfloat upCoordinateY, GLfloat upCoordinateZ, GLfloat yaw = DEFAULT_YAW, GLfloat pitch = DEFAULT_PITCH);
+    Camera(glm::vec3 _position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 _up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat _yaw = DEFAULT_YAW, GLfloat _pitch = DEFAULT_PITCH);
+    Camera(GLfloat positionX, GLfloat positionY, GLfloat positionZ, GLfloat upCoordinateX, GLfloat upCoordinateY, GLfloat upCoordinateZ, GLfloat _yaw = DEFAULT_YAW, GLfloat _pitch = DEFAULT_PITCH);
 
     // Deallocate memory
     ~Camera() {};
