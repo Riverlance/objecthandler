@@ -176,47 +176,8 @@ bool GraphicManager::onInit()
 {
   // Build and compile our shader program
 
-  // Lighting shader
-
-  // Load graphic shader
-  lightingShader = GraphicShader();
-  // Lighting vertex shader
-  GLuint lightingVertex = lightingShader.loadShader(GL_VERTEX_SHADER, "data/shaders/graphic_lighting_vertex.shader");
-  if (lightingVertex == 0)
-    return false;
-  // Lighting fragment shader
-  GLuint lightingFragment = lightingShader.loadShader(GL_FRAGMENT_SHADER, "data/shaders/graphic_lighting_fragment.shader");
-  if (lightingFragment == 0)
-    return false;
-  // Load program
-  lightingShader.loadProgram();
-  // Attach shaders
-  lightingShader.attachShader(lightingVertex);
-  lightingShader.attachShader(lightingFragment);
-  // Shader program
-  if (!lightingShader.linkProgram())
-    return false;
-
-  // Lamp shader
-
-  // Load graphic shader
-  lampShader = GraphicShader();
-  // Lamp vertex shader
-  GLuint lampVertex = lampShader.loadShader(GL_VERTEX_SHADER, "data/shaders/graphic_lamp_vertex.shader");
-  if (lampVertex == 0)
-    return false;
-  // Lamp fragment shader
-  GLuint lampFragment = lampShader.loadShader(GL_FRAGMENT_SHADER, "data/shaders/graphic_lamp_fragment.shader");
-  if (lampFragment == 0)
-    return false;
-  // Load program
-  lampShader.loadProgram();
-  // Attach shaders
-  lampShader.attachShader(lampVertex);
-  lampShader.attachShader(lampFragment);
-  // Shader program
-  if (!lampShader.linkProgram())
-    return false;
+  lightingShader = GraphicShader({ std::make_pair(GL_VERTEX_SHADER, "data/shaders/graphic_lighting_vertex.shader"), std::make_pair(GL_FRAGMENT_SHADER, "data/shaders/graphic_lighting_fragment.shader") });
+  lampShader = GraphicShader({ std::make_pair(GL_VERTEX_SHADER, "data/shaders/graphic_lamp_vertex.shader"), std::make_pair(GL_FRAGMENT_SHADER, "data/shaders/graphic_lamp_fragment.shader") });
 
 
 

@@ -14,6 +14,35 @@
 
 const int infoLogSize = 512;
 
+
+
+GraphicShader::GraphicShader(std::vector<std::pair<GLenum, const GLchar*>> shaders)
+{
+  std::vector<GLuint> shadersToAttach;
+
+  // Load shaders
+  for (auto it = shaders.rbegin(), end = shaders.rend(); it != end; ++it)
+  {
+    GLuint shader = loadShader(it->first, it->second);
+    if (shader == 0)
+      return;
+    shadersToAttach.emplace_back(shader);
+  }
+
+  // Load program
+  loadProgram();
+
+  // Attach shaders
+  for (auto it = shadersToAttach.rbegin(), end = shadersToAttach.rend(); it != end; ++it)
+    attachShader(*it);
+
+  // Shader program
+  if (!linkProgram())
+    return;
+}
+
+
+
 GLuint GraphicShader::loadShader(GLenum shaderType, const GLchar* path)
 {
   std::string _fileContent = Util::getFileContent(path);

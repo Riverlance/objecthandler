@@ -15,6 +15,7 @@ class GraphicShader
 {
   public:
     GraphicShader() {};
+    GraphicShader(std::vector<std::pair<GLenum, const GLchar*>> shaders);
 
 
 
@@ -24,6 +25,7 @@ class GraphicShader
     void loadProgram();
     bool attachShader(GLuint shader);
     bool linkProgram();
+
 
 
     // Use the current shader
