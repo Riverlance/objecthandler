@@ -120,9 +120,11 @@ GraphicManager::GraphicManager()
 
 GraphicManager::~GraphicManager()
 {
+  /*
   glDeleteVertexArrays(lightVAOsize, &lightVAO);
   glDeleteVertexArrays(boxVAOsize, &boxVAO);
   glDeleteBuffers(VBOsize, &VBO);
+  */
 
   // Since is a Singleton class, we should clear all vars because this object is never deleted
   initialized = false;
@@ -174,6 +176,7 @@ bool GraphicManager::init()
 
 bool GraphicManager::onInit()
 {
+  /*
   // Build and compile our shader program
 
   lightingShader = GraphicShader({ std::make_pair(GL_VERTEX_SHADER, "data/shaders/graphic_lighting_vertex.shader"), std::make_pair(GL_FRAGMENT_SHADER, "data/shaders/graphic_lighting_fragment.shader") });
@@ -183,9 +186,7 @@ bool GraphicManager::onInit()
 
   GLvoid* previousDataOffset;
   int index, dataValuesCount, verticesType, verticeDataSize;
-
-
-  
+    
   // Lighting shader
 
   // First, set the container's VAO and VBO
@@ -292,6 +293,15 @@ bool GraphicManager::onInit()
   GLuint lightingProgram = lightingShader.getProgram();
   glUniform1i(glGetUniformLocation(lightingProgram, "material.diffuse"), 0);
   glUniform1i(glGetUniformLocation(lightingProgram, "material.specular"), 1);
+  */
+
+
+
+  // Model shader
+  
+  modelShader = GraphicShader({ std::make_pair(GL_VERTEX_SHADER, "data/shaders/model_vertex.shader"), std::make_pair(GL_FRAGMENT_SHADER, "data/shaders/model_fragment.shader") });
+
+  modelObject = Model("data/models/nanosuit/nanosuit.obj");
 
 
 
@@ -320,7 +330,9 @@ void GraphicManager::update()
 
   
   // Model/View matrices
-  //glm::mat4 model, view;
+  glm::mat4 model, view;
+
+
 
   // Perspective
   //GLfloat rotationDegrees = 0.5f;
@@ -333,11 +345,7 @@ void GraphicManager::update()
   //model = glm::rotate(model, rotationDegrees, glm::vec3(0.5f, 1.0f, 0.0f));
 
 
-
-  glm::mat4 model, view;
-  GLint modelLocation, viewLocation, projectionLocation;
-  glm::vec3 diffuseColor, ambientColor;
-
+  
   // Create camera transformations
   view = camera->getViewMatrix();
 
@@ -345,6 +353,13 @@ void GraphicManager::update()
   float nearClippingPlane = 0.1f; // zNear
   float farClippingPlane = 1000.0f; // zFar
   projection = glm::perspective(camera->getZoomSize(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, nearClippingPlane, farClippingPlane);
+
+
+
+  /*
+  glm::mat4 model;
+  GLint modelLocation, viewLocation, projectionLocation;
+  glm::vec3 diffuseColor, ambientColor;
 
 
 
@@ -358,9 +373,9 @@ void GraphicManager::update()
   // Lighting shader
 
   // Lighting shader program
+  // Use corresponding shader when setting uniforms/drawing objects to draw the object, binding the appropriate shader
   lightingShader.useProgram();
 
-  // Use corresponding shader when setting uniforms/drawing objects
   GLuint lightingProgram = lightingShader.getProgram();
 
   GLint viewPositionLocation = glGetUniformLocation(lightingProgram, "viewPosition");
@@ -368,13 +383,11 @@ void GraphicManager::update()
   // Set material properties
   glUniform1f(glGetUniformLocation(lightingProgram, "material.shininess"), 32.0f);
 
-  /*
-    Here we set all the uniforms for the 5/6 types of lights we have.
-    We have to set them manually and index the proper PointLight struct in the array to set each uniform variable.
-    This can be done more code-friendly by defining light types as classes and set their values in there,
-    or by using a more efficient uniform approach by using 'Uniform buffer objects',
-    but that is Advanced GLSL, in which will not be implemented in here.
-  */
+  // Here we set all the uniforms for the 5/6 types of lights we have.
+  // We have to set them manually and index the proper PointLight struct in the array to set each uniform variable.
+  // This can be done more code-friendly by defining light types as classes and set their values in there,
+  // or by using a more efficient uniform approach by using 'Uniform buffer objects',
+  // but that is Advanced GLSL, in which will not be implemented in here.
 
   // Directional light
   glUniform3f(glGetUniformLocation(lightingProgram, "directionalLight.direction"), -0.2f, -1.0f, -0.3f);
@@ -465,7 +478,7 @@ void GraphicManager::update()
   // Lamp shader
 
   // Lamp shader program
-  // Draw the lamp object, again binding the appropriate shader
+  // Use corresponding shader when setting uniforms/drawing objects to draw the object, binding the appropriate shader
   lampShader.useProgram();
 
   GLuint lampProgram = lampShader.getProgram();
@@ -505,4 +518,24 @@ void GraphicManager::update()
     glDrawArrays(GL_TRIANGLES, 0, cubeVerticesCount);
   }
   glBindVertexArray(0);
+  */
+
+
+
+  // Model shader
+
+  // Lighting shader program
+  // Use corresponding shader when setting uniforms/drawing objects to draw the object, binding the appropriate shader
+  modelShader.useProgram();
+
+  GLuint modelProgram = modelShader.getProgram();
+
+  glUniformMatrix4fv(glGetUniformLocation(modelProgram, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+  glUniformMatrix4fv(glGetUniformLocation(modelProgram, "view"), 1, GL_FALSE, glm::value_ptr(view));
+
+  // Draw the loaded model
+  model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+  model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f)); // It's a bit too big for our scene, so scale it down
+  glUniformMatrix4fv(glGetUniformLocation(modelProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
+  modelObject.draw(modelShader);
 }

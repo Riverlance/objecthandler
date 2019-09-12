@@ -13,6 +13,7 @@
 #include <GL/glew.h>
 #include "camera.h"
 #include "graphic_shader.h"
+#include "graphic_model.h"
 
 
 
@@ -57,8 +58,10 @@ class GraphicManager
     private:
       bool initialized;
 
-      GraphicShader lightingShader;
-      GraphicShader lampShader;
+      //GraphicShader lightingShader;
+      //GraphicShader lampShader;
+      GraphicShader modelShader;
+      Model modelObject;
 
       Camera* camera;
 };

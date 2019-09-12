@@ -82,7 +82,7 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
   return initialized;
 }
 
-void GApp::setTheme(Theme_t theme /*= THEME_DEFAULT*/)
+void GApp::setTheme(Theme_t theme /*= THEME_DEFAULT*/) // static
 {
   APP_THEME = theme;
 

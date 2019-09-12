@@ -24,6 +24,8 @@
     <ClCompile Include="..\src\const.cpp" />
     <ClCompile Include="..\src\eventmanager.cpp" />
     <ClCompile Include="..\src\graphicmanager.cpp" />
+    <ClCompile Include="..\src\graphic_mesh.cpp" />
+    <ClCompile Include="..\src\graphic_model.cpp" />
     <ClCompile Include="..\src\graphic_shader.cpp" />
     <ClCompile Include="..\src\objecthandler.cpp" />
     <ClCompile Include="..\src\objecthandlerpch.cpp">
@@ -38,6 +40,8 @@
     <ClInclude Include="..\src\const.h" />
     <ClInclude Include="..\src\eventmanager.h" />
     <ClInclude Include="..\src\graphicmanager.h" />
+    <ClInclude Include="..\src\graphic_mesh.h" />
+    <ClInclude Include="..\src\graphic_model.h" />
     <ClInclude Include="..\src\graphic_shader.h" />
     <ClInclude Include="..\src\objecthandlerpch.h" />
     <ClInclude Include="..\src\util.h" />
@@ -48,6 +52,8 @@
     <None Include="..\data\shaders\graphic_lamp_vertex.shader" />
     <None Include="..\data\shaders\graphic_lighting_fragment.shader" />
     <None Include="..\data\shaders\graphic_lighting_vertex.shader" />
+    <None Include="..\data\shaders\model_fragment.shader" />
+    <None Include="..\data\shaders\model_vertex.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{043A63F8-B5F0-4372-A394-02B6D8AEF207}</ProjectGuid>

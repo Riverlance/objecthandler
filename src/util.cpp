@@ -11,7 +11,7 @@
 
 
 
-std::string Util::getFileContent(const std::string filePath)
+std::string Util::getFileContent(const std::string filePath) // static
 {
   std::string output;
   try

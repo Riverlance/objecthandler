@@ -11,6 +11,8 @@
     <ClCompile Include="..\src\graphic_shader.cpp" />
     <ClCompile Include="..\src\util.cpp" />
     <ClCompile Include="..\src\camera.cpp" />
+    <ClCompile Include="..\src\graphic_mesh.cpp" />
+    <ClCompile Include="..\src\graphic_model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\app.h" />
@@ -22,6 +24,8 @@
     <ClInclude Include="..\src\graphic_shader.h" />
     <ClInclude Include="..\src\util.h" />
     <ClInclude Include="..\src\camera.h" />
+    <ClInclude Include="..\src\graphic_mesh.h" />
+    <ClInclude Include="..\src\graphic_model.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\data\shaders\graphic_lighting_fragment.shader">
@@ -34,6 +38,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="..\data\shaders\graphic_lamp_vertex.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\model_fragment.shader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\model_vertex.shader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

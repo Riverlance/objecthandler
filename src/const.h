@@ -119,3 +119,24 @@ enum ViewMode : uint8_t
   VIEWMODE_LAST = VIEWMODE_WIREFRAME,
   VIEWMODE_NONE = 3,
 };
+
+
+
+struct Vertex
+{
+  // Position
+  glm::vec3 Position;
+
+  // Normal
+  glm::vec3 Normal;
+
+  // Texture Coordinates
+  glm::vec2 TextureCoordinates;
+};
+
+struct Texture
+{
+  GLuint id;
+  std::string type;
+  aiString path;
+};
