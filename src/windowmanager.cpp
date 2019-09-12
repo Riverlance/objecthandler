@@ -217,7 +217,7 @@ void WindowManager::move(Direction_t direction, Device_t device)
     sensitivity = moveJoystickSensitivity;
 
   if (sensitivity > 0.0f)
-    graphicManager->getCamera()->move(direction, sensitivity * deltaTime);
+    graphicManager->getCamera()->move(direction, (sensitivity / 1000.0f) * deltaTime);
 }
 
 void WindowManager::rotate(Direction_t direction, Device_t device)
@@ -231,7 +231,7 @@ void WindowManager::rotate(Direction_t direction, Device_t device)
     sensitivity = rotateJoystickSensitivity;
 
   if (sensitivity > 0.0f)
-    graphicManager->getCamera()->rotate(direction, sensitivity * deltaTime, false);
+    graphicManager->getCamera()->rotate(direction, (sensitivity / 1000.0f) * deltaTime, false);
 }
 
 void WindowManager::zoom(Direction_t direction, Device_t device)
@@ -245,7 +245,7 @@ void WindowManager::zoom(Direction_t direction, Device_t device)
     sensitivity = zoomJoystickSensitivity;
 
   if (sensitivity > 0.0f)
-    graphicManager->getCamera()->zoom(direction, sensitivity * deltaTime);
+    graphicManager->getCamera()->zoom(direction, (sensitivity / 1000.0f) * deltaTime);
 }
 
 

@@ -97,10 +97,6 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-// To do
-// Light-weight C++ XML processing library
-//#include <pugixml.hpp>
-
 
 
 #ifdef _WIN32

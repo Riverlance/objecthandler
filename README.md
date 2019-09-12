@@ -10,6 +10,7 @@
 ##### Main
 
 * Normal vectors being generated automatically (flag aiProcess_GenNormals)
+* Shading with GLSL
 * Phong shading
 * Supported object files: ASSIMP supported object files (obj, fbx, 3ds, ...)
 
