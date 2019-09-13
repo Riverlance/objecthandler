@@ -1,0 +1,13 @@
+# CMake generation dependency list for this directory.
+D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/CMakeLists.txt
+D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/zconf.h.cmakein
+D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/zlib.pc.cmakein
+D:/River/Downloads/assimp-4.1.0/x64/CMakeFiles/CheckTypeSize/OFF64_T.c
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckCSourceCompiles.cmake
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckFunctionExists.c
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckFunctionExists.cmake
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckIncludeFile.c.in
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckIncludeFile.cmake
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckIncludeFileCXX.cmake
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckTypeSize.c.in
+D:/River/Downloads/cmake-3.15.3-win64-x64/cmake-3.15.3-win64-x64/share/cmake-3.15/Modules/CheckTypeSize.cmake

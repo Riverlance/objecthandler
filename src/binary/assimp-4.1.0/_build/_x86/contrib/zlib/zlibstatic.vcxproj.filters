@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzwrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\x86\contrib\zlib\zconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\crc32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\deflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzguts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inflate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inftrees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\trees.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ED980E5F-6FF6-3579-94E6-FD68176FE952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C87EE1E6-28D0-335C-8766-94153A946976}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

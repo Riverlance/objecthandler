@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8952502D-52AC-3BCB-8DAB-D3C5F7BE243D}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>zlib</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">zlib.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">zlibd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">zlib.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">zlib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">zlib.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">zlib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">zlib.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">zlib</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR="Debug";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR=\"Debug\";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/Debug/zlibd.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/Debug/zlibd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR="Release";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR=\"Release\";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/Release/zlib.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/Release/zlib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR="MinSizeRel";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR=\"MinSizeRel\";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/MinSizeRel/zlib.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/MinSizeRel/zlib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR="RelWithDebInfo";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;OPENDDL_NO_USE_CPP11;NO_FSEEKO;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;CMAKE_INTDIR=\"RelWithDebInfo\";ZLIB_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\.;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\include;D:\River\Downloads\assimp-4.1.0\x64;D:\River\Downloads\assimp-4.1.0\x64\include;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib;D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/RelWithDebInfo/zlib.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/RelWithDebInfo/zlib.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\bin\cmake.exe -SD:/River/Downloads/assimp-4.1.0/assimp-4.1.0 -BD:/River/Downloads/assimp-4.1.0/x64 --check-stamp-file D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zconf.h.cmakein;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.pc.cmakein;D:\River\Downloads\assimp-4.1.0\x64\CMakeFiles\CheckTypeSize\OFF64_T.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\bin\cmake.exe -SD:/River/Downloads/assimp-4.1.0/assimp-4.1.0 -BD:/River/Downloads/assimp-4.1.0/x64 --check-stamp-file D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zconf.h.cmakein;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.pc.cmakein;D:\River\Downloads\assimp-4.1.0\x64\CMakeFiles\CheckTypeSize\OFF64_T.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\bin\cmake.exe -SD:/River/Downloads/assimp-4.1.0/assimp-4.1.0 -BD:/River/Downloads/assimp-4.1.0/x64 --check-stamp-file D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zconf.h.cmakein;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.pc.cmakein;D:\River\Downloads\assimp-4.1.0\x64\CMakeFiles\CheckTypeSize\OFF64_T.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/River/Downloads/assimp-4.1.0/assimp-4.1.0/contrib/zlib/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\bin\cmake.exe -SD:/River/Downloads/assimp-4.1.0/assimp-4.1.0 -BD:/River/Downloads/assimp-4.1.0/x64 --check-stamp-file D:/River/Downloads/assimp-4.1.0/x64/contrib/zlib/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zconf.h.cmakein;D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.pc.cmakein;D:\River\Downloads\assimp-4.1.0\x64\CMakeFiles\CheckTypeSize\OFF64_T.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckCSourceCompiles.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.c;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckFunctionExists.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFile.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckIncludeFileCXX.cmake;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.c.in;D:\River\Downloads\cmake-3.15.3-win64-x64\cmake-3.15.3-win64-x64\share\cmake-3.15\Modules\CheckTypeSize.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\adler32.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\compress.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\crc32.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\deflate.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzclose.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzlib.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzread.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzwrite.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inflate.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\infback.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inftrees.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffast.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\trees.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\uncompr.c" />
+    <ClCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zutil.c" />
+    <ResourceCompile Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\win32\zlib1.rc" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\x64\contrib\zlib\zconf.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zlib.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\crc32.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\deflate.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\gzguts.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffast.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inffixed.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inflate.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\inftrees.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\trees.h" />
+    <ClInclude Include="D:\River\Downloads\assimp-4.1.0\assimp-4.1.0\contrib\zlib\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\River\Downloads\assimp-4.1.0\x64\ZERO_CHECK.vcxproj">
+      <Project>{C423FD07-FF22-3C32-A2AF-20882B09D717}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
