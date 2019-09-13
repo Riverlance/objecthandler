@@ -35,6 +35,12 @@ class Model
     std::string directory;
     std::vector<Texture> loadedTextures; // Stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once
 
+    // For prints
+    uint64_t totalNumMeshes;
+    uint64_t totalNumVertices;
+    uint64_t totalNumTriangles;
+    uint32_t totalNumTextures;
+
 
 
     // Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector

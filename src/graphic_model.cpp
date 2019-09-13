@@ -12,7 +12,11 @@
 
 
 
-Model::Model(GLchar *path)
+Model::Model(GLchar *path) :
+  totalNumMeshes(0ULL),
+  totalNumVertices(0ULL),
+  totalNumTriangles(0ULL),
+  totalNumTextures(0ULL)
 {
   loadModel(path);
 }
@@ -73,10 +77,22 @@ void Model::loadModel(std::string path)
 
   // Process ASSIMP's root node recursively
   processNode(scene->mRootNode, scene);
+
+  // Print
+  std::cout << std::endl;
+  std::cout << "> Total:" << std::endl;
+  std::cout << "\t" << unsigned(totalNumMeshes) << " mesh" << (totalNumMeshes > 1 ? "es" : "") << std::endl;
+  std::cout << "\t" << unsigned(totalNumVertices) << " vert" << (totalNumVertices > 1 ? "ices" : "ex") << std::endl;
+  std::cout << "\t" << unsigned(totalNumTriangles) << " triangle" << (totalNumTriangles > 1 ? "s" : "") << std::endl;
+  std::cout << "\t" << unsigned(totalNumTextures) << " texture" << (totalNumTextures > 1 ? "s" : "") << std::endl;
+  std::cout << std::endl;
 }
 
 void Model::processNode(aiNode* node, const aiScene* scene)
 {
+  std::cout << "> Mesh node found with " << unsigned(node->mNumMeshes) << " mesh" << (node->mNumMeshes > 1 ? "es" : "") << " and " << unsigned(node->mNumChildren) << " child" << (node->mNumChildren > 1 ? "ren" : "") << ":" << std::endl;
+  totalNumMeshes += node->mNumMeshes; // For print
+
   // Process each mesh located at the current node
   for (GLuint i = 0; i < node->mNumMeshes; i++)
   {
@@ -89,7 +105,12 @@ void Model::processNode(aiNode* node, const aiScene* scene)
 
   // After we've processed all of the meshes (if any) we then recursively process each of the children nodes
   for (GLuint i = 0; i < node->mNumChildren; i++)
+  {
+    std::cout << "Children mesh " << (i + 1) << ":" << std::endl;
+
     processNode(node->mChildren[i], scene);
+  }
+  std::cout << std::endl;
 }
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
@@ -98,6 +119,11 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
   std::vector<Vertex> vertices;
   std::vector<GLuint> indices;
   std::vector<Texture> textures;
+
+  std::cout << "\t\t> " << unsigned(mesh->mNumVertices) << " vert" << (mesh->mNumVertices > 1 ? "ices" : "ex") << std::endl;
+  std::cout << "\t\t> " << unsigned(mesh->mNumFaces) << " face" << (mesh->mNumFaces > 1 ? "s" : "") << std::endl;
+  totalNumVertices += mesh->mNumVertices; // For print
+  totalNumTriangles += mesh->mNumFaces; // For print (since aiProcess_Triangulate is enabled, all faces are triangles)
 
   // Walk through each of the mesh's vertices
   for (GLuint i = 0; i < mesh->mNumVertices; i++)
@@ -154,11 +180,11 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     // Specular: texture_specularN
     // Normal: texture_normalN
 
-    // 1. Diffuse maps
+    // Texture 1. Diffuse maps
     std::vector<Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
     textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-    // 2. Specular maps
+    // Texture 2. Specular maps
     std::vector<Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
   }
@@ -170,6 +196,9 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName)
 {
   std::vector<Texture> textures;
+
+  std::cout << "\t\t> " << unsigned(mat->GetTextureCount(type)) << " texture" << (mat->GetTextureCount(type) > 1 ? "s" : "") << " (" << typeName << ")" << std::endl;
+  totalNumTextures += mat->GetTextureCount(type); // For print
 
   for (GLuint i = 0; i < mat->GetTextureCount(type); i++)
   {
@@ -190,15 +219,16 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType 
       }
     }
 
+    // If texture hasn't been loaded already, load it
     if (!skip)
-    {   // If texture hasn't been loaded already, load it
+    {
       Texture texture;
       texture.id = getTextureFromFile(str.C_Str(), directory);
       texture.type = typeName;
       texture.path = str;
       textures.push_back(texture);
 
-      loadedTextures.push_back(texture);  // Store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+      loadedTextures.push_back(texture); // Store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
     }
   }
 

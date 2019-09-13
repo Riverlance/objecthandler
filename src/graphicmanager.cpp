@@ -134,8 +134,6 @@ GraphicManager::~GraphicManager()
 
 bool GraphicManager::init()
 {
-  std::cout << std::endl;
-
   // Modern approach to retrieving OpenGL functions pointers and extensions (not fully tested)
   glewExperimental = GL_TRUE;
 
@@ -150,6 +148,7 @@ bool GraphicManager::init()
   }
 
   std::cout << "\tOpenGL version: " << glGetString(GL_VERSION) << std::endl;
+  std::cout << std::endl;
 
   // Define the viewport dimensions
   glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
