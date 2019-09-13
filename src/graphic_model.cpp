@@ -121,7 +121,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
   std::vector<Texture> textures;
 
   std::cout << "\t\t> " << unsigned(mesh->mNumVertices) << " vert" << (mesh->mNumVertices > 1 ? "ices" : "ex") << std::endl;
-  std::cout << "\t\t> " << unsigned(mesh->mNumFaces) << " face" << (mesh->mNumFaces > 1 ? "s" : "") << std::endl;
+  std::cout << "\t\t> " << unsigned(mesh->mNumFaces) << " triangle" << (mesh->mNumFaces > 1 ? "s" : "") << std::endl;
   totalNumVertices += mesh->mNumVertices; // For print
   totalNumTriangles += mesh->mNumFaces; // For print (since aiProcess_Triangulate is enabled, all faces are triangles)
 

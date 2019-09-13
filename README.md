@@ -9,6 +9,8 @@
   <br>
 </p>
 
+_Based on the work of http://learnopengl.com/ and http://open.gl/._
+
 ---
 
 ### Features
@@ -16,7 +18,7 @@
 ##### Main
 
 * Supported object files: ASSIMP supported object file extensions (obj, fbx, 3ds, ...)
-* Modern OpenGL shading (VAO, VBO, EBO, ...)
+* Modern OpenGL (VAO, VBO, EBO, ...), instead of the old and deprecated immediate mode
 * Phong shading
 * Shading with GLSL
 * Normal vectors being generated automatically (flag aiProcess_GenNormals)
