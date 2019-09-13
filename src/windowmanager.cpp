@@ -494,6 +494,134 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t ev
         }
     }
 
+    // Modifier: Shift
+    else if ((keyMod & KMOD_SHIFT) && !(keyMod & (KMOD_CTRL | KMOD_ALT)))
+    {
+      switch (action)
+      {
+      // Mouse: move
+      case SDLK_1:
+        moveMouseSensitivity = std::min(moveMouseSensitivity + ADD_MOUSE_SENSITIVITY_MOVE, MAX_MOUSE_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Mouse: rotate
+      case SDLK_2:
+        rotateMouseSensitivity = std::min(rotateMouseSensitivity + ADD_MOUSE_SENSITIVITY_ROTATE, MAX_MOUSE_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Mouse: zoom
+      case SDLK_3:
+        zoomMouseSensitivity = std::min(zoomMouseSensitivity + ADD_MOUSE_SENSITIVITY_ZOOM, MAX_MOUSE_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Keyboard: move
+      case SDLK_4:
+        moveKeyboardSensitivity = std::min(moveKeyboardSensitivity + ADD_KEYBOARD_SENSITIVITY_MOVE, MAX_KEYBOARD_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Keyboard: rotate
+      case SDLK_5:
+        rotateKeyboardSensitivity = std::min(rotateKeyboardSensitivity + ADD_KEYBOARD_SENSITIVITY_ROTATE, MAX_KEYBOARD_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Keyboard: zoom
+      case SDLK_6:
+        zoomKeyboardSensitivity = std::min(zoomKeyboardSensitivity + ADD_KEYBOARD_SENSITIVITY_ZOOM, MAX_KEYBOARD_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Joystick: move
+      case SDLK_7:
+        moveJoystickSensitivity = std::min(moveJoystickSensitivity + ADD_JOYSTICK_SENSITIVITY_MOVE, MAX_JOYSTICK_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      // Joystick: rotate
+      case SDLK_8:
+        rotateJoystickSensitivity = std::min(rotateJoystickSensitivity + ADD_JOYSTICK_SENSITIVITY_ROTATE, MAX_JOYSTICK_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      // Joystick: zoom
+      case SDLK_9:
+        zoomJoystickSensitivity = std::min(zoomJoystickSensitivity + ADD_JOYSTICK_SENSITIVITY_ZOOM, MAX_JOYSTICK_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      default:
+        break;
+      }
+    }
+
+    // Modifier: Alt
+    else if ((keyMod & KMOD_ALT) && !(keyMod & (KMOD_CTRL | KMOD_SHIFT)))
+    {
+      switch (action)
+      {
+      // Mouse: move
+      case SDLK_1:
+        moveMouseSensitivity = std::max(1.0f, moveMouseSensitivity - ADD_MOUSE_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Mouse: rotate
+      case SDLK_2:
+        rotateMouseSensitivity = std::max(1.0f, rotateMouseSensitivity - ADD_MOUSE_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Mouse: zoom
+      case SDLK_3:
+        zoomMouseSensitivity = std::max(1.0f, zoomMouseSensitivity - ADD_MOUSE_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_MOUSE);
+        break;
+
+      // Keyboard: move
+      case SDLK_4:
+        moveKeyboardSensitivity = std::max(1.0f, moveKeyboardSensitivity - ADD_KEYBOARD_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Keyboard: rotate
+      case SDLK_5:
+        rotateKeyboardSensitivity = std::max(1.0f, rotateKeyboardSensitivity - ADD_KEYBOARD_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Keyboard: zoom
+      case SDLK_6:
+        zoomKeyboardSensitivity = std::max(1.0f, zoomKeyboardSensitivity - ADD_KEYBOARD_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_KEYBOARD);
+        break;
+
+      // Joystick: move
+      case SDLK_7:
+        moveJoystickSensitivity = std::max(1.0f, moveJoystickSensitivity - ADD_JOYSTICK_SENSITIVITY_MOVE);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      // Joystick: rotate
+      case SDLK_8:
+        rotateJoystickSensitivity = std::max(1.0f, rotateJoystickSensitivity - ADD_JOYSTICK_SENSITIVITY_ROTATE);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      // Joystick: zoom
+      case SDLK_9:
+        zoomJoystickSensitivity = std::max(1.0f, zoomJoystickSensitivity - ADD_JOYSTICK_SENSITIVITY_ZOOM);
+        printSensitivity(DEVICE_JOYSTICK);
+        break;
+
+      default:
+        break;
+      }
+    }
+
     // No modifier
     else if (!(keyMod & KMOD_KEYS))
     {
@@ -836,4 +964,32 @@ void WindowManager::onPumpEventCallback(EventManager* _eventManager, const uint8
     if (direction != DIRECTION_NONE)
       move(direction, DEVICE_KEYBOARD);
   }
+}
+
+void WindowManager::printSensitivity(Device_t device)
+{
+  switch (device)
+  {
+  case DEVICE_MOUSE:
+    std::cout << "Mouse sensitivities:" << std::endl;
+    std::cout << "\tMove: " << moveMouseSensitivity << std::endl;
+    std::cout << "\tRotate: " << rotateMouseSensitivity << std::endl;
+    std::cout << "\tZoom: " << zoomMouseSensitivity << std::endl;
+    break;
+  case DEVICE_KEYBOARD:
+    std::cout << "Keyboard sensitivities:" << std::endl;
+    std::cout << "\tMove: " << moveKeyboardSensitivity << std::endl;
+    std::cout << "\tRotate: " << rotateKeyboardSensitivity << std::endl;
+    std::cout << "\tZoom: " << zoomKeyboardSensitivity << std::endl;
+    break;
+  case DEVICE_JOYSTICK:
+    std::cout << "Joystick sensitivities:" << std::endl;
+    std::cout << "\tMove: " << moveJoystickSensitivity << std::endl;
+    std::cout << "\tRotate: " << rotateJoystickSensitivity << std::endl;
+    std::cout << "\tZoom: " << zoomJoystickSensitivity << std::endl;
+    break;
+  default:
+    break;
+  }
+  std::cout << std::endl;
 }

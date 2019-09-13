@@ -67,6 +67,8 @@ class WindowManager
     void onPollEventCallback(EventManager* _eventManager, uint32_t eventType, uint64_t action);
     void onPumpEventCallback(EventManager* _eventManager, const uint8_t* keyStates);
 
+    void printSensitivity(Device_t device);
+
 
 
   private:

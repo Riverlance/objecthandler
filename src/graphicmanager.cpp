@@ -544,9 +544,7 @@ void GraphicManager::updateViewMode(ViewMode_t viewMode)
   // Next view mode
   if (viewMode == VIEWMODE_NONE)
     viewMode = (ViewMode_t)(((int)lastViewMode + 1) % (VIEWMODE_LAST + 1));
-
-  std::cout << unsigned(viewMode) << std::endl;
-
+  
   switch (viewMode)
   {
   case VIEWMODE_FILL:
