@@ -3,6 +3,12 @@
 
 **Object Handler** is a 3D model viewer written in C++.
 
+<p align="center">
+  <br>
+  <img src="./data/_showoff/header.jpg"/>
+  <br>
+</p>
+
 ---
 
 ### Features
@@ -35,6 +41,7 @@
 * Working with Release x64, Release x86, Debug x64, Debug x86
 * Debug opens a console window with util informations for debugging, including meshes/triangles/vertices count, action logs, and so on
 * Code working with warning level 4
+* Ready to go project: 1. Clone/Download this repository, 2. Compile with VS14 (2015), 3. Run
 
 ---
 
@@ -45,6 +52,7 @@
 * **SOIL** 2
 * **GLM** 0.9.9.5
 * **Assimp** 4.1.0
+* **Microsoft Visual Studio 14.0 (2015)**
 
 ---
 
@@ -317,9 +325,169 @@
 
 ---
 
-### Showoff
+### Progress showoff
 
-TODO
+<p align="center">
+  <br>
+  <img src="./data/_showoff/001.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/002.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/003.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/004.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/005.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/006.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/007.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/008.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/009.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/010.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/011.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/012.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/013.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/014.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/015.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/016.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/017.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/018.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/019.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/020.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/021.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/022.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/023.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/024.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/025.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/026.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/027.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/028.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/029.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/030.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/031.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/032.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/033.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/034.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/035.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/036.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/037.gif"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/038.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/039.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/040.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/041.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/042.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/043.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/044.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/045.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/046.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/047.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/048.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/049.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/050.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/051.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/052.jpg"/>
+  <br>
+  <br>
+  <img src="./data/_showoff/053.jpg"/>
+  <br>
+</p>
 
 ---
 
