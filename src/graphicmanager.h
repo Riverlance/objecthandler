@@ -36,6 +36,8 @@ class GraphicManager
     bool onInit();
     void update();
 
+    void updateViewMode(ViewMode_t viewMode);
+
 
 
     /**
@@ -57,6 +59,8 @@ class GraphicManager
 
     private:
       bool initialized;
+
+      ViewMode_t lastViewMode;
 
       //GraphicShader lightingShader;
       //GraphicShader lampShader;

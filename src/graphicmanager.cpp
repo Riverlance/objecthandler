@@ -538,3 +538,33 @@ void GraphicManager::update()
   glUniformMatrix4fv(glGetUniformLocation(modelProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
   modelObject.draw(modelShader);
 }
+
+void GraphicManager::updateViewMode(ViewMode_t viewMode)
+{
+  // Next view mode
+  if (viewMode == VIEWMODE_NONE)
+    viewMode = (ViewMode_t)(((int)lastViewMode + 1) % (VIEWMODE_LAST + 1));
+
+  std::cout << unsigned(viewMode) << std::endl;
+
+  switch (viewMode)
+  {
+  case VIEWMODE_FILL:
+    lastViewMode = viewMode;
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    break;
+
+  case VIEWMODE_LINE:
+    lastViewMode = viewMode;
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    break;
+
+  case VIEWMODE_GL_POINT:
+    lastViewMode = viewMode;
+    glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+    break;
+
+  default:
+    break;
+  }
+}

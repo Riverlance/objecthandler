@@ -255,11 +255,9 @@ void WindowManager::changeCamera(Camera_t cameraType /*= CAMERA_NONE*/)
   graphicManager->getCamera()->updateCamera(cameraType, DEFAULT_CAMERA_DISTANCE);
 }
 
-void WindowManager::changeViewMode(ViewMode /*viewMode*/ /*= VIEWMODE_NONE*/)
+void WindowManager::changeViewMode(ViewMode_t viewMode /*= VIEWMODE_NONE*/)
 {
-  std::cout << "Change view mode (Texture / Flat Shade / Wireframe)" << std::endl;
-
-  // If is VIEWMODE_NONE, change to the next ViewMode
+  graphicManager->updateViewMode(viewMode);
 }
 
 
@@ -486,10 +484,10 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t ev
           changeViewMode();
           break;
 
-        // Load a model file
-        case SDLK_o:
-          openFile("");
-          break;
+        // TODO: Load a model file
+        //case SDLK_o:
+          //openFile("");
+          //break;
 
         default:
           break;

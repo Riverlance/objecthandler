@@ -99,7 +99,7 @@ enum Camera_t : uint8_t
   CAMERA_NONE = 7,
 };
 
-enum Device_t : uint8_t
+enum Device_t : uint16_t
 {
   DEVICE_NONE = 0,
 
@@ -110,13 +110,14 @@ enum Device_t : uint8_t
   DEVICE_LAST = DEVICE_JOYSTICK,
 };
 
-enum ViewMode : uint8_t
+enum ViewMode_t : uint16_t
 {
-  VIEWMODE_TEXTURE = 0,
-  VIEWMODE_FLATSHADE = 1,
-  VIEWMODE_WIREFRAME = 2,
+  VIEWMODE_FILL = 0,
+  VIEWMODE_LINE = 1,
+  VIEWMODE_GL_POINT = 2,
+  VIEWMODE_LAST = VIEWMODE_GL_POINT,
 
-  VIEWMODE_LAST = VIEWMODE_WIREFRAME,
+  DEFAULT_VIEWMODE = VIEWMODE_FILL,
   VIEWMODE_NONE = 3,
 };
 

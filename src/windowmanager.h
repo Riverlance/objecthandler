@@ -60,7 +60,7 @@ class WindowManager
     void zoom(Direction_t direction, Device_t device);
 
     void changeCamera(Camera_t cameraType = CAMERA_NONE);
-    void changeViewMode(ViewMode viewMode = VIEWMODE_NONE);
+    void changeViewMode(ViewMode_t viewMode = VIEWMODE_NONE);
 
     void openFile(const std::string& path);
 
