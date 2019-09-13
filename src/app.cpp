@@ -8,10 +8,11 @@
 #include "objecthandlerpch.h"
 
 #include "app.h"
+#include "util.h"
 
 
 
-Theme_t APP_THEME = THEME_DEFAULT;
+Theme_t APP_THEME = DEFAULT_THEME;
 
 GApp::GApp()
 {
@@ -56,7 +57,7 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
 
 
   // Default theme
-  setTheme(THEME_DEFAULT);
+  Util::setTheme(DEFAULT_THEME);
 
 
 
@@ -80,31 +81,4 @@ bool GApp::init(int /*argc*/, char*[] /*argv*/)
 
   initialized = true;
   return initialized;
-}
-
-void GApp::setTheme(Theme_t theme /*= THEME_DEFAULT*/) // static
-{
-  APP_THEME = theme;
-
-  switch (APP_THEME)
-  {
-  case THEME_LIGHT:
-    // Clear color
-    THEME_CLEARCOLOR_R = 0.7f;
-    THEME_CLEARCOLOR_G = 0.7f;
-    THEME_CLEARCOLOR_B = 0.7f;
-    THEME_CLEARCOLOR_A = 1.0f;
-    break;
-
-  case THEME_DARK:
-    // Clear color
-    THEME_CLEARCOLOR_R = 0.1171875f;
-    THEME_CLEARCOLOR_G = 0.1171875f;
-    THEME_CLEARCOLOR_B = 0.1171875f;
-    THEME_CLEARCOLOR_A = 1.0f;
-    break;
-
-  default:
-    break;
-  }
 }

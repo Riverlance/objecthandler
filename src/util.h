@@ -7,10 +7,13 @@
 
 #pragma once
 
+#include "const.h"
+
 
 
 class Util
 {
   public:
     static std::string getFileContent(const std::string filePath);
+    static void setTheme(Theme_t theme = THEME_NONE);
 };

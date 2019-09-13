@@ -23,26 +23,6 @@
 
 
 
-// Theme
-
-enum Theme_t : uint8_t
-{
-  THEME_LIGHT,
-  THEME_DARK,
-
-  THEME_DEFAULT = THEME_DARK,
-  THEME_FIRST = THEME_LIGHT,
-  THEME_LAST = THEME_DARK,
-};
-extern Theme_t APP_THEME;
-
-extern GLclampf THEME_CLEARCOLOR_R;
-extern GLclampf THEME_CLEARCOLOR_G;
-extern GLclampf THEME_CLEARCOLOR_B;
-extern GLclampf THEME_CLEARCOLOR_A;
-
-
-
 const GLfloat DEFAULT_CAMERA_DISTANCE = 10.0f;
 
 const GLfloat PITCH_CONSTRAINT_RANGE = 0.001f;
@@ -116,7 +96,7 @@ enum Camera_t : uint8_t
   CAMERA_LAST = CAMERA_DIAGONAL,
 
   DEFAULT_CAMERA = CAMERA_FRONT,
-  CAMERA_NONE = 7,
+  CAMERA_NONE = CAMERA_LAST + 1,
 };
 
 enum Device_t : uint16_t
@@ -138,8 +118,23 @@ enum ViewMode_t : uint16_t
   VIEWMODE_LAST = VIEWMODE_GL_POINT,
 
   DEFAULT_VIEWMODE = VIEWMODE_FILL,
-  VIEWMODE_NONE = 3,
+  VIEWMODE_NONE = VIEWMODE_LAST + 1,
 };
+
+enum Theme_t : uint8_t
+{
+  THEME_LIGHT = 0,
+  THEME_DARK = 1,
+  THEME_LAST = THEME_DARK,
+
+  DEFAULT_THEME = THEME_DARK,
+  THEME_NONE = THEME_LAST + 1,
+};
+extern Theme_t APP_THEME;
+extern GLclampf THEME_CLEARCOLOR_R;
+extern GLclampf THEME_CLEARCOLOR_G;
+extern GLclampf THEME_CLEARCOLOR_B;
+extern GLclampf THEME_CLEARCOLOR_A;
 
 
 

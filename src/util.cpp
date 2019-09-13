@@ -42,3 +42,34 @@ std::string Util::getFileContent(const std::string filePath) // static
 
   return output;
 }
+
+void Util::setTheme(Theme_t theme /*= THEME_NONE*/) // static
+{
+  // Next theme
+  if (theme == THEME_NONE)
+    theme = (Theme_t)(((int)APP_THEME + 1) % (THEME_LAST + 1));
+
+  switch (theme)
+  {
+  case THEME_LIGHT:
+    APP_THEME = theme;
+    // Clear color
+    THEME_CLEARCOLOR_R = 0.7f;
+    THEME_CLEARCOLOR_G = 0.7f;
+    THEME_CLEARCOLOR_B = 0.7f;
+    THEME_CLEARCOLOR_A = 1.0f;
+    break;
+
+  case THEME_DARK:
+    APP_THEME = theme;
+    // Clear color
+    THEME_CLEARCOLOR_R = 0.1171875f;
+    THEME_CLEARCOLOR_G = 0.1171875f;
+    THEME_CLEARCOLOR_B = 0.1171875f;
+    THEME_CLEARCOLOR_A = 1.0f;
+    break;
+
+  default:
+    break;
+  }
+}

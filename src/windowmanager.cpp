@@ -12,6 +12,7 @@
 #include "graphicmanager.h"
 #include <SDL.h>
 #include "const.h"
+#include "util.h"
 
 
 
@@ -482,6 +483,11 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t ev
         // Change to next view mode
         case SDLK_m:
           changeViewMode();
+          break;
+
+        // Change to next theme
+        case SDLK_t:
+          Util::setTheme();
           break;
 
         // TODO: Load a model file
