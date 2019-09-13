@@ -5,7 +5,10 @@
 
 <p align="center">
   <br>
-  <img src="./data/_showoff/header.jpg"/>
+  <img src="./data/_showoff/header_1.jpg"/>
+  <br>
+  <br>
+  <img width="882" src="./data/_showoff/header_2.gif"/>
   <br>
 </p>
 
