@@ -895,6 +895,16 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t ev
       changeCamera(CAMERA_DIAGONAL);
       break;
 
+    // Change to next theme
+    case 8:
+      Util::setTheme();
+      break;
+
+    // Change to next view mode
+    case 9:
+      changeViewMode();
+      break;
+
     default:
       break;
     }

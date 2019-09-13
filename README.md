@@ -252,7 +252,7 @@
     <td><p align="center"><i>Next camera</i></p></td>
   </tr>
   <tr>
-    <td rowspan="13"><p align="center"><b><i>Joystick</i></b><br>(<i>Sony Wireless<br>Joystick Dualshock 4<br>Model CUH-ZCT2U</i>)</p></td>
+    <td rowspan="15"><p align="center"><b><i>Joystick</i></b><br>(<i>Sony Wireless<br>Joystick Dualshock 4<br>Model CUH-ZCT2U</i>)</p></td>
     <td><p align="center">[<i>Cross Direction</i>]</p></td>
     <td><p align="center"><i>Move</i> camera</p></td>
   </tr>
@@ -263,6 +263,14 @@
   <tr>
     <td><p align="center">[<i>Ball 2 Slide</i>]</p></td>
     <td><p align="center"><i>Rotate</i> camera</p></td>
+  </tr>
+  <tr>
+    <td><p align="center">[<i>Ball 1 Button</i>]</p></td>
+    <td><p align="center"><i>Next</i> application <i>theme</i></p></td>
+  </tr>
+  <tr>
+    <td><p align="center">[<i>Ball 2 Button</i>]</p></td>
+    <td><p align="center"><i>Next view mode</i></p></td>
   </tr>
   <tr>
     <td><p align="center">[<i>X Button</i>]</p></td>
