@@ -9,15 +9,16 @@
 
 ##### Main
 
-* Normal vectors being generated automatically (flag aiProcess_GenNormals)
+* Supported object files: ASSIMP supported object file extensions (obj, fbx, 3ds, ...)
 * Shading with GLSL
 * Phong shading
-* Supported object files: ASSIMP supported object files (obj, fbx, 3ds, ...)
+* Normal vectors being generated automatically (flag aiProcess_GenNormals)
+* All polygons as triangles (flag aiProcess_Triangulate)
 
 ##### Camera
 
 * Camera rotation: Pitch constraint or Pitch constraint break (default)
-* 7 camera positions
+* 7 camera positions: front, right, back, left, top, bottom, diagonal
 * Camera controls: move, rotate, zoom, change camera view
 
 ##### Control
@@ -25,12 +26,13 @@
 * Devices: Mouse, Keyboard, Joystick (including more than one at the same time; e.g., mouse + keyboard, or joystick 1 + joystick 2 + keyboard, ...)
 * Smooth sensibility (SDL pollEvents and pumpEvents)
 * Sensibility for mouse, keyboard and joystick
-* Theme (dark by default, or light)
+* View modes: fill (textured) by default, line (wireframe) or point (vertices)
+* Themes: dark by default or light
 
 ##### Advanced
 
 * Working with Release x64, Release x86, Debug x64, Debug x86
-* Debug opens a console window with util informations for debugging
+* Debug opens a console window with util informations for debugging, including meshes/triangles/vertices count, action logs, and so on
 * Code working with warning level 4
 
 ---
@@ -45,9 +47,18 @@
 
 ---
 
+### Shortcuts
+
+TODO
+
+---
+
+### Showoff
+
+TODO
+
+---
+
 ### To update
 
-- _View modes_: _Texture_ (default) / _Flat Shade_ / _Wireframe_
-- Options changing in real time: sensibility, theme, camera position, view mode, joystick dead zone, ...
-- Show util data like: meshes count, vertices count, mesh faces count, ...
 - Grid
