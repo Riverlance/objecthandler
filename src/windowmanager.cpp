@@ -495,6 +495,60 @@ void WindowManager::onPollEventCallback(EventManager* _eventManager, uint32_t ev
           //openFile("");
           //break;
 
+        // Mouse: move
+        case SDLK_1:
+          moveMouseSensitivity = DEFAULT_MOUSE_SENSITIVITY_MOVE;
+          printSensitivity(DEVICE_MOUSE);
+          break;
+
+        // Mouse: rotate
+        case SDLK_2:
+          rotateMouseSensitivity = DEFAULT_MOUSE_SENSITIVITY_ROTATE;
+          printSensitivity(DEVICE_MOUSE);
+          break;
+
+        // Mouse: zoom
+        case SDLK_3:
+          zoomMouseSensitivity = DEFAULT_MOUSE_SENSITIVITY_ZOOM;
+          printSensitivity(DEVICE_MOUSE);
+          break;
+
+        // Keyboard: move
+        case SDLK_4:
+          moveKeyboardSensitivity = DEFAULT_KEYBOARD_SENSITIVITY_MOVE;
+          printSensitivity(DEVICE_KEYBOARD);
+          break;
+
+        // Keyboard: rotate
+        case SDLK_5:
+          rotateKeyboardSensitivity = DEFAULT_KEYBOARD_SENSITIVITY_ROTATE;
+          printSensitivity(DEVICE_KEYBOARD);
+          break;
+
+        // Keyboard: zoom
+        case SDLK_6:
+          zoomKeyboardSensitivity = DEFAULT_KEYBOARD_SENSITIVITY_ZOOM;
+          printSensitivity(DEVICE_KEYBOARD);
+          break;
+
+        // Joystick: move
+        case SDLK_7:
+          moveJoystickSensitivity = DEFAULT_JOYSTICK_SENSITIVITY_MOVE;
+          printSensitivity(DEVICE_JOYSTICK);
+          break;
+
+        // Joystick: rotate
+        case SDLK_8:
+          rotateJoystickSensitivity = DEFAULT_JOYSTICK_SENSITIVITY_ROTATE;
+          printSensitivity(DEVICE_JOYSTICK);
+          break;
+
+        // Joystick: zoom
+        case SDLK_9:
+          zoomJoystickSensitivity = DEFAULT_JOYSTICK_SENSITIVITY_ZOOM;
+          printSensitivity(DEVICE_JOYSTICK);
+          break;
+
         default:
           break;
         }
