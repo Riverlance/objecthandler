@@ -5,7 +5,7 @@
 
 <p align="center">
   <br>
-  <img src="./data/_showoff/header_1.jpg"/>
+  <img width="882" src="./data/_showoff/header_1.jpg"/>
   <br>
   <br>
   <img width="882" src="./data/_showoff/header_2.gif"/>
@@ -334,163 +334,163 @@ _Based on the work of http://learnopengl.com/ and http://open.gl/._
 
 <p align="center">
   <br>
-  <img src="./data/_showoff/001.jpg"/>
+  <img width="882" src="./data/_showoff/001.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/002.jpg"/>
+  <img width="882" src="./data/_showoff/002.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/003.jpg"/>
+  <img width="882" src="./data/_showoff/003.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/004.gif"/>
+  <img width="882" src="./data/_showoff/004.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/005.gif"/>
+  <img width="882" src="./data/_showoff/005.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/006.gif"/>
+  <img width="882" src="./data/_showoff/006.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/007.gif"/>
+  <img width="882" src="./data/_showoff/007.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/008.gif"/>
+  <img width="882" src="./data/_showoff/008.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/009.gif"/>
+  <img width="882" src="./data/_showoff/009.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/010.gif"/>
+  <img width="882" src="./data/_showoff/010.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/011.gif"/>
+  <img width="882" src="./data/_showoff/011.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/012.jpg"/>
+  <img width="882" src="./data/_showoff/012.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/013.gif"/>
+  <img width="882" src="./data/_showoff/013.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/014.jpg"/>
+  <img width="882" src="./data/_showoff/014.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/015.jpg"/>
+  <img width="882" src="./data/_showoff/015.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/016.gif"/>
+  <img width="882" src="./data/_showoff/016.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/017.gif"/>
+  <img width="882" src="./data/_showoff/017.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/018.gif"/>
+  <img width="882" src="./data/_showoff/018.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/019.gif"/>
+  <img width="882" src="./data/_showoff/019.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/020.jpg"/>
+  <img width="882" src="./data/_showoff/020.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/021.jpg"/>
+  <img width="882" src="./data/_showoff/021.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/022.jpg"/>
+  <img width="882" src="./data/_showoff/022.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/023.jpg"/>
+  <img width="882" src="./data/_showoff/023.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/024.jpg"/>
+  <img width="882" src="./data/_showoff/024.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/025.jpg"/>
+  <img width="882" src="./data/_showoff/025.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/026.gif"/>
+  <img width="882" src="./data/_showoff/026.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/027.gif"/>
+  <img width="882" src="./data/_showoff/027.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/028.gif"/>
+  <img width="882" src="./data/_showoff/028.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/029.gif"/>
+  <img width="882" src="./data/_showoff/029.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/030.gif"/>
+  <img width="882" src="./data/_showoff/030.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/031.gif"/>
+  <img width="882" src="./data/_showoff/031.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/032.gif"/>
+  <img width="882" src="./data/_showoff/032.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/033.gif"/>
+  <img width="882" src="./data/_showoff/033.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/034.jpg"/>
+  <img width="882" src="./data/_showoff/034.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/035.gif"/>
+  <img width="882" src="./data/_showoff/035.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/036.jpg"/>
+  <img width="882" src="./data/_showoff/036.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/037.gif"/>
+  <img width="882" src="./data/_showoff/037.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/038.jpg"/>
+  <img width="882" src="./data/_showoff/038.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/039.jpg"/>
+  <img width="882" src="./data/_showoff/039.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/040.jpg"/>
+  <img width="882" src="./data/_showoff/040.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/041.jpg"/>
+  <img width="882" src="./data/_showoff/041.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/042.jpg"/>
+  <img width="882" src="./data/_showoff/042.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/043.jpg"/>
+  <img width="882" src="./data/_showoff/043.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/044.jpg"/>
+  <img width="882" src="./data/_showoff/044.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/045.jpg"/>
+  <img width="882" src="./data/_showoff/045.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/046.jpg"/>
+  <img width="882" src="./data/_showoff/046.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/047.jpg"/>
+  <img width="882" src="./data/_showoff/047.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/048.jpg"/>
+  <img width="882" src="./data/_showoff/048.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/049.jpg"/>
+  <img width="882" src="./data/_showoff/049.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/050.jpg"/>
+  <img width="882" src="./data/_showoff/050.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/051.jpg"/>
+  <img width="882" src="./data/_showoff/051.jpg"/>
   <br>
   <br>
-  <img src="./data/_showoff/052.jpg"/>
+  <img width="882" src="./data/_showoff/052.gif"/>
   <br>
   <br>
-  <img src="./data/_showoff/053.jpg"/>
+  <img width="882" src="./data/_showoff/053.jpg"/>
   <br>
 </p>
 
